@@ -3,16 +3,17 @@ export const Login = () => {
 
   const user = {
     name: 'Hedy Lamarr',
-    imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+    imageUrl: '',
     imageSize: 90,
   };
+
 
   return (
 
     <div className="container-login container flex flex-row">
 
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-10 lg:px-8">
-        <div>
+      <div className="basis-1/2">
+        <div style={{backgroundColor: '#262626'}}>
 
           <div>
 
@@ -26,12 +27,14 @@ export const Login = () => {
             />
 
           </div>
-          <div>2</div>
+          <div>
+            <h1 className="text-4xl font-semibold">Bienvenidos</h1>
+          </div>
           <div>3</div>
 
         </div>
       </div>
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-10 lg:px-8">San Roman</div>
+      <div className="basis-1/2" style={{backgroundColor: 'red'}}>San Roman</div>
 
     </div>
 
