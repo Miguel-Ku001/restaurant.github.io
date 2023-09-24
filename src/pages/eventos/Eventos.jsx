@@ -1,4 +1,4 @@
-import {Image, Button, Link} from "@nextui-org/react";
+import {Image} from "@nextui-org/react";
 
 export const Eventos = () => {
     return (
