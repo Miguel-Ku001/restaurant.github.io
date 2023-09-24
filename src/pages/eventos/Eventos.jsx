@@ -1,19 +1,19 @@
-import {Image} from "@nextui-org/react";
+import {Image, Button, Link} from "@nextui-org/react";
 
 export const Eventos = () => {
     return (
       <div className="flex items-center justify-center flex-col p-4 mx-auto mb-64">
         <div className="mx-auto w-2/5 h-auto">
-          <h2 className="mx-auto text-center w-40 py-1.5 px-4 bg-amber-600 text-4xl text-gray-800">Eventos</h2>
-          <h3 className="text-center py-6 px-4 text-2xl text-gray-800">Organiza un evento original y de calidad en un espacio singular, capaz de albergar celebraciones corporativas de todo tipo.</h3>
-          <p className="text-center px-4 text-xl text-gray-800">Te damos 4 motivos por los que tu evento sea inolvidable</p>
+          <h2 className="mx-auto text-center w-40 py-1.5 pt-8 px-4 text-4xl text-gray-800">EVENTOS</h2>
+          <h3 className="text-center py-6 px-4 text-lg text-gray-800">Organiza un evento original y de calidad en un espacio singular, capaz de albergar celebraciones corporativas de todo tipo.</h3>
+          <p className="text-center px-4 text-2xl text-gray-800">TE DAMOS 4 MOTIVOS PARA QUE TU EVENTO SEA INOLVIDABLE</p>
         </div>
 
 
         <div className="mx-auto h-auto w-1/2 z-0">
           <div className="flex items-center justify-center flex-col mt-8">
             <h2 className="mx-auto text-center w-40 text-4xl text-gray-800">1</h2>
-            <h3 className="mb-4 text-center text-2xl text-gray-800">El espacio</h3>
+            <h3 className="mb-4 text-center text-2xl text-gray-800">EL ESPACIO</h3>
           </div>
 
           <div className="flex items-center justify-center">
@@ -31,17 +31,17 @@ export const Eventos = () => {
             </div>
 
             <div className="w-2/5">
-              <p className="mb-1 text-gray-800">
+              <p className="mb-2 text-gray-800">
                 La singularidad de las diferentes edificaciones lo convierte 
                 en un espacio único para celebrar cualquier tipo de evento 
                 como conferencias, reuniones de empresa, presentaciones de 
                 productos, almuerzos o cenas de gala.
               </p>
-              <p className="text-gray-800">
+              <p className="mb-2 text-gray-800">
                 Salón de eventos: con capacidad para 450 personas en formato 
                 banquete y 800 en formato cocktail.
               </p>
-              <p className="text-gray-800">
+              <p className="mb-2 text-gray-800">
                 Salón privado: con 
                 capacidad para 40 personas en formato banquete.
               </p>
@@ -56,13 +56,13 @@ export const Eventos = () => {
         <div className="mx-auto h-auto w-1/2 z-0">
           <div className="flex items-center justify-center flex-col mt-8">
             <h2 className="mx-auto text-center w-40 text-4xl text-gray-800">2</h2>
-            <h3 className="mb-4 text-center text-2xl text-gray-800">La cocina</h3>
+            <h3 className="mb-4 text-center text-2xl text-gray-800">LA COCINA</h3>
           </div>
 
           <div className="flex items-center justify-center">
 
             <div className="w-2/5">
-              <p className="mb-1 text-gray-800">
+              <p className="mb-3 text-gray-800">
               En nuestro restaurante, la cocina es más que un lugar de creación, es 
               un santuario donde los ingredientes se convierten en poesía y los 
               sabores en emociones. Cada plato es una historia que se narra con 
@@ -94,7 +94,7 @@ export const Eventos = () => {
         <div className="mx-auto h-auto w-1/2 z-0">
           <div className="flex items-center justify-center flex-col mt-8">
             <h2 className="mx-auto text-center w-40 text-4xl text-gray-800">3</h2>
-            <h3 className="mb-4 text-center text-2xl text-gray-800">Los detalles</h3>
+            <h3 className="mb-4 text-center text-2xl text-gray-800">LOS DETALLES</h3>
           </div>
 
           <div className="flex items-center justify-center">
@@ -127,22 +127,22 @@ export const Eventos = () => {
         <div className="mx-auto h-auto w-1/2 z-0">
           <div className="flex items-center justify-center flex-col mt-8">
             <h2 className="mx-auto text-center w-40 text-4xl text-gray-800">4</h2>
-            <h3 className="mb-4 text-center text-2xl text-gray-800">Extras</h3>
+            <h3 className="mb-4 text-center text-2xl text-gray-800">EXTRAS</h3>
           </div>
 
           <div className="flex items-center justify-center">
 
             <div className="w-2/5">
-              <p className="mb-1 text-gray-800">
+              <p className="mb-2 text-gray-800">
                 Llevamos los eventos a un nivel completamente 
                 nuevo gracias a una serie de extras garantizando que cada 
                 ocasión sea memorable.            
               </p>
-              <p className="text-gray-800">
+              <p className="mb-2 text-gray-800">
                 Maridaje de Bebidas Especiales: Nuestra selección de bebidas 
                 es la pareja perfecta para la carne al pastor. 
               </p>
-              <p className="text-gray-800">
+              <p className="mb-2 text-gray-800">
                 Entretenimiento en Vivo: Ofrecemos una variedad de entretenimiento 
                 en vivo.
               </p>
@@ -165,6 +165,11 @@ export const Eventos = () => {
             </div>
 
           </div>
+        </div>
+
+        <div>
+          
+          <button href="#" className="active:scale-95 hover:scale-105 mt-28 shadow-xl rounded-lg py-3 px-10 bg-sky-950 text-white transition duration-500">Reservar</button>
         </div>
 
 
