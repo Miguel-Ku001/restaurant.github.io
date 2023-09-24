@@ -1,6 +1,6 @@
 
 
-import {Card, Image, CardBody, Button, Link} from "@nextui-org/react";
+import {Card, Image, CardBody, Link} from "@nextui-org/react";
 
 export const Servicios = () => {
   return (
