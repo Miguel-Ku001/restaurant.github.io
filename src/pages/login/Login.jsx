@@ -1,10 +1,13 @@
 
+import logo from './LOGO3.png';  
+
+
 export const Login = () => {
 
   const user = {
     name: 'Hedy Lamarr',
-    imageUrl: './images/LOGO3.png',
     imageSize: 90,
+    src: './LOGO3.png'
   };
 
 
@@ -18,7 +21,7 @@ export const Login = () => {
           <div>
 
             <img
-              src={user.imageUrl}
+              src={logo}
               className="avatar"
               style={{
                 width: user.imageSize,
