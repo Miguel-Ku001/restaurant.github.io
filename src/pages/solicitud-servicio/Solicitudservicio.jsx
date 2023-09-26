@@ -1,6 +1,10 @@
 export const Solicitudservicio = () => {
     return (
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-10 lg:px-8">Bienvenido a Solicitudservicio</div>
+
+      <div className="mt-16">
+        <h2 className="text-5xl text-center text-gray-800">RESERVACION</h2>
+      </div>
+
     )
   }
   export default Solicitudservicio
