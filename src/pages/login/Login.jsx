@@ -1,14 +1,17 @@
 
-import logo from './LOGO3.png';  
+
+import {Image} from "@nextui-org/react";
 
 
 export const Login = () => {
 
+{/*
   const user = {
     name: 'Gussab logo',
     imageSize: 200,
     src: './LOGO3.png'
   };
+  */}
 
 
   return (
@@ -20,6 +23,14 @@ export const Login = () => {
 
           <div>
 
+          <Image
+            className="items-center"
+            width={200}
+            src="/src/images/LOGO3.png"
+          />
+
+
+          {/*
             <img
               src={logo}
               className="avatar"
@@ -28,6 +39,7 @@ export const Login = () => {
                 height: user.imageSize
               }}
             />
+            */}
 
           </div>
           <div>
