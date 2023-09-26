@@ -5,8 +5,8 @@ import logo from './LOGO3.png';
 export const Login = () => {
 
   const user = {
-    name: 'Hedy Lamarr',
-    imageSize: 90,
+    name: 'Gussab logo',
+    imageSize: 200,
     src: './LOGO3.png'
   };
 
