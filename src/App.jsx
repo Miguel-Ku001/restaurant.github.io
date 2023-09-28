@@ -39,6 +39,7 @@ function App() {
         <Route exact path='/sucursales' element={ <Sucursales /> } />
         {/* <Route exact path='/proveedores' element={ <Proveedores /> } />
         <Route exact path='/inventario' element={ <Inventario /> } />  */}
+
       </Routes>
 
       <Footer />

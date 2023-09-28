@@ -26,7 +26,7 @@ export const Bodas = () => {
           </div>
 
           <div className="mx-10 w-4 flex justify-center">
-            <img className="w-0.4" src="/src/images/linea-vertical.png" alt="Linea separadora" />
+            <img className="w-0.4" src="/src/images/lineavertical.png" alt="Linea separadora" />
           </div>
 
           <div className="w-2/5">
@@ -66,7 +66,7 @@ export const Bodas = () => {
           </div>
 
           <div className="mx-10 w-4 flex justify-center">
-            <img className="w-0.4" src="/src/images/linea-vertical.png" alt="Linea separadora" />
+            <img className="w-0.4" src="/src/images/lineavertical.png" alt="Linea separadora" />
           </div>
 
           <div className="w-2/5">
@@ -97,7 +97,7 @@ export const Bodas = () => {
           </div>
 
           <div className="mx-10 w-4 flex justify-center">
-            <img className="w-0.4" src="/src/images/linea-vertical.png" alt="Linea separadora" />
+            <img className="w-0.4" src="/src/images/lineavertical.png" alt="Linea separadora" />
           </div>
 
           <div className="w-2/5">
