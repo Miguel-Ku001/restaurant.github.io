@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "@nextui-org/react";
 
-export const catering = () => {
+export const Catering = () => {
   return (
     <div className="flex items-center justify-center flex-col p-4 mx-auto mb-64">
       <div className="mx-auto w-2/5 h-auto">
@@ -134,4 +134,4 @@ export const catering = () => {
   );
 };
 
-export default catering;
+export default Catering
