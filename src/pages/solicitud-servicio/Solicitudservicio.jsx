@@ -12,7 +12,7 @@ export const Solicitudservicio = () => {
           <Card className="w-3/5 h-auto py-2">
             <CardBody className="w-100 bg-white rounded-xl flex justify-center p-10">
             <p className="ml-7 text-lg font-medium">FORMULARIO DE CONTACTO</p>           
-            <Table hideHeader className="items-center">
+            <Table hideHeader className="items-center" aria-label="Example static collection table">
                 <TableHeader>
                   <TableColumn className="text-gray-800 bg-white">FORMULARIO DE CONTACTO</TableColumn>
                   <TableColumn className="bg-white"></TableColumn>
@@ -122,7 +122,7 @@ export const Solicitudservicio = () => {
                   <TableRow key="4">
                     <TableCell></TableCell>
                     <TableCell>
-                      <button href="#" className="w-full active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Reservar</button>
+                      <button href="#" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Reservar</button>
                     </TableCell>
                     <TableCell></TableCell>
                   </TableRow>
