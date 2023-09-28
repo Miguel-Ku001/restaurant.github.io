@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "@nextui-org/react";
 
-export const Eventos = () => {
+export const catering = () => {
   return (
     <div className="flex items-center justify-center flex-col p-4 mx-auto mb-64">
       <div className="mx-auto w-2/5 h-auto">
@@ -39,7 +39,7 @@ export const Eventos = () => {
           </div>
 
           <div className="mx-10 w-4 flex justify-center">
-            <img className="w-0.4" src="/src/images/linea-vertical.png" alt="Linea separadora" />
+            <img className="w-0.4" src="/src/images/linea-vertical1.png" alt="Linea separadora" />
           </div>
 
           <div className="w-2/5">
@@ -69,7 +69,7 @@ export const Eventos = () => {
           </div>
 
           <div className="mx-10 w-4 flex justify-center">
-            <img className="w-0.4" src="/src/images/linea-vertical.png" alt="Linea separadora" />
+            <img className="w-0.4" src="/src/images/linea-vertical1.png" alt="Linea separadora" />
           </div>
 
           <div className="w-2/5">
@@ -114,7 +114,7 @@ export const Eventos = () => {
           </div>
 
           <div className="mx-10 w-4 flex justify-center">
-            <img className="w-0.4" src="/src/images/linea-vertical.png" alt="Linea separadora" />
+            <img className="w-0.4" src="/src/images/linea-vertical1.png" alt="Linea separadora" />
           </div>
 
           <div className="w-2/5">
@@ -134,4 +134,4 @@ export const Eventos = () => {
   );
 };
 
-export default Eventos;
+export default catering;
