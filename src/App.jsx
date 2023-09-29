@@ -29,7 +29,8 @@ function App() {
         <Route exact path='/' element={ <Inicio /> } />
         <Route exact path='/login' element={ <Login /> } />
         <Route exact path='/menu' element={ <Menu /> } />
-        {/* <Route exact path='/menu/ordenes' element={ <Ordenes /> } />
+        <Route exact path='/menu/ordenes' element={ <Ordenes /> } />
+        {/* 
         <Route exact path='/menu/ordenes/forma-de-pago' element={ <Ordenespago /> } /> */}
         <Route exact path='/servicios' element={ <Servicios /> } />
         {/* <Route exact path='/servicios/eventos' element={ <Eventos /> } />
