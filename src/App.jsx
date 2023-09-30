@@ -38,8 +38,8 @@ function App() {
         <Route exact path='/servicios/bodas' element={ <Bodas /> } />
         {/* <Route exact path='/servicios/solicitud-de-servicio' element={ <Solicitudservicio /> } />*/}
         <Route exact path='/sucursales' element={ <Sucursales /> } />
-        {/* <Route exact path='/proveedores' element={ <Proveedores /> } />
-        <Route exact path='/inventario' element={ <Inventario /> } />  */}
+         <Route exact path='/proveedores' element={ <Proveedores /> } />
+        {/*<Route exact path='/inventario' element={ <Inventario /> } />  */}
 
       </Routes>
 
