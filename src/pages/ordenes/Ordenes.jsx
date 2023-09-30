@@ -1,12 +1,12 @@
-import {Input, Textarea, Button, Link} from "@nextui-org/react";
+import {Input, Textarea} from "@nextui-org/react";
 
 export const Ordenes = () => {
     return (
       <div className="mx-auto max-w-screen-2xl py-24 sm:px-6 sm:py-10 lg:px-8 h-screen">
+        <div>
+          <h2 className="text-4xl text-center text-gray-800 pb-4 font-medium">ORDENAR</h2>
+        </div>
         <div className="bg-white m-10 rounded-xl h-4/5 shadow-xl py-8 px-20">
-          <div>
-            <h2 className="text-4xl text-center text-gray-800 pb-4 font-medium">Ordenar</h2>
-          </div>
           <div className="flex">
             <div className="w-1/2 py-2 pr-10">
               <div>
@@ -43,9 +43,9 @@ export const Ordenes = () => {
 
             <div className="w-1/2 py-2 pl-10">
               <div className="grid grid-cols-3 gap-4 mt-2 mb-4">
-                <h4 className="text-xl  text-gray-800">Producto</h4>
-                <h4 className="text-xl  text-gray-800">Cantidad</h4>
-                <h4 className="text-xl  text-gray-800">Precio</h4>
+                <h4 className="text-xl  text-gray-800">PRODUCTO</h4>
+                <h4 className="text-xl  text-gray-800">CANTIDAD</h4>
+                <h4 className="text-xl  text-gray-800">PRECIO</h4>
               </div>
 
               <div className="grid grid-cols-3 gap-4 mt-2 mb-6">
@@ -212,9 +212,7 @@ export const Ordenes = () => {
 
               <div className="flex flex-row-reverse">
                 <div className="w-1/4">
-                  <Button as={Link} href="#" fullWidth size="lg" radius="sm" variant="solid" className="text-white bg-amber-600">
-                    Ordenar
-                  </Button>
+                  <button href="#" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Ordenar</button>
                 </div>
               </div>
 
