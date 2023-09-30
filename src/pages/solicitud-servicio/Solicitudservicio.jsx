@@ -1,5 +1,7 @@
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody} from "@nextui-org/react";
 
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody} from "@nextui-org/react";
+
 export const Solicitudservicio = () => {
     return (
       <div>
@@ -137,6 +139,8 @@ export const Solicitudservicio = () => {
 
 
       </div>
+      
+      
       
     )
   }
