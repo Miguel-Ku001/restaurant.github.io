@@ -33,10 +33,10 @@ function App() {
         {/* 
         <Route exact path='/menu/ordenes/forma-de-pago' element={ <Ordenespago /> } /> */}
         <Route exact path='/servicios' element={ <Servicios /> } />
-        {/* <Route exact path='/servicios/eventos' element={ <Eventos /> } />
+        <Route exact path='/servicios/eventos' element={ <Eventos /> } />
         <Route exact path='/servicios/catering' element={ <Catering /> } />
         <Route exact path='/servicios/bodas' element={ <Bodas /> } />
-        <Route exact path='/servicios/solicitud-de-servicio' element={ <Solicitudservicio /> } />*/}
+        {/* <Route exact path='/servicios/solicitud-de-servicio' element={ <Solicitudservicio /> } />*/}
         <Route exact path='/sucursales' element={ <Sucursales /> } />
         {/* <Route exact path='/proveedores' element={ <Proveedores /> } />
         <Route exact path='/inventario' element={ <Inventario /> } />  */}
