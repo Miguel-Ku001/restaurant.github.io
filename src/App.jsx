@@ -15,6 +15,7 @@ import Bodas from './pages/bodas/Bodas'
 import Sucursales from './pages/sucursales/Sucursales'
 import Proveedores from './pages/proveedores/Proveedores'
 import Inventario from './pages/inventario/Inventario'
+import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
 
 
 function App() {
@@ -35,10 +36,10 @@ function App() {
         <Route exact path='/servicios/eventos' element={ <Eventos /> } />
         <Route exact path='/servicios/catering' element={ <Catering /> } />
         <Route exact path='/servicios/bodas' element={ <Bodas /> } />
-        {/* <Route exact path='/servicios/solicitud-de-servicio' element={ <Solicitudservicio /> } /> */}
+        <Route exact path='/servicios/solicitud-de-servicio' element={ <Solicitudservicio /> } />
         <Route exact path='/sucursales' element={ <Sucursales /> } />
         <Route exact path='/proveedores' element={ <Proveedores /> } />
-        {/*<Route exact path='/inventario' element={ <Inventario /> } />  */}
+        <Route exact path='/inventario' element={ <Inventario /> } /> 
 
       </Routes>
 

@@ -2,7 +2,7 @@ import {Card, Image, CardBody, Divider} from "@nextui-org/react";
 
 export const Inicio = () => {
   return (
-    <div>
+    <div className="font-marcellus">
       <div className="flex items-center justify-center p-10 mx-auto">
           <Image
             className="object-cover z-1 w-screen px-14"

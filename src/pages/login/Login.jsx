@@ -3,14 +3,13 @@ import {Image} from "@nextui-org/react";
 export const Login = () => {
   return (
 
-    <div className="flex flex-row">
+    <div className="flex flex-row font-marcellus">
 
       <div className="flex justify-center" style={{width: '50%',backgroundColor: '#262626', backgroundSize: '100%'}}>
         <div>
           
           <div className=" flex justify-center">
             <Image
-   
               width={300}
               src="/src/images/LOGO3.png"
             />

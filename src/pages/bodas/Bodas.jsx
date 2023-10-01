@@ -1,10 +1,10 @@
 import {Image} from "@nextui-org/react";
 export const Bodas = () => {
   return (
-    <div className="flex items-center justify-center flex-col p-4 mx-auto mb-64">
-      <div className="mx-auto w-2/5 h-auto">
+    <div className="flex items-center justify-center flex-col p-4 mx-auto mb-64 font-marcellus">
+      <div className="mx-auto h-auto">
         <h2 className="mx-auto text-center w-40 py-1.5 pt-8 px-4 text-4xl text-gray-800">BODAS</h2>
-        <h3 className="text-center py-6 px-4 text-lg text-gray-800">El equipo de profesionales y asesores del restaurante GUSSAB les acompañarán en el magnífico diseño de su boda.</h3>
+        <h3 className="text-center py-6 mx-80 text-lg text-gray-800">El equipo de profesionales y asesores del restaurante GUSSAB les acompañarán en el magnífico diseño de su boda.</h3>
         <p className="text-center px-4 text-2xl text-gray-800">Te damos 3 motivos por los que tu boda sea inolvidable</p>
       </div>
 

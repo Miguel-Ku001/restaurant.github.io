@@ -2,7 +2,7 @@ import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, C
 
 export const Solicitudservicio = () => {
     return (
-      <div>
+      <div className="font-marcellus">
         <div className="mt-16 mb-10">
           <h2 className="text-5xl text-center text-gray-800">RESERVACION</h2>
         </div>

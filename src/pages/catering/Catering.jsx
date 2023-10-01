@@ -3,17 +3,13 @@ import { Image } from "@nextui-org/react";
 
 export const Catering = () => {
   return (
-    <div className="flex items-center justify-center flex-col p-4 mx-auto mb-64">
-      <div className="mx-auto w-2/5 h-auto">
-        <h2 className="mx-auto text-center w-40 py-1.5 pt-8 px-4 text-4xl text-gray-800">CATERING</h2>
-        <p className="text-center px-4 text-2xl text-gray-800">
-          Si ya cuentas con un espacio para celebrar tu evento o boda, no renuncies
-          a la gastronomía y sorprende a tus invitados.
-        </p>
-        <p className="text-center px-4 text-2xl text-gray-800">
-          Te damos 3 motivos por los que tu evento sea inolvidable
-        </p>
-      </div>
+    <div className="flex items-center justify-center flex-col p-4 mx-auto mb-64 font-marcellus">
+      <div className="mx-auto h-auto">
+          <h2 className="mx-auto text-center w-40 py-1.5 pt-8 px-4 text-4xl text-gray-800">CATERING</h2>
+          <h3 className="text-center py-6 mx-80 text-lg text-gray-800">Si ya cuentas con un espacio para celebrar tu evento o boda, no renuncies
+          a la gastronomía y sorprende a tus invitados.</h3>
+          <p className="text-center px-4 text-2xl text-gray-800">TE DAMOS 3 MOTIVOS PARA QUE TU EVENTO SEA INOLVIDABLE</p>
+        </div>
 
       {/* Información de la cocina */}
       <div className="mx-auto h-auto w-1/2 z-0">

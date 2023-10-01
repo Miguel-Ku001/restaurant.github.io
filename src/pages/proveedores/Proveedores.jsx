@@ -38,7 +38,7 @@ const proveedoresDerecha = [
 
 const Proveedores = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 mx-auto mb-8">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 mx-auto mb-8 font-marcellus">
       <h2 className="text-center text-4xl text-gray-800 mb-8 mt-16">NUESTROS PROVEEDORES</h2>
 
       <div className="flex flex-col md:flex-row justify-center items-center w-full  mr-20">

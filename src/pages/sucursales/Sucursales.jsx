@@ -1,7 +1,7 @@
 import { Image } from "@nextui-org/react";
 export const Sucursales = () => {
   return (
-    <div className="flex flex-col items-center p-4 mx-auto mb-64">
+    <div className="flex flex-col items-center p-4 mx-auto mb-64 font-marcellus">
       <h2 className="text-center py-1.5 pt-8 text-4xl text-gray-800 mb-8">SUCURSALES</h2>
 
       <div className="flex flex-row justify-between w-full p-4">
