@@ -11,6 +11,10 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      marcellus: ['Marcellus', 'serif'],
+      msc: ['Marcellus SC', 'serif'],
+    },
   },
   darkMode: "class", 
   plugins: [nextui()],

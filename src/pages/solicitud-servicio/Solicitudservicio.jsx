@@ -1,7 +1,5 @@
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody} from "@nextui-org/react";
 
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody} from "@nextui-org/react";
-
 export const Solicitudservicio = () => {
     return (
       <div>
@@ -123,7 +121,7 @@ export const Solicitudservicio = () => {
                   <TableRow key="4">
                     <TableCell></TableCell>
                     <TableCell>
-                      <button href="#" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Reservar</button>
+                      <button href="#" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Agendar</button>
                     </TableCell>
                     <TableCell></TableCell>
                   </TableRow>
