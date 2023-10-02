@@ -18,11 +18,7 @@ export default function Header() {
   ];
 
   return (
-<<<<<<< HEAD
-    <Navbar className="bg-gray-800 font-marcellus" onMenuOpenChange={setIsMenuOpen} >
-=======
     <Navbar className="bg-[#2c3033] font-marcellus h-[6rem]" onMenuOpenChange={setIsMenuOpen} >
->>>>>>> main
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
