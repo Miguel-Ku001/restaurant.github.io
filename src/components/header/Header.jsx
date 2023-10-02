@@ -36,17 +36,17 @@ export default function Header() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" name="Menu" href="/menu" className="text-white">
+          <Link color="foreground" name="Menu" href="/menu" className="text-white hover:text-orange-300">
             MENU
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" name="Servicio" href="/servicios" className="text-white">
+          <Link color="foreground" name="Servicio" href="/servicios" className="text-white hover:text-orange-300">
             SERIVICIOS
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" name="Sucursales" href="/sucursales" className="text-white">
+          <Link color="foreground" name="Sucursales" href="/sucursales" className="text-white hover:text-orange-300">
             SUCURSALES
           </Link>
         </NavbarItem>
