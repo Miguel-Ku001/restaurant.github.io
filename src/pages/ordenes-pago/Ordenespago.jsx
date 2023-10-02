@@ -1,9 +1,8 @@
-
 import React from 'react';
 
 const Ordenespago = () => {
   return (
-    <div className="flex flex-col mx-auto max-w-7xl py-24 sm:px-6 sm:py-10 lg:px-8">
+    <div className="flex flex-col mx-auto max-w-7xl py-24 sm:px-6 sm:py-10 lg:px-8 font-marcellus">
       {/* Título */}
       <h2 className="text-center text-2xl mb-8">¿CÓMO QUIERES PAGAR?</h2>
 

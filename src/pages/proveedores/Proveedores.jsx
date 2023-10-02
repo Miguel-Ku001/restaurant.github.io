@@ -1,4 +1,4 @@
-import { Image } from "@nextui-org/react";
+import { Image, Button, Link } from "@nextui-org/react";
 
 const proveedoresIzquierda = [
   {
@@ -38,7 +38,7 @@ const proveedoresDerecha = [
 
 const Proveedores = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 mx-auto mb-8">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 mx-auto mb-8 font-marcellus">
       <h2 className="text-center text-4xl text-gray-800 mb-8 mt-16">NUESTROS PROVEEDORES</h2>
 
       <div className="flex flex-col md:flex-row justify-center items-center w-full  mr-20">
@@ -57,9 +57,9 @@ const Proveedores = () => {
               <p className="mt-4 text-gray-800 text-left max-w-md text-justify">
                 {proveedor.informacion}
               </p>
-              <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-full">
-                Visitar
-              </button>
+                <Button as={Link} color="primary"  href="#" variant="flat" className=" w-1/2 active:scale-95 hover:scale-105 mt-5 shadow-xl rounded-lg py-2 px-10 text-white transition duration-500 bg-[#092A3A]">
+                  <h3>Visitar</h3>
+                </Button>
             </div>
           ))}
         </div>
@@ -79,9 +79,12 @@ const Proveedores = () => {
               <p className="mt-4 text-gray-800 text-left max-w-md text-justify">
                 {proveedor.informacion}
               </p>
-              <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-full">
+              {/* <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-full">
                 Visitar
-              </button>
+              </button> */}
+                <Button as={Link} color="primary"  href="#" variant="flat" className=" w-1/2 active:scale-95 hover:scale-105 mt-5 shadow-xl rounded-lg py-2 px-10 text-white transition duration-500 bg-[#092A3A]">
+                  <h3>Visitar</h3>
+                </Button>
             </div>
           ))}
         </div>

@@ -1,4 +1,4 @@
-import {Image} from "@nextui-org/react";
+import {Image, Link, Button} from "@nextui-org/react";
 
 export const Menu = () => {
     return (
@@ -134,7 +134,14 @@ export const Menu = () => {
           </div>
         </div>
 
-
+        <div className="flex flex-row-reverse justify-center">
+          <div className="w-1/5">
+            <Button as={Link} color="primary"  href="/menu/ordenes" variant="flat" className=" w-full active:scale-95 hover:scale-105 mt-20 shadow-xl rounded-lg py-3 px-10 text-white transition duration-500 bg-[#092A3A]">
+              <h3>Ordenar</h3>
+            </Button>
+            {/* <button href="/menu/ordenes/forma-de-pago" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Ordenar</button>                   */}
+          </div>
+        </div>
 
       </div>
         )
