@@ -1,4 +1,4 @@
-import {Image} from "@nextui-org/react";
+import {Image, Button, Link} from "@nextui-org/react";
 
 export const Eventos = () => {
     return (
@@ -168,11 +168,11 @@ export const Eventos = () => {
         </div>
 
         <div>
-          
-          <button href="#" className="active:scale-95 hover:scale-105 mt-28 shadow-xl rounded-lg py-3 px-10 bg-sky-950 text-white transition duration-500">Reservar</button>
+          <Button as={Link} color="primary"  href="/servicios/solicitud-de-servicio" variant="flat" className="active:scale-95 hover:scale-105 mt-28 shadow-xl rounded-lg py-3 px-10 text-white transition duration-500 bg-[#092A3A]">
+            <h3>Reservar</h3>
+          </Button>
+          {/* <button href="#" className="active:scale-95 hover:scale-105 mt-28 shadow-xl rounded-lg py-3 px-10 bg-sky-950 text-white transition duration-500">Reservar</button> */}
         </div>
-
-
       </div>
     )
   }

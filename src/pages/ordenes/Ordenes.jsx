@@ -1,4 +1,4 @@
-import {Input, Textarea, Card, CardBody, Link} from "@nextui-org/react";
+import {Input, Textarea, Card, CardBody, Link, Button} from "@nextui-org/react";
 
 export const Ordenes = () => {
     return (
@@ -214,7 +214,11 @@ export const Ordenes = () => {
 
                 <div className="flex flex-row-reverse justify-center">
                   <div className="w-1/2">
-                    <button href="/menu/ordenes/forma-de-pago" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Ordenar</button>                  </div>
+                    <Button as={Link} color="primary"  href="/menu/ordenes/forma-de-pago" variant="flat" className=" w-full active:scale-95 hover:scale-105 mt-5 shadow-xl rounded-lg py-2 px-10 text-white transition duration-500 bg-[#092A3A]">
+                      <h3>Ordenar</h3>
+                    </Button>
+                    {/* <button href="/menu/ordenes/forma-de-pago" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Ordenar</button>                   */}
+                  </div>
                 </div>
 
               </div>

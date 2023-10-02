@@ -91,14 +91,14 @@ export const Inicio = () => {
 
         <div className="z-0 grid place-items-center">
             <h3 className="h-8 text-center text-2xl text-gray-800 my-4">VALORES</h3>
-            <p className="h-44 text-justify text-base text-gray-800 px-14"> 
-            <ul class="list-disc">
+            {/* <p className="h-44 text-justify text-base text-gray-800 px-14">  */}
+            <ul className="list-disc h-44 text-justify text-base text-gray-800 px-14">
                 <li>Pasión por la calidad culinaria.</li>
                 <li>Atención y servicio excepcionales.</li>
                 <li>Autenticidad en cada plato.</li>
                 <li>Compromiso con la satisfacción del cliente.</li>
               </ul>
-            </p>
+            {/* </p> */}
         </div>
 
         <div className="z-0 grid place-items-center">

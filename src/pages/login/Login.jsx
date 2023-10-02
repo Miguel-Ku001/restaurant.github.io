@@ -6,7 +6,7 @@ export const Login = () => {
     <div className="flex flex-row font-marcellus">
 
       <div className="flex justify-center" style={{width: '50%',backgroundColor: '#262626', backgroundSize: '100%'}}>
-        <div>
+        <div className="mt-10">
           
           <div className=" flex justify-center">
             <Image
