@@ -17,25 +17,26 @@ import Sucursales from './pages/sucursales/Sucursales'
 import Proveedores from './pages/proveedores/Proveedores'
 import Inventario from './pages/inventario/Inventario'
 import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
-
+import Users from './components/User'
 
 function App() {
   // const [count, setCount] = useState(0)
 
-  const [backendData, setBackendData] =useState([{}])
+  // const [backendData, setBackendData] =useState([{}])
 
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
+  // useEffect(() => {
+  //   fetch("/api").then(
+  //     response => response.json()
+  //   ).then(
+  //     data => {
+  //       setBackendData(data)
+  //     }
+  //   )
+  // }, [])
 
   return (
     <>
+    <Users />
     {/* <Router>
       <ShowNavbar>
         <Header />
