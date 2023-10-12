@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import ShowNavbar from './components/shownavbar/Shownavbar'
@@ -20,11 +20,23 @@ import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
+
+  const [backendData, setBackendData] =useState([{}])
+
+  useEffect(() => {
+    fetch("/api").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data)
+      }
+    )
+  }, [])
 
   return (
     <>
-    <Router>
+    {/* <Router>
       <ShowNavbar>
         <Header />
       </ShowNavbar>
@@ -49,7 +61,7 @@ function App() {
       </ShowNavbar>
       
       
-    </Router>
+    </Router> */}
       
     </>
   )
