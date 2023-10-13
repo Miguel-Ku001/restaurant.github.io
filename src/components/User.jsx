@@ -1,4 +1,3 @@
-import { useUser } from "@nextui-org/react";
 import { Component } from "react";
 
 class Users extends Component {
@@ -12,23 +11,26 @@ class Users extends Component {
 
     componentDidMount() {
         fetch('/api/users')
-        .then(res => res.json())
-        .then(users => {
-            this.setState({ users: users});
+            .then(res => res.json())
+            .then(users => {
+                this.setState({ users: users});
         });
     }
 
     render() {
         return (
-            <ul>
+            <div>
+                <ul>
                 {
                     this.state.users.map(user => (
-                        <li>Username: {user.username}, Age: {user.age}</li>
+                        <li>Username {user.username}, Age: {user.age}</li>
                     ))
                 }
-            </ul>
+            </ul> 
+            </div>
+           
         )
     }
 }
 
-export default Users
+export default Users;
