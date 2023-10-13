@@ -20,6 +20,15 @@ import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
 import Users from './components/User'
 
 function App() {
+
+    // useEffect(() => {
+    //   fetch('http://localhost:5000/users')
+    //     .then(res => res.json())
+    //     .then(data => console.log(data))
+    //     .catch(err => console.log(err));
+    // }, [])
+  
+
   // const [count, setCount] = useState(0)
 
   // const [backendData, setBackendData] =useState([{}])
@@ -36,8 +45,8 @@ function App() {
 
   return (
     <>
-    <Users />
-    {/* <Router>
+    {/* <Users /> */}
+    <Router>
       <ShowNavbar>
         <Header />
       </ShowNavbar>
@@ -62,7 +71,7 @@ function App() {
       </ShowNavbar>
       
       
-    </Router> */}
+    </Router>
       
     </>
   )

@@ -21,12 +21,12 @@ class Users extends Component {
         return (
             <div>
                 <ul>
-                {
-                    this.state.users.map(user => (
-                        <li>Username {user.username}, Age: {user.age}</li>
-                    ))
-                }
-            </ul> 
+                    {
+                        this.state.users.map(user => (
+                            <li>Username {user.username}, Age: {user.age}</li>
+                        ))
+                    }
+                </ul> 
             </div>
            
         )
