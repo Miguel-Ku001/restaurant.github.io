@@ -26,7 +26,6 @@ function App() {
       <ShowNavbar>
         <Header />
       </ShowNavbar>
-      
         <Routes>
           <Route exact path='/' element={ <Inicio /> } />
           <Route exact path='/login' element={ <Login /> } />

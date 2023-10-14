@@ -1,10 +1,10 @@
 import {Image} from "@nextui-org/react";
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 export const Login = () => {
   const [body, setBody] = useState({ email: '', password: '' })
-  const history = useHistory()
+  // const history = useHistory()
 
   const inputChange=({ target }) => {
     const {name, value} = target
@@ -24,10 +24,10 @@ export const Login = () => {
       body: JSON.stringify(body)
     })
       .then(({ data }) => {
-        // console.log(data)
-        if (data.authenticated) {
-          history.push('/');
-        }
+        console.log(data)
+        // if (data.authenticated) {
+        //   history.push('/');
+        // }
       })
       .catch(({ response }) => {
         console.log(response.data)
