@@ -1,10 +1,11 @@
-import {Image} from "@nextui-org/react";
+import {Image, Link} from "@nextui-org/react";
 import { useState } from 'react'
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const [body, setBody] = useState({ email: '', password: '' })
-  // const history = useHistory()
+  const navigate = useNavigate();
+  
 
   const inputChange=({ target }) => {
     const {name, value} = target
@@ -23,19 +24,25 @@ export const Login = () => {
       },
       body: JSON.stringify(body)
     })
-      .then(({ data }) => {
-        console.log(data)
-        // if (data.authenticated) {
-        //   history.push('/');
-        // }
+      .then((response) => {
+        if (response.ok) {
+          return response.json(); // Convertir la respuesta a JSON si la respuesta es válida
+        } else {
+          throw new Error('La solicitud no fue exitosa');
+        }
       })
-      .catch(({ response }) => {
-        console.log(response.data)
+      .then((data) => {
+        if (data.authenticated) {
+          navigate('/');
+        } else {
+          console.log('El usuario no está autenticado.');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
       });
-
   }
-
-
+  
 
   return (
 
@@ -48,11 +55,9 @@ export const Login = () => {
               src="/src/images/LOGO3.png"
             />
           </div>
-
           <div>
             <h1 className="text-4xl  text-center font-serif" style={{color: '#f8fafc', marginTop:'-50px'}}>BIENVENIDO</h1>
           </div>
-
           <div>
             <h1 style={{color: '#f8fafc', marginTop: '15px', }}>Iniciar Sesión</h1>
             <div className="flex flex-column">
@@ -104,7 +109,6 @@ export const Login = () => {
               </form>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -120,9 +124,7 @@ export const Login = () => {
          
         </div>
       </div>
-    </div>
-
-    
+    </div> 
   )
 }
 export default Login
