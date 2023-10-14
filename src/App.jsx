@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import ShowNavbar from './components/shownavbar/Shownavbar'
@@ -18,9 +18,7 @@ import Proveedores from './pages/proveedores/Proveedores'
 import Inventario from './pages/inventario/Inventario'
 import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
 
-
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -28,7 +26,6 @@ function App() {
       <ShowNavbar>
         <Header />
       </ShowNavbar>
-      
         <Routes>
           <Route exact path='/' element={ <Inicio /> } />
           <Route exact path='/login' element={ <Login /> } />
