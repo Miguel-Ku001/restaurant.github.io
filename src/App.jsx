@@ -5,6 +5,7 @@ import Footer from './components/footer/Footer'
 import ShowNavbar from './components/shownavbar/Shownavbar'
 import './App.css'
 import Inicio from './pages/inicio/Inicio'
+import Registro from './pages/registro/Registro'
 import Login from './pages/login/Login'
 import Menu from './pages/menu/Menu'
 import Ordenes from './pages/ordenes/Ordenes'
@@ -28,6 +29,7 @@ function App() {
       </ShowNavbar>
         <Routes>
           <Route exact path='/' element={ <Inicio /> } />
+          <Route exact path='/registro' element={ <Registro /> } />
           <Route exact path='/login' element={ <Login /> } />
           <Route exact path='/menu' element={ <Menu /> } />
           <Route exact path='/menu/ordenes' element={ <Ordenes /> } />

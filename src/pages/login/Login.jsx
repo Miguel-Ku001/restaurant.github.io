@@ -1,4 +1,4 @@
-import {Image} from "@nextui-org/react";
+import {Image, Link} from "@nextui-org/react";
 import { useState } from 'react'
 // import { useHistory } from 'react-router-dom';
 
@@ -92,6 +92,13 @@ export const Login = () => {
                     </div>
                   </div>
                 </div>
+
+                <div>
+                  <Link color="foreground" name="Registro" href="/registro" className="mt-2 underline text-white hover:text-orange-300">
+                    ¿No tienes cuenta?
+                  </Link>
+                </div>
+
                 <div>
                   <button 
                   className="rounded-xl" 
