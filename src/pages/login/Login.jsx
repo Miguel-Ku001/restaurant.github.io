@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const Login = () => {
   const [body, setBody] = useState({ email: '', password: '' })
   const navigate = useNavigate();
-  
+  const [error, setError] = useState('');
 
   const inputChange=({ target }) => {
     const {name, value} = target
@@ -28,17 +28,20 @@ export const Login = () => {
         if (response.ok) {
           return response.json(); // Convertir la respuesta a JSON si la respuesta es válida
         } else {
-          throw new Error('La solicitud no fue exitosa');
+          // throw new Error('La solicitud no fue exitosa');
+          return response.json();
         }
       })
       .then((data) => {
-        if (data.authenticated) {
+        if (data && data.authenticated) {
+          localStorage.setItem('auth', 'yes')
           navigate('/');
         } else {
-          console.log('El usuario no está autenticado.');
+          setError('Correo o contraseña incorrectos');
         }
       })
       .catch((error) => {
+        setError('Hubo un problema con la solicitud');
         console.error(error);
       });
   }
@@ -60,6 +63,7 @@ export const Login = () => {
           </div>
           <div>
             <h1 style={{color: '#f8fafc', marginTop: '15px', }}>Iniciar Sesión</h1>
+            <div style={{ color: 'red', marginBottom: '5px', fontSize: '15px' }}>{error}</div>
             <div className="flex flex-column">
                <form> {/* action="" */}
                 <div style={{marginTop: '5px'}}>
