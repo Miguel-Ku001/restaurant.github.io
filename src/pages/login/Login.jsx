@@ -1,11 +1,13 @@
 import {Image, Link} from "@nextui-org/react";
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 export const Login = () => {
   const [body, setBody] = useState({ email: '', password: '' })
   const navigate = useNavigate();
   const [error, setError] = useState('');
+  axios.defaults.withCredentials = true;
 
   const inputChange=({ target }) => {
     const {name, value} = target
@@ -110,7 +112,7 @@ export const Login = () => {
 
                 <div>
                   <button 
-                  className="rounded-xl" 
+                  className="rounded-xl active:scale-95 hover:scale-105 duration-500" 
                   style= {{ width: '110px',padding: '4px',border:'none',marginTop:'12px', backgroundColor: '#CD9B4A', color: 'White' }}
                   onClick= { onSubmit }
                   >
