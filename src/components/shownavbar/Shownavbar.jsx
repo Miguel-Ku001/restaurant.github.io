@@ -11,7 +11,7 @@ const Shownavbar = ({children}) => {
 
     useEffect(()=> {
         console.log('Locación: ', location)
-        if(location.pathname === '/login'){
+        if(location.pathname === '/login' || location.pathname === '/registro'){
             setViewNavbar(false)
         }else{
             setViewNavbar(true)
