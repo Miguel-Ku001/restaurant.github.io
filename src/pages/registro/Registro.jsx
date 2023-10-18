@@ -1,4 +1,4 @@
-import {Image, PopoverContent} from "@nextui-org/react";
+import {Image} from "@nextui-org/react";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
@@ -18,7 +18,6 @@ export const Registro = () => {
     event.preventDefault();
     console.log(event.target.value);
     if (!values.nombre || !values.apellidos || !values.email || !values.password || !values.confirmpassword) {
-      // Puedes mostrar un mensaje de error o realizar la lógica que prefieras.
       setError('Por favor, completa todos los campos.');
       return;
     }
@@ -32,33 +31,10 @@ export const Registro = () => {
         'Content-Type': 'application/json',
       }
     })
-    /*.then(res => {
-      if(res.data.Status === "Success") {
-        navigate('/')
-      } else {
-        alert('Coloca los datos correctamente');
-      }
-      console.log(values)
-    })*/
+
     .then(res => navigate('/'))
     .then(err => console.log(err));
 
-    /*fetch("/api/registro", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values)
-    })
-      .then(({ data }) => {
-        console.log(data)
-        // if (data.authenticated) {
-        //   history.push('/');
-        // }
-      })
-      .catch(({ response }) => {
-        console.log(response.data)
-      });*/
   }
 
  
