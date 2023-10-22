@@ -1,13 +1,16 @@
 import {Image, Link} from "@nextui-org/react";
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+// import Header from '../../components/header/Header';
 
 export const Login = () => {
   const [body, setBody] = useState({ email: '', password: '' })
   const navigate = useNavigate();
   const [error, setError] = useState('');
   axios.defaults.withCredentials = true;
+
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const inputChange=({ target }) => {
     const {name, value} = target
@@ -36,7 +39,7 @@ export const Login = () => {
       })
       .then((data) => {
         if (data && data.authenticated) {
-          localStorage.setItem('auth', 'yes')
+          localStorage.setItem('auth', 'yes');
           navigate('/');
         } else {
           setError('Correo o contraseña incorrectos');
@@ -53,12 +56,16 @@ export const Login = () => {
 
     <div className="flex flex-row font-marcellus">
       <div className="flex justify-center" style={{width: '50%',backgroundColor: '#262626', backgroundSize: '100%'}}>
-        <div className="mt-10">   
+        <div className="mt-10">  
+         
           <div className=" flex justify-center">
+            <Link color="foreground" name="Inicio" href="/">
             <Image
               width={300}
               src="/src/images/LOGO3.png"
             />
+            </Link>
+            
           </div>
           <div>
             <h1 className="text-4xl  text-center font-serif" style={{color: '#f8fafc', marginTop:'-50px'}}>BIENVENIDO</h1>
@@ -105,8 +112,9 @@ export const Login = () => {
                 </div>
 
                 <div>
+                  
                   <Link color="foreground" name="Registro" href="/registro" className="mt-2 underline text-white hover:text-orange-300">
-                    ¿No tienes cuenta?
+                   ¿No tienes cuenta? 
                   </Link>
                 </div>
 
@@ -137,6 +145,8 @@ export const Login = () => {
          
         </div>
       </div>
+      {/* {isLoggedIn && <Header isLoggedIn={isLoggedIn} />} */}
+      {/* <Header isLoggedIn={isLoggedIn} /> */}
     </div> 
   )
 }
