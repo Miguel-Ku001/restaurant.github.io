@@ -6,6 +6,9 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button,
 import { Navigate } from "react-router-dom";
 
 export default function Header() {
+  const isLoggedIn = localStorage.getItem('auth') === 'yes';
+  const idrol = localStorage.getItem('idrol');
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
@@ -22,6 +25,8 @@ export default function Header() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     Navigate('/')
   }
+
+  const isAdmin = idrol === '2';
 
   return (
     <Navbar className="bg-[#2c3033] font-marcellus h-[6rem]" 
@@ -61,17 +66,29 @@ export default function Header() {
       </NavbarContent>
        
       <NavbarContent justify="end">
-          <NavbarItem>
+      {!isLoggedIn && (
+        <NavbarItem>
             <Button as={Link} color="primary" name="Registro" href="/registro" variant="flat" className="text-white bg-transparent hover:text-orange-300">
               Registrarse
             </Button>
           </NavbarItem>
-          <NavbarItem className="hidden lg:flex">
+      )}
+      {!isLoggedIn && (
+        <NavbarItem className="hidden lg:flex">
             <Button as={Link} color="primary"  href="/login" variant="flat" className="text-white bg-[#cd9b4a]">
               <h3>Iniciar Sesión</h3>
             </Button>
           </NavbarItem>
-          <NavbarItem>
+      )}
+      {isLoggedIn && (
+        <NavbarItem>
+            <Button as={Link} onClick={logout} href="/" color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
+              Cerrar Sesión
+            </Button>
+          </NavbarItem>
+      )}    
+      {isAdmin && isLoggedIn && (
+        <NavbarItem>
             <Dropdown>
               <DropdownTrigger>
                 <Button 
@@ -90,22 +107,19 @@ export default function Header() {
                     Inventario
                   </DropdownItem>
                 </DropdownSection>
-                <DropdownSection showDivider>
+                <DropdownSection>
                   <DropdownItem key="new" className="text-gray-900" as={Link} href="#">
                     Usuarios
                   </DropdownItem>
                   <DropdownItem key="copy" className="text-gray-900" as={Link} href="#">
                     Reservaciones
                   </DropdownItem>
-                </DropdownSection>  
-                <DropdownSection >
-                  <DropdownItem key="delete" as={Link} onClick={logout} href="/" className="text-danger" color="danger">
-                    Cerrar Sesión
-                  </DropdownItem>
                 </DropdownSection>      
               </DropdownMenu>
             </Dropdown>
           </NavbarItem>
+      )}    
+          
           
       </NavbarContent> {/*className="sm:hidden" */}
         {/* <NavbarContent justify="start">  

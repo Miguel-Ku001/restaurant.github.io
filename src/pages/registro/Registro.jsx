@@ -1,4 +1,4 @@
-import {Image} from "@nextui-org/react";
+import {Image, Link} from "@nextui-org/react";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
@@ -46,14 +46,14 @@ export const Registro = () => {
 
       <div className="flex justify-center" style={{width: '50%',backgroundColor: '#262626', backgroundSize: '100%'}}>
         <div className="mt-10">
-          
-          <div className=" flex justify-center">
-            <Image
-              width={300}
-              src="/src/images/LOGO3.png"
-            />
-          </div>
-
+            <div className=" flex justify-center">
+              <Link color="foreground" name="Inicio" href="/">
+                <Image
+                  width={300}
+                  src="/src/images/LOGO3.png"
+                />
+              </Link>
+            </div>
           <div>
             <h1 className="text-4xl  text-center font-serif" style={{color: '#f8fafc', marginTop:'-50px'}}>BIENVENIDO</h1>
           </div>
@@ -63,7 +63,6 @@ export const Registro = () => {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <div className="flex flex-column">
               <form onSubmit={handleSubmit}>
-
                 <div className="grid grid-cols-2 gap-4 mt-2">
                   <div style={{marginTop: '5px'}}>
                     <div className="w-72">

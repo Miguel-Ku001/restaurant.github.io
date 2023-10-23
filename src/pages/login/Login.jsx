@@ -8,6 +8,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   axios.defaults.withCredentials = true;
+  const isLoggedIn = localStorage.getItem('auth') === 'yes';
 
   const inputChange=({ target }) => {
     const {name, value} = target
@@ -28,7 +29,7 @@ export const Login = () => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json(); // Convertir la respuesta a JSON si la respuesta es válida
+          return response.json(); //Convertir la respuesta a JSON si la respuesta es válida
         } else {
           // throw new Error('La solicitud no fue exitosa');
           return response.json();
@@ -37,7 +38,13 @@ export const Login = () => {
       .then((data) => {
         if (data && data.authenticated) {
           localStorage.setItem('auth', 'yes');
-          navigate('/');
+          if (data.rol !== undefined) {
+            localStorage.setItem('idrol', data.rol.toString());
+          }
+          setError('Inicio de sesión exitoso. Redirigiendo...');
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
         } else {
           setError('Correo o contraseña incorrectos');
         }
@@ -48,6 +55,9 @@ export const Login = () => {
       });
   }
   
+  if (isLoggedIn) {
+    return null;
+  }
 
   return (
 
