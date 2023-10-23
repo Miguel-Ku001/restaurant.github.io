@@ -65,13 +65,31 @@ export const MenuAdmin = () => {
 
     function handleUpdate(event) {
         event.preventDefault();
+
+        if (imgActualizado === registroActual.imagen) {
+            updatedFormData.delete('img');
+        }
+
         axios.put(`/api/items/actualizar/${registroActual.id_items}`, updatedFormData)
         .then(res => {
-            console.log(res);
             navigate('/menu/admin');
+            console.log(res);
         }).catch(err => console.log(err));
     }
 
+    //ELIMINAR REGISTRO
+
+    const handleDelete = async (registro) => {
+        setRegistroActual(registro);
+        try {
+            await axios.delete(`/api/items/eliminar/${registroActual.id_items}`)
+            window.location.reload()
+        }catch(err) {
+            console.log(err);
+        }
+    }
+
+    ////
 
     const [item, setItem] = useState([])
     useEffect(()=> {
@@ -88,7 +106,7 @@ export const MenuAdmin = () => {
     }, [])
 
     return (
-      <div className="py-16 px-24 font-marcellus mb-40 mt-10 mx-72">
+      <div className="py-16 px-24 font-marcellus mb-40 mt-10 mx-60">
 
             <div>
                 <>
@@ -274,7 +292,7 @@ export const MenuAdmin = () => {
                                                         <Button color="danger" variant="light" onPress={onClose}>
                                                         Cancelar
                                                         </Button>
-                                                        <Button color="primary" onClick={handleUpdate} onPress={onClose}>
+                                                        <Button color="primary" onClick={() => handleUpdate(data)} onPress={onClose}>
                                                         Actualizar
                                                         </Button>
                                                     </ModalFooter>
@@ -283,7 +301,7 @@ export const MenuAdmin = () => {
                                                 </ModalContent>
                                             </Modal>
                                         </>
-                                        <Button size="sm" color="danger">
+                                        <Button size="sm" color="danger" onClick={handleDelete}>
                                             Eliminar
                                         </Button>
                                     </TableCell>
