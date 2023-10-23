@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select, SelectItem, 
         Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
 import axios from "axios";
-import { useNavigate, useParams } from 'react-router-dom';
 
 export const MenuAdmin = () => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -13,7 +12,6 @@ export const MenuAdmin = () => {
     const [img, setImg] = useState('')
     const [cat, setCat] = useState('')
     //const {id_items} = useParams();
-    const navigate = useNavigate();
 
     const formData = new FormData();
     //formData.append('id', id);
@@ -28,7 +26,7 @@ export const MenuAdmin = () => {
         axios.post('/api/items/crear', formData)
         .then(res => {
             console.log(res);
-            navigate('/menu/admin');
+            window.location.reload()
         }).catch(err => console.log(err));
     }
 
@@ -72,7 +70,7 @@ export const MenuAdmin = () => {
 
         axios.put(`/api/items/actualizar/${registroActual.id_items}`, updatedFormData)
         .then(res => {
-            navigate('/menu/admin');
+            window.location.reload()
             console.log(res);
         }).catch(err => console.log(err));
     }
@@ -82,7 +80,7 @@ export const MenuAdmin = () => {
     const handleDelete = async (registro) => {
         setRegistroActual(registro);
         try {
-            await axios.delete(`/api/items/eliminar/${registroActual.id_items}`)
+            await axios.delete(`/api/items/eliminar/${registro}`)
             window.location.reload()
         }catch(err) {
             console.log(err);
@@ -292,7 +290,7 @@ export const MenuAdmin = () => {
                                                         <Button color="danger" variant="light" onPress={onClose}>
                                                         Cancelar
                                                         </Button>
-                                                        <Button color="primary" onClick={() => handleUpdate(data)} onPress={onClose}>
+                                                        <Button color="primary" onClick={handleUpdate} onPress={onClose}>
                                                         Actualizar
                                                         </Button>
                                                     </ModalFooter>
@@ -301,7 +299,7 @@ export const MenuAdmin = () => {
                                                 </ModalContent>
                                             </Modal>
                                         </>
-                                        <Button size="sm" color="danger" onClick={handleDelete}>
+                                        <Button size="sm" color="danger" onClick={() => handleDelete(data.id_items)}>
                                             Eliminar
                                         </Button>
                                     </TableCell>
