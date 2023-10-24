@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import {Link, Button} from "@nextui-org/react";
 import MenuItem from '/src/components/menu-item/MenuItem'
-import TagButton from '/src/components/menu-item/TagButton'
 import axios from "axios";
-
-
 
 export const Menu = () => {
 
@@ -15,33 +12,17 @@ export const Menu = () => {
       .catch(err => console.log(err));
   }, [])
 
-  const [itemCat, setItemCat] = useState([])
-    useEffect(()=> {
-        axios.get('/api/items-categoria')
-        .then(res => setItemCat(res.data))
-        .catch(err => console.log(err));
-    }, [])
-
-  //const [cat, setCat] = useState('all');
-  const [filtered, setFiltered] = useState([]);
-
-  useEffect( () => {
-    item.idcategoria === 1 ? setFiltered(item) : setFiltered(item.filter( project => project.cat === cat))
-  }, [])
-
   return (
     <div className="py-16 px-24 font-marcellus">
       <div className="mb-20">
           <h2 className="text-5xl text-center text-gray-800 font-medium">MENÚ</h2>
       </div>
 
-      <div>
-          <TagButton item={data} handleSetCat={setItemCat} catActive={ itemCat.idcategoria === data.idcategoria ? true : false}/>
-      </div>
+      
 
       <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2 mb-12">
         {item.map((data, i) => (
-          <MenuItem key={data.id_items} {...data}/>
+          <MenuItem key={i} {...data}/>
 
         ))}
       </div>
@@ -61,5 +42,3 @@ export const Menu = () => {
   )
   }
   export default Menu
-
-  
