@@ -13,7 +13,7 @@ export const Menu = () => {
   }, [])
 
   return (
-    <div className="py-16 px-24 font-marcellus">
+    <div className="py-16 mr-36 font-marcellus">
       <div className="mb-20">
           <h2 className="text-5xl text-center text-gray-800 font-medium">MENÚ</h2>
       </div>

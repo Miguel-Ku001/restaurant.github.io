@@ -2,7 +2,7 @@ import {Image, Input, Button} from "@nextui-org/react";
 
 export const MenuItem = (item) => {
     return (
-        <div className="flex flex-row justify-between w-full">
+        <div className="flex flex-row justify-between w-full mb-5">
             <div className="flex flex-col items-end p-4 w-1/2">
             <Image
                 className="w-40 h-40 object-cover"
@@ -33,7 +33,7 @@ export const MenuItem = (item) => {
                         variant="bordered"
                         className="w-20 mr-5"
                     />
-                    <Button variant="flat" className=" active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 text-white transition duration-500 bg-[#092A3A]">
+                    <Button variant="flat" className=" active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 text-white transition duration-500 bg-[#28a332]">
                       <h3>Agregar al carrito</h3>
                     </Button>
             </div>
