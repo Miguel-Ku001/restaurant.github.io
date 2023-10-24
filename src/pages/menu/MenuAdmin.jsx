@@ -104,11 +104,15 @@ export const MenuAdmin = () => {
     }, [])
 
     return (
-      <div className="py-16 px-24 font-marcellus mb-40 mt-10 mx-60">
-
+      <div className="py-16 px-24 font-marcellus mb-40 mx-60">
+            <div className="mb-10">
+                <h2 className="text-5xl text-center text-gray-800 font-medium">EDICION DEL MENÚ</h2>
+            </div>
             <div>
                 <>
-                <Button color="primary" variant="flat" className="text-white bg-[#cd9b4a]" onPress={onOpen}>Agregar</Button>
+                    <div className="flex justify-center">
+                        <Button color="primary" variant="flat" className="mx-auto w-40 text-white bg-[#cd9b4a]" onPress={onOpen}>Agregar producto</Button>
+                    </div>
                     <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
                         <ModalContent>
                         {(onClose) => (
@@ -139,6 +143,7 @@ export const MenuAdmin = () => {
                                         placeholder="0.00"
                                         labelPlacement="outside"
                                         variant="bordered"
+                                        min="0" 
                                         onChange={e => setPrecio(e.target.value)}
                                         startContent={
                                             <div className="pointer-events-none flex items-center">
@@ -193,7 +198,7 @@ export const MenuAdmin = () => {
                 </>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-6">
                 <Table isStriped aria-label="Example static collection table">
                     <TableHeader>
                         <TableColumn>Nombre</TableColumn>
@@ -206,7 +211,7 @@ export const MenuAdmin = () => {
                         {
                             item.map((data, i)=> (
                                 <TableRow key={i}>
-                                    <TableCell>{data.nombre}</TableCell>
+                                    <TableCell className="uppercase">{data.nombre}</TableCell>
                                     <TableCell>{data.descripcion}</TableCell>
                                     <TableCell>{`$` + data.precio}</TableCell>
                                     <TableCell>{data.nombre_categoria}</TableCell>
@@ -245,6 +250,7 @@ export const MenuAdmin = () => {
                                                                 placeholder="0.00"
                                                                 labelPlacement="outside"
                                                                 variant="bordered"
+                                                                min="0" 
                                                                 value={precioActualizado}
                                                                 onChange={e => setPrecioActualizado(e.target.value)}
                                                                 startContent={
