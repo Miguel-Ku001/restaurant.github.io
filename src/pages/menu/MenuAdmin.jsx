@@ -79,11 +79,16 @@ export const MenuAdmin = () => {
 
     const handleDelete = async (registro) => {
         setRegistroActual(registro);
-        try {
-            await axios.delete(`/api/items/eliminar/${registro}`)
-            window.location.reload()
-        }catch(err) {
-            console.log(err);
+
+        const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este registro?");
+
+        if(confirmDelete) {
+            try {
+                await axios.delete(`/api/items/eliminar/${registro}`)
+                window.location.reload()
+            }catch(err) {
+                console.log(err);
+            }
         }
     }
 
