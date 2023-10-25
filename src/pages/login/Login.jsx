@@ -1,5 +1,5 @@
 import {Image, Link} from "@nextui-org/react";
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
@@ -8,6 +8,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   axios.defaults.withCredentials = true;
+  const isLoggedIn = localStorage.getItem('auth') === 'yes';
 
   const inputChange=({ target }) => {
     const {name, value} = target
@@ -28,7 +29,7 @@ export const Login = () => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json(); // Convertir la respuesta a JSON si la respuesta es válida
+          return response.json(); //Convertir la respuesta a JSON si la respuesta es válida
         } else {
           // throw new Error('La solicitud no fue exitosa');
           return response.json();
@@ -36,8 +37,14 @@ export const Login = () => {
       })
       .then((data) => {
         if (data && data.authenticated) {
-          localStorage.setItem('auth', 'yes')
-          navigate('/');
+          localStorage.setItem('auth', 'yes');
+          if (data.rol !== undefined) {
+            localStorage.setItem('idrol', data.rol.toString());
+          }
+          setError('Inicio de sesión exitoso. Redirigiendo...');
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
         } else {
           setError('Correo o contraseña incorrectos');
         }
@@ -48,17 +55,22 @@ export const Login = () => {
       });
   }
   
+  if (isLoggedIn) {
+    return null;
+  }
 
   return (
 
     <div className="flex flex-row font-marcellus">
       <div className="flex justify-center" style={{width: '50%',backgroundColor: '#262626', backgroundSize: '100%'}}>
-        <div className="mt-10">   
+        <div className="mt-10">
           <div className=" flex justify-center">
-            <Image
-              width={300}
-              src="/src/images/LOGO3.png"
-            />
+            <Link color="foreground" name="Inicio" href="/">
+              <Image
+                width={300}
+                src="/src/images/LOGO3.png"
+              />
+            </Link>          
           </div>
           <div>
             <h1 className="text-4xl  text-center font-serif" style={{color: '#f8fafc', marginTop:'-50px'}}>BIENVENIDO</h1>
@@ -103,13 +115,11 @@ export const Login = () => {
                     </div>
                   </div>
                 </div>
-
-                <div>
+                <div>          
                   <Link color="foreground" name="Registro" href="/registro" className="mt-2 underline text-white hover:text-orange-300">
-                    ¿No tienes cuenta?
+                   ¿No tienes cuenta? 
                   </Link>
                 </div>
-
                 <div>
                   <button 
                   className="rounded-xl active:scale-95 hover:scale-105 duration-500" 
@@ -126,15 +136,13 @@ export const Login = () => {
       </div>
 
       <div className="flex justify-center" style={{width: '50%'}}>
-        <div>
-          
+        <div> 
           <div className="sticky">
             <Image
               className="items-center"
               src="/src/images/loginbg.jpg"
             /> 
           </div>  
-         
         </div>
       </div>
     </div> 
