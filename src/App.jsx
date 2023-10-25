@@ -7,6 +7,7 @@ import './App.css'
 import Inicio from './pages/inicio/Inicio'
 import Registro from './pages/registro/Registro'
 import Login from './pages/login/Login'
+import MenuAdmin from './pages/menu/MenuAdmin'
 import Menu from './pages/menu/Menu'
 import Ordenes from './pages/ordenes/Ordenes'
 import Ordenespago from './pages/ordenes-pago/Ordenespago'
@@ -31,6 +32,7 @@ function App() {
           <Route exact path='/' element={ <Inicio /> } />
           <Route exact path='/registro' element={ <Registro /> } />
           <Route exact path='/login' element={ <Login /> } />
+          <Route exact path='/menu/admin' element={ <MenuAdmin /> } />
           <Route exact path='/menu' element={ <Menu /> } />
           <Route exact path='/menu/ordenes' element={ <Ordenes /> } />
           <Route exact path='/menu/ordenes/forma-de-pago' element={ <Ordenespago /> } /> 
