@@ -97,32 +97,18 @@ export const Inventario = () => {
             <h2 className="text-5xl text-center text-gray-800">INVENTARIO</h2>
           </div>
         
-          <form className="columns-2">   
-            <div>
+          <form>   
+            <div className="w-1/2 content-center">
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#cd9b4a] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white" placeholder="Buscar producto por código o nombre" required />
+                    <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#cd9b4a] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white" placeholder="Buscar producto por sucursal, código o nombre" required />
                     <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-[#092A3A] hover:bg-sky-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
                 </div>
-            </div>
-
-            <div className="flex justify-end">
-            <div className="w-1/2">
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                        </svg>
-                    </div>
-                    <input type="search" id="#" className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#cd9b4a] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white" placeholder="Sucursal" required />
-                    <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-[#092A3A]  hover:bg-sky-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Filtrar</button>
-                  </div>
-              </div>
-            </div>   
+            </div>  
           </form>
 
           <div className="mb-6">
@@ -135,56 +121,29 @@ export const Inventario = () => {
               <CardBody className="">
                 <Table removeWrapper aria-label="Example static collection table" className="table-auto rounded-lg ">{/*bg-gray-200*/}
                   <TableHeader>
+                    <TableColumn className="bg-[#092A3A] text-white font-medium">PROVEEDOR</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">SUCURSAL</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">PRODUCTO</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium"></TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">CODIGO</TableColumn>
+                    <TableColumn className="bg-[#092A3A] text-white font-medium">FAMILIA</TableColumn>
+                    <TableColumn className="bg-[#092A3A] text-white font-medium">PRODUCTO</TableColumn>
+                    <TableColumn className="bg-[#092A3A] text-white font-medium">UNIDAD</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">CANTIDAD</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO UNITARIO</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO TOTAL</TableColumn>
+                    <TableColumn className="bg-[#092A3A] text-white font-medium"></TableColumn>
+                    
                   </TableHeader>
                   <TableBody>
                     <TableRow key="1">
+                      <TableCell>Proveedor A</TableCell>
                       <TableCell>Montejo</TableCell>
-                      <TableCell>
-                       Carne de cerdo                        
-                      </TableCell>
-                      <TableCell className="w-12">
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                              <DeleteIcon />
-                            </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>00001</TableCell>
-                      <TableCell>40</TableCell>
-                      <TableCell>$90.00 MX/KG</TableCell>
-                      <TableCell>$3,600.00 MX</TableCell>
-                    </TableRow>
-                    <TableRow key="2">
-                      <TableCell>Montejo</TableCell>
-                      <TableCell>Piña</TableCell>
-                      <TableCell className="w-12">
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                              <DeleteIcon />
-                            </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>00002</TableCell>
-                      <TableCell>33</TableCell>
-                      <TableCell>$32.00 MX/KG</TableCell>
-                      <TableCell>$1,056.00 MX</TableCell>
-                    </TableRow>
-                    <TableRow key="3">
-                      <TableCell>Altabrisa</TableCell>
+                      <TableCell>0001</TableCell>
+                      <TableCell>Carnes</TableCell>
                       <TableCell>Carne de cerdo</TableCell>
+                      <TableCell>Kg</TableCell>
+                      <TableCell>10</TableCell>
+                      <TableCell>$90.00</TableCell>
+                      <TableCell>$3,600.00</TableCell>
                       <TableCell className="w-12">
                         <div className="relative flex">
                           <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
@@ -195,100 +154,6 @@ export const Inventario = () => {
                             </span>
                         </div>
                       </TableCell>
-                      <TableCell>00001</TableCell>
-                      <TableCell>46</TableCell>
-                      <TableCell>$90.00 MX/KG</TableCell>
-                      <TableCell>$4,140.00 MX</TableCell>
-                    </TableRow>
-                    <TableRow key="4">
-                      <TableCell>Altabrisa</TableCell>
-                      <TableCell>Piña</TableCell>
-                      <TableCell className="w-12">
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                              <DeleteIcon />
-                            </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>00002</TableCell>
-                      <TableCell>28</TableCell>
-                      <TableCell>$32.00 MX/KG</TableCell>
-                      <TableCell>$924.00 MX</TableCell>
-                    </TableRow>
-                    <TableRow key="5">
-                      <TableCell>Carmen</TableCell>
-                      <TableCell>Carne de cerdo</TableCell>
-                      <TableCell className="w-12">
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                              <DeleteIcon />
-                            </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>00001</TableCell>
-                      <TableCell>61</TableCell>
-                      <TableCell>$90.00 MX/KG</TableCell>
-                      <TableCell>$5,480.00 MX</TableCell>
-                    </TableRow>
-                    <TableRow key="6">
-                      <TableCell>Carmen</TableCell>
-                      <TableCell>Piña</TableCell>
-                      <TableCell className="w-12">
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                              <DeleteIcon />
-                            </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>00002</TableCell>
-                      <TableCell>56</TableCell>
-                      <TableCell>$32.00 MX/KG</TableCell>
-                      <TableCell>$1,792.00 MX</TableCell>
-                    </TableRow>
-                    <TableRow key="7">
-                      <TableCell>Ciudad Caucel</TableCell>
-                      <TableCell>Carne de cerdo</TableCell>
-                      <TableCell className="w-12">
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                              <DeleteIcon />
-                            </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>00001</TableCell>
-                      <TableCell>29</TableCell>
-                      <TableCell>$90.00 MX/KG</TableCell>
-                      <TableCell>$2,610.00 MX</TableCell>
-                    </TableRow>
-                    <TableRow key="8">
-                      <TableCell>Ciudad Caucel</TableCell>
-                      <TableCell>Piña</TableCell>
-                      <TableCell className="w-12">
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                              <EditIcon />
-                            </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                              <DeleteIcon />
-                            </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>00002</TableCell>
-                      <TableCell>24</TableCell>
-                      <TableCell>$32.00 MX/KG</TableCell>
-                      <TableCell>$768.00 MX</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
