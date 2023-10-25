@@ -1,5 +1,8 @@
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody} from "@nextui-org/react";
-
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody,
+  Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, 
+  Select, SelectItem} from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const EditIcon = (props) => (
   <svg
@@ -90,6 +93,62 @@ const DeleteIcon = (props) => (
 
 export const Inventario = () => {
 
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+const { isOpen: isUpdateModalOpen, onOpen: openUpdateModal, onClose: closeUpdateModal } = useDisclosure();    
+const [nomprod, setNomprod] = useState('')
+const [code, setCode] = useState('')
+const [familia, setFamilia] = useState('')
+const [unidad, setUnidad] = useState('')
+const [cantidad, setCantidad] = useState('')
+const [costo, setCosto] = useState('')
+const [total, setTotal] = useState('')
+const [proveedor, setProveedor] = useState('')
+const [sucursal, setSucursal] = useState('')
+
+const formData = new FormData();
+formData.append('nomprod', nomprod);
+formData.append('code', code);
+formData.append('familia', familia);
+formData.append('unidad', unidad);
+formData.append('cantidad', cantidad);
+formData.append('costo', costo);
+formData.append('total', total);
+formData.append('proveedor', proveedor);
+formData.append('sucursal', sucursal);
+
+
+function handleSubmit(event) {
+  event.preventDefault();
+  axios.post('/api/producto/crear', formData)
+  .then(res => {
+      console.log(res);
+      window.location.reload()
+  }).catch(err => console.log(err));
+}
+
+
+  const [prod, setProd] = useState([])
+      useEffect(()=> {
+          axios.get('/api/productos')
+          .then(res => setProd(res.data))
+          .catch(err => console.log(err));
+      }, [])
+
+  const [prodSuc, setProdSuc] = useState([])
+  useEffect(()=> {
+      axios.get('/api/sucursal-producto')
+      .then(res => setProdSuc(res.data))
+      .catch(err => console.log(err));
+  }, [])
+
+  const [prodProv, setProdProv] = useState([])
+  useEffect(()=> {
+      axios.get('/api/proveedor-producto')
+      .then(res => setProdProv(res.data))
+      .catch(err => console.log(err));
+  }, [])
+
+
     return (
 
         <div className="py-16 px-24 font-marcellus">
@@ -98,7 +157,7 @@ export const Inventario = () => {
           </div>
         
           <form>   
-            <div className="w-1/2 content-center">
+            <div className="w-1/2">
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
@@ -111,9 +170,127 @@ export const Inventario = () => {
             </div>  
           </form>
 
-          <div className="mb-6">
-            <button href="#" className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500">Agregar producto</button>
+          <div>
+            <>
+              <div className="mb-6">
+                <button href="#" className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500">Agregar producto</button>
+              </div>
+              <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
+                        <ModalContent>
+                        {(onClose) => (
+                            <>
+                            <ModalHeader className="flex flex-col gap-1 mt-5 mx-10">Agregar producto</ModalHeader>
+
+                            <ModalBody className="mx-10">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Nombre"
+                                        placeholder="Tacos de..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        onChange={e => setNomprod(e.target.value)}
+                                    />
+                                    <Input
+                                        label="Codigo"
+                                        placeholder="Tortilla de maíz o..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        onChange={e => setCode(e.target.value)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Familia"
+                                        placeholder="Tacos de..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        onChange={e => setFamilia(e.target.value)}
+                                    />
+                                    <Input
+                                        label="Unidad"
+                                        placeholder="Tortilla de maíz o..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        onChange={e => setUnidad(e.target.value)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Cantidad"
+                                        placeholder="Tacos de..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        onChange={e => setCantidad(e.target.value)}
+                                    />
+                                    <Input
+                                        type="number"
+                                        label="Costo"
+                                        placeholder="0.00"
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        min="0" 
+                                        onChange={e => setCosto(e.target.value)}
+                                        startContent={
+                                            <div className="pointer-events-none flex items-center">
+                                                <span className="text-default-400 text-small">$</span>
+                                            </div>
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <Input
+                                        label="Total"
+                                        placeholder="Tacos de..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        onChange={e => setTotal(e.target.value)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Select 
+                                        label="Selecciona un proveedor" 
+                                        className="max-w-xs" 
+                                        onChange={e => setProveedor(parseInt(e.target.value) + 1)}
+                                    >
+                                        {
+                                            prodProv.map((data, i)=> (
+                                                <SelectItem key={i} value={data.idproveedor}>
+                                                    {data.nombre}
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </Select>
+                                    <Select 
+                                        label="Selecciona una sucursal" 
+                                        className="max-w-xs" 
+                                        onChange={e => setSucursal(parseInt(e.target.value) + 1)}
+                                    >
+                                        {
+                                            prodSuc.map((data, i)=> (
+                                                <SelectItem key={i} value={data.idsucursal}>
+                                                    {data.nombre}
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </Select>
+                                </div>
+                            </ModalBody>
+
+                            <ModalFooter className="mb-5 mx-10">
+                                <Button color="danger" variant="light" onPress={onClose}>
+                                Cancelar
+                                </Button>
+                                <Button color="primary" onClick={handleSubmit} onPress={onClose}>
+                                Agregar
+                                </Button>
+                            </ModalFooter>
+                            </>
+                        )}
+                        </ModalContent>
+              </Modal>
+            </>
           </div>
+          
 
 
           <div>
@@ -133,17 +310,19 @@ export const Inventario = () => {
                     <TableColumn className="bg-[#092A3A] text-white font-medium"></TableColumn>
                     
                   </TableHeader>
-                  <TableBody>
-                    <TableRow key="1">
-                      <TableCell>Proveedor A</TableCell>
-                      <TableCell>Montejo</TableCell>
-                      <TableCell>0001</TableCell>
-                      <TableCell>Carnes</TableCell>
-                      <TableCell>Carne de cerdo</TableCell>
-                      <TableCell>Kg</TableCell>
-                      <TableCell>10</TableCell>
-                      <TableCell>$90.00</TableCell>
-                      <TableCell>$3,600.00</TableCell>
+                  <TableBody emptyContent={"No rows to display."}>
+                  {
+                    prod.map((data, i)=> (
+                    <TableRow key={i}>
+                      <TableCell>{data.idproveedor}</TableCell>
+                      <TableCell>{data.idsucursal}</TableCell>
+                      <TableCell>{data.codigo}</TableCell>
+                      <TableCell>{data.familia}</TableCell>
+                      <TableCell>{data.nombre}</TableCell>
+                      <TableCell>{data.unidad}</TableCell>
+                      <TableCell>{data.cantidad}</TableCell>
+                      <TableCell>{`$` + data.costo_unitario}</TableCell>
+                      <TableCell>{`$` + data.costo_total}</TableCell>
                       <TableCell className="w-12">
                         <div className="relative flex">
                           <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
@@ -155,6 +334,7 @@ export const Inventario = () => {
                         </div>
                       </TableCell>
                     </TableRow>
+                     ))}
                   </TableBody>
                 </Table>
                 
