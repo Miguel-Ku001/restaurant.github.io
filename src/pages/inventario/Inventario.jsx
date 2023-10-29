@@ -93,8 +93,10 @@ const DeleteIcon = (props) => (
 
 export const Inventario = () => {
 
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+const {isOpen, onOpen, onOpenChange} = useDisclosure();
 const { isOpen: isUpdateModalOpen, onOpen: openUpdateModal, onClose: closeUpdateModal } = useDisclosure();    
+const [buscarTerm, setBuscarTerm] = useState('');
+
 const [nomprod, setNomprod] = useState('')
 const [code, setCode] = useState('')
 const [familia, setFamilia] = useState('')
@@ -116,10 +118,13 @@ formData.append('total', total);
 formData.append('proveedor', proveedor);
 formData.append('sucursal', sucursal);
 
-
 function handleSubmit(event) {
   event.preventDefault();
-  axios.post('/api/producto/crear', formData)
+  axios.post('/api/producto/crear', formData, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
   .then(res => {
       console.log(res);
       window.location.reload()
@@ -127,27 +132,113 @@ function handleSubmit(event) {
 }
 
 
+
+//---------------Actualizar Registros------------------//
+const [registroActual, setRegistroActual] = useState(null);
+const [nomprodActualizado, setNomprodActualizado] = useState('');
+const [codeActualizado, setCodeActualizado] = useState('');
+const [familiaActualizado, setFamiliaActualizado] = useState('');
+const [unidadActualizado, setUnidadActualizado] = useState('');
+const [cantidadActualizado, setCantidadActualizado] = useState('');
+const [costoActualizado, setCostoActualizado] = useState('');
+const [totalActualizado, setTotalActualizado] = useState('');
+const [proveedorActualizado, setProveedorActualizado] = useState('');
+const [sucursalActualizado, setSucursalActualizado] = useState('');
+
+const updatedFormData = new FormData();
+
+updatedFormData.append('nomprod', nomprodActualizado);
+updatedFormData.append('code', codeActualizado);
+updatedFormData.append('familia', familiaActualizado);
+updatedFormData.append('unidad', unidadActualizado);
+updatedFormData.append('cantidad', cantidadActualizado);
+updatedFormData.append('costo', costoActualizado);
+updatedFormData.append('total', totalActualizado);
+updatedFormData.append('proveedor', proveedorActualizado);
+updatedFormData.append('sucursal', sucursalActualizado);
+
+const handleActualizarClick = (registro) => {
+    setRegistroActual(registro);
+
+    setNomprodActualizado(registro.nombre);
+    setCodeActualizado(registro.codigo);
+    setFamiliaActualizado(registro.familia);
+    setUnidadActualizado(registro.unidad);
+    setCantidadActualizado(registro.cantidad);
+    setCostoActualizado(registro.costo_unitario);
+    setTotalActualizado(registro.costo_total);
+    setProveedorActualizado(registro.idproveedor);
+    setSucursalActualizado(registro.idsucursal);
+
+    openUpdateModal();
+};
+
+function handleUpdate(event) {
+    event.preventDefault();
+
+    axios.put(`/api/productos/actualizar/${registroActual.idproducto}`, updatedFormData, {
+      headers: {
+        'Content-Type': 'application/json'
+    }
+    })
+    .then(res => {
+        window.location.reload()
+        console.log(res);
+    }).catch(err => console.log(err));
+}
+//--------------Final actualizar Registros------------------//
+
+
+
+
+//--------------Eliminar Registros------------------//
+const handleDelete = async (registro) => {
+  setRegistroActual(registro);
+
+  const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
+  console.log("ID del producto a eliminar:", registro);
+  if(confirmDelete) {
+      try {
+          await axios.delete(`/api/productos/eliminar/${registro}`)
+          window.location.reload()
+      }catch(err) {
+          console.log(err);
+      }
+  }
+}
+//--------------Final eliminar Registros------------------//
+
+
   const [prod, setProd] = useState([])
-      useEffect(()=> {
-          axios.get('/api/productos')
-          .then(res => setProd(res.data))
-          .catch(err => console.log(err));
-      }, [])
+    useEffect(()=> {
+      axios.get('/api/productos')
+      .then(res => {
+        // console.log(res.data);
+        setProd(res.data);
+      })
+      .catch(err => console.log(err));
+  }, [])
 
   const [prodSuc, setProdSuc] = useState([])
-  useEffect(()=> {
+    useEffect(()=> {
       axios.get('/api/sucursal-producto')
       .then(res => setProdSuc(res.data))
       .catch(err => console.log(err));
   }, [])
 
   const [prodProv, setProdProv] = useState([])
-  useEffect(()=> {
+    useEffect(()=> {
       axios.get('/api/proveedor-producto')
       .then(res => setProdProv(res.data))
       .catch(err => console.log(err));
   }, [])
 
+  //buscador
+const filteredProducts = prod.filter((product) => {
+  const buscarTerms = `${product.nombre_proveedor} ${product.nombre_sucursal} ${product.nombre} ${product.codigo}`.toLowerCase();
+  return buscarTerms.includes(buscarTerm.toLowerCase());
+});
+//buscador
 
     return (
 
@@ -156,25 +247,39 @@ function handleSubmit(event) {
             <h2 className="text-5xl text-center text-gray-800">INVENTARIO</h2>
           </div>
         
-          <form>   
-            <div className="w-1/2">
+          <form className="columns-2 pb-2">   
+            <div>
+                <button className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500" 
+                  onClick={onOpen}>
+                    Agregar producto
+                </button>
+            </div> 
+            <div className="flex justify-end">
+              <div className="w-3/4">
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#cd9b4a] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white" placeholder="Buscar producto por sucursal, código o nombre" required />
-                    <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-[#092A3A] hover:bg-sky-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
+                    <input 
+                    type="search" 
+                    className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#092A3A] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white" 
+                    placeholder="Filtrar por proveedor, sucursal, código o nombre" 
+                    required 
+                    value={buscarTerm}
+                    onChange={(e) => setBuscarTerm(e.target.value)}
+                    />
                 </div>
-            </div>  
+              </div>
+            </div>
+            
+             
           </form>
 
           <div>
             <>
-              <div className="mb-6">
-                <button href="#" className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500">Agregar producto</button>
-              </div>
+              
               <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
                         <ModalContent>
                         {(onClose) => (
@@ -185,14 +290,14 @@ function handleSubmit(event) {
                                 <div className="grid grid-cols-2 gap-4">
                                     <Input
                                         label="Nombre"
-                                        placeholder="Tacos de..."
+                                        placeholder="Nombre del producto..."
                                         labelPlacement="outside"
                                         variant="bordered"
                                         onChange={e => setNomprod(e.target.value)}
                                     />
                                     <Input
                                         label="Codigo"
-                                        placeholder="Tortilla de maíz o..."
+                                        placeholder="Código de producto"
                                         labelPlacement="outside"
                                         variant="bordered"
                                         onChange={e => setCode(e.target.value)}
@@ -201,14 +306,14 @@ function handleSubmit(event) {
                                 <div className="grid grid-cols-2 gap-4">
                                     <Input
                                         label="Familia"
-                                        placeholder="Tacos de..."
+                                        placeholder="Carnes, Verduras, Lácteos..."
                                         labelPlacement="outside"
                                         variant="bordered"
                                         onChange={e => setFamilia(e.target.value)}
                                     />
                                     <Input
                                         label="Unidad"
-                                        placeholder="Tortilla de maíz o..."
+                                        placeholder="Kg, L, Pza..."
                                         labelPlacement="outside"
                                         variant="bordered"
                                         onChange={e => setUnidad(e.target.value)}
@@ -216,15 +321,16 @@ function handleSubmit(event) {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <Input
+                                        type="number"
                                         label="Cantidad"
-                                        placeholder="Tacos de..."
+                                        placeholder="20"
                                         labelPlacement="outside"
                                         variant="bordered"
                                         onChange={e => setCantidad(e.target.value)}
                                     />
                                     <Input
                                         type="number"
-                                        label="Costo"
+                                        label="Costo unitario"
                                         placeholder="0.00"
                                         labelPlacement="outside"
                                         variant="bordered"
@@ -240,7 +346,7 @@ function handleSubmit(event) {
                                 <div>
                                     <Input
                                         label="Total"
-                                        placeholder="Tacos de..."
+                                        placeholder="Costo total"
                                         labelPlacement="outside"
                                         variant="bordered"
                                         onChange={e => setTotal(e.target.value)}
@@ -280,7 +386,7 @@ function handleSubmit(event) {
                                 <Button color="danger" variant="light" onPress={onClose}>
                                 Cancelar
                                 </Button>
-                                <Button color="primary" onClick={handleSubmit} onPress={onClose}>
+                                <Button color="primary" onClick={handleSubmit}>
                                 Agregar
                                 </Button>
                             </ModalFooter>
@@ -301,8 +407,8 @@ function handleSubmit(event) {
                     <TableColumn className="bg-[#092A3A] text-white font-medium">PROVEEDOR</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">SUCURSAL</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">CODIGO</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">FAMILIA</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">PRODUCTO</TableColumn>
+                    <TableColumn className="bg-[#092A3A] text-white font-medium">FAMILIA</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">UNIDAD</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">CANTIDAD</TableColumn>
                     <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO UNITARIO</TableColumn>
@@ -310,31 +416,156 @@ function handleSubmit(event) {
                     <TableColumn className="bg-[#092A3A] text-white font-medium"></TableColumn>
                     
                   </TableHeader>
-                  <TableBody emptyContent={"No rows to display."}>
+                  <TableBody>
                   {
-                    prod.map((data, i)=> (
+                    filteredProducts.map((data, i)=> (
                     <TableRow key={i}>
-                      <TableCell>{data.idproveedor}</TableCell>
-                      <TableCell>{data.idsucursal}</TableCell>
+                      <TableCell>{data.nombre_proveedor}</TableCell>
+                      <TableCell>{data.nombre_sucursal}</TableCell>
                       <TableCell>{data.codigo}</TableCell>
-                      <TableCell>{data.familia}</TableCell>
                       <TableCell>{data.nombre}</TableCell>
+                      <TableCell>{data.familia}</TableCell>
                       <TableCell>{data.unidad}</TableCell>
                       <TableCell>{data.cantidad}</TableCell>
                       <TableCell>{`$` + data.costo_unitario}</TableCell>
                       <TableCell>{`$` + data.costo_total}</TableCell>
                       <TableCell className="w-12">
+                        <>
                         <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={() => handleActualizarClick(data)}>
                               <EditIcon />
                             </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                            <span className="text-lg text-danger cursor-pointer active:opacity-50" onClick={() => handleDelete(data.idproducto)}>
                               <DeleteIcon />
                             </span>
                         </div>
+                        <Modal isOpen={isUpdateModalOpen} onOpenChange={closeUpdateModal} size="4xl">
+                            <ModalContent>
+                            {(onClose) => (
+                                <>
+                                <ModalHeader className="flex flex-col gap-1 mt-5 mx-10">Actualizar</ModalHeader>
+
+                                <ModalBody className="mx-10">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Nombre"
+                                        placeholder="Actualizar nombre del producto..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        value={nomprodActualizado}
+                                        onChange={e => setNomprodActualizado(e.target.value)}
+                                    />
+                                    <Input
+                                        label="Codigo"
+                                        placeholder="Código de producto"
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        value={codeActualizado}
+                                        onChange={e => setCodeActualizado(e.target.value)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Familia"
+                                        placeholder="Carnes, Verduras, Lácteos..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        value={familiaActualizado}
+                                        onChange={e => setFamiliaActualizado(e.target.value)}
+                                    />
+                                    <Input
+                                        label="Unidad"
+                                        placeholder="Kg, L, Pza..."
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        value={unidadActualizado}
+                                        onChange={e => setUnidadActualizado(e.target.value)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Input
+                                        label="Cantidad"
+                                        placeholder="20"
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        value={cantidadActualizado}
+                                        onChange={e => setCantidadActualizado(e.target.value)}
+                                    />
+                                    <Input
+                                        type="number"
+                                        label="Costo unitario"
+                                        placeholder="0.00"
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        min="0" 
+                                        value={costoActualizado}
+                                        onChange={e => setCostoActualizado(e.target.value)}
+                                        startContent={
+                                            <div className="pointer-events-none flex items-center">
+                                                <span className="text-default-400 text-small">$</span>
+                                            </div>
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <Input
+                                        label="Total"
+                                        placeholder="Costo total"
+                                        labelPlacement="outside"
+                                        variant="bordered"
+                                        value={totalActualizado}
+                                        onChange={e => setTotalActualizado(e.target.value)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <Select 
+                                        label="Actualizar proveedor" 
+                                        className="max-w-xs" 
+                                        value={proveedorActualizado}
+                                        onChange={e => setProveedorActualizado(parseInt(e.target.value) + 1)}
+                                    >
+                                        {
+                                            prodProv.map((data, i)=> (
+                                                <SelectItem key={i} value={data.idproveedor}>
+                                                    {data.nombre}
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </Select>
+                                    <Select 
+                                        label="Actualizar sucursal" 
+                                        className="max-w-xs" 
+                                        value={sucursalActualizado}
+                                        onChange={e => setSucursalActualizado(parseInt(e.target.value) + 1)}
+                                    >
+                                        {
+                                            prodSuc.map((data, i)=> (
+                                                <SelectItem key={i} value={data.idsucursal}>
+                                                    {data.nombre}
+                                                </SelectItem>
+                                            ))
+                                        }
+                                    </Select>
+                                </div>
+                            </ModalBody>
+
+                            <ModalFooter className="mb-5 mx-10">
+                              <Button color="danger" variant="light" onPress={onClose}>
+                                Cancelar
+                              </Button>
+                              <Button color="primary" onClick={handleUpdate} onPress={onClose}>
+                                Actualizar
+                              </Button>
+                            </ModalFooter>
+                                </>
+                            )}
+                            </ModalContent>
+                        </Modal>
+                    </>
                       </TableCell>
                     </TableRow>
-                     ))}
+                     ))
+                  }
                   </TableBody>
                 </Table>
                 
