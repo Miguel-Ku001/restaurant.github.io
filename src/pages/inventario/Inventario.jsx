@@ -1,6 +1,8 @@
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody,
-  Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, 
-  Select, SelectItem} from "@nextui-org/react";
+import {
+  Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody, Modal, 
+  ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select, 
+  SelectItem 
+} from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -93,71 +95,71 @@ const DeleteIcon = (props) => (
 
 export const Inventario = () => {
 
-const {isOpen, onOpen, onOpenChange} = useDisclosure();
-const { isOpen: isUpdateModalOpen, onOpen: openUpdateModal, onClose: closeUpdateModal } = useDisclosure();    
-const [buscarTerm, setBuscarTerm] = useState('');
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen: isUpdateModalOpen, onOpen: openUpdateModal, onClose: closeUpdateModal } = useDisclosure();
+  const [buscarTerm, setBuscarTerm] = useState('');
 
-const [nomprod, setNomprod] = useState('')
-const [code, setCode] = useState('')
-const [familia, setFamilia] = useState('')
-const [unidad, setUnidad] = useState('')
-const [cantidad, setCantidad] = useState('')
-const [costo, setCosto] = useState('')
-const [total, setTotal] = useState('')
-const [proveedor, setProveedor] = useState('')
-const [sucursal, setSucursal] = useState('')
+  const [nomprod, setNomprod] = useState('')
+  const [code, setCode] = useState('')
+  const [familia, setFamilia] = useState('')
+  const [unidad, setUnidad] = useState('')
+  const [cantidad, setCantidad] = useState('')
+  const [costo, setCosto] = useState('')
+  const [total, setTotal] = useState('')
+  const [proveedor, setProveedor] = useState('')
+  const [sucursal, setSucursal] = useState('')
 
-const formData = new FormData();
-formData.append('nomprod', nomprod);
-formData.append('code', code);
-formData.append('familia', familia);
-formData.append('unidad', unidad);
-formData.append('cantidad', cantidad);
-formData.append('costo', costo);
-formData.append('total', total);
-formData.append('proveedor', proveedor);
-formData.append('sucursal', sucursal);
+  const formData = new FormData();
+  formData.append('nomprod', nomprod);
+  formData.append('code', code);
+  formData.append('familia', familia);
+  formData.append('unidad', unidad);
+  formData.append('cantidad', cantidad);
+  formData.append('costo', costo);
+  formData.append('total', total);
+  formData.append('proveedor', proveedor);
+  formData.append('sucursal', sucursal);
 
-function handleSubmit(event) {
-  event.preventDefault();
-  axios.post('/api/producto/crear', formData, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(res => {
-      console.log(res);
-      window.location.reload()
-  }).catch(err => console.log(err));
-}
+  function handleSubmit(event) {
+    event.preventDefault();
+    axios.post('/api/producto/crear', formData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        console.log(res);
+        window.location.reload()
+      }).catch(err => console.log(err));
+  }
 
 
 
-//---------------Actualizar Registros------------------//
-const [registroActual, setRegistroActual] = useState(null);
-const [nomprodActualizado, setNomprodActualizado] = useState('');
-const [codeActualizado, setCodeActualizado] = useState('');
-const [familiaActualizado, setFamiliaActualizado] = useState('');
-const [unidadActualizado, setUnidadActualizado] = useState('');
-const [cantidadActualizado, setCantidadActualizado] = useState('');
-const [costoActualizado, setCostoActualizado] = useState('');
-const [totalActualizado, setTotalActualizado] = useState('');
-const [proveedorActualizado, setProveedorActualizado] = useState('');
-const [sucursalActualizado, setSucursalActualizado] = useState('');
+  //---------------Actualizar Registros------------------//
+  const [registroActual, setRegistroActual] = useState(null);
+  const [nomprodActualizado, setNomprodActualizado] = useState('');
+  const [codeActualizado, setCodeActualizado] = useState('');
+  const [familiaActualizado, setFamiliaActualizado] = useState('');
+  const [unidadActualizado, setUnidadActualizado] = useState('');
+  const [cantidadActualizado, setCantidadActualizado] = useState('');
+  const [costoActualizado, setCostoActualizado] = useState('');
+  const [totalActualizado, setTotalActualizado] = useState('');
+  const [proveedorActualizado, setProveedorActualizado] = useState('');
+  const [sucursalActualizado, setSucursalActualizado] = useState('');
 
-const updatedFormData = new FormData();
+  const updatedFormData = new FormData();
 
-updatedFormData.append('nomprod', nomprodActualizado);
-updatedFormData.append('code', codeActualizado);
-updatedFormData.append('familia', familiaActualizado);
-updatedFormData.append('unidad', unidadActualizado);
-updatedFormData.append('cantidad', cantidadActualizado);
-updatedFormData.append('costo', costoActualizado);
-updatedFormData.append('total', totalActualizado);
-updatedFormData.append('proveedor', proveedorActualizado);
-updatedFormData.append('sucursal', sucursalActualizado);
+  updatedFormData.append('nomprod', nomprodActualizado);
+  updatedFormData.append('code', codeActualizado);
+  updatedFormData.append('familia', familiaActualizado);
+  updatedFormData.append('unidad', unidadActualizado);
+  updatedFormData.append('cantidad', cantidadActualizado);
+  updatedFormData.append('costo', costoActualizado);
+  updatedFormData.append('total', totalActualizado);
+  updatedFormData.append('proveedor', proveedorActualizado);
+  updatedFormData.append('sucursal', sucursalActualizado);
 
-const handleActualizarClick = (registro) => {
+  const handleActualizarClick = (registro) => {
     setRegistroActual(registro);
 
     setNomprodActualizado(registro.nombre);
@@ -171,47 +173,46 @@ const handleActualizarClick = (registro) => {
     setSucursalActualizado(registro.idsucursal);
 
     openUpdateModal();
-};
+  };
 
-function handleUpdate(event) {
+  function handleUpdate(event) {
     event.preventDefault();
 
     axios.put(`/api/productos/actualizar/${registroActual.idproducto}`, updatedFormData, {
       headers: {
         'Content-Type': 'application/json'
-    }
+      }
     })
-    .then(res => {
+      .then(res => {
         window.location.reload()
         console.log(res);
-    }).catch(err => console.log(err));
-}
-//--------------Final actualizar Registros------------------//
-
-
-
-
-//--------------Eliminar Registros------------------//
-const handleDelete = async (registro) => {
-  setRegistroActual(registro);
-
-  const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
-  console.log("ID del producto a eliminar:", registro);
-  if(confirmDelete) {
-      try {
-          await axios.delete(`/api/productos/eliminar/${registro}`)
-          window.location.reload()
-      }catch(err) {
-          console.log(err);
-      }
+      }).catch(err => console.log(err));
   }
-}
-//--------------Final eliminar Registros------------------//
+  //--------------Final actualizar Registros------------------//
+
+
+
+
+  //--------------Eliminar Registros------------------//
+  const handleDelete = async (registro) => {
+    setRegistroActual(registro);
+
+    const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
+    if (confirmDelete) {
+      try {
+        await axios.delete(`/api/productos/eliminar/${registro}`)
+        window.location.reload()
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+  //--------------Final eliminar Registros------------------//
 
 
   const [prod, setProd] = useState([])
-    useEffect(()=> {
-      axios.get('/api/productos')
+  useEffect(() => {
+    axios.get('/api/productos')
       .then(res => {
         // console.log(res.data);
         setProd(res.data);
@@ -220,205 +221,207 @@ const handleDelete = async (registro) => {
   }, [])
 
   const [prodSuc, setProdSuc] = useState([])
-    useEffect(()=> {
-      axios.get('/api/sucursal-producto')
+  useEffect(() => {
+    axios.get('/api/sucursal-producto')
       .then(res => setProdSuc(res.data))
       .catch(err => console.log(err));
   }, [])
 
   const [prodProv, setProdProv] = useState([])
-    useEffect(()=> {
-      axios.get('/api/proveedor-producto')
+  useEffect(() => {
+    axios.get('/api/proveedor-producto')
       .then(res => setProdProv(res.data))
       .catch(err => console.log(err));
   }, [])
 
   //buscador
-const filteredProducts = prod.filter((product) => {
-  const buscarTerms = `${product.nombre_proveedor} ${product.nombre_sucursal} ${product.nombre} ${product.codigo}`.toLowerCase();
-  return buscarTerms.includes(buscarTerm.toLowerCase());
-});
-//buscador
+  const filteredProducts = prod.filter((product) => {
+    const buscarTerms = `${product.nombre_proveedor} ${product.nombre_sucursal} ${product.nombre} ${product.codigo}`.toLowerCase();
+    return buscarTerms.includes(buscarTerm.toLowerCase());
+  });
+  //buscador
 
-    return (
+  return (
 
-        <div className="py-16 px-24 font-marcellus">
-          <div className="mb-10">
-            <h2 className="text-5xl text-center text-gray-800">INVENTARIO</h2>
-          </div>
-        
-          <form className="columns-2 pb-2">   
-            <div>
-                <button className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500" 
-                  onClick={onOpen}>
-                    Agregar producto
-                </button>
-            </div> 
-            <div className="flex justify-end">
-              <div className="w-3/4">
-                <div className="relative">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                        </svg>
-                    </div>
-                    <input 
-                    type="search" 
-                    className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#092A3A] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white" 
-                    placeholder="Filtrar por proveedor, sucursal, código o nombre" 
-                    required 
-                    value={buscarTerm}
-                    onChange={(e) => setBuscarTerm(e.target.value)}
-                    />
-                </div>
+    <div className="py-16 px-24 font-marcellus">
+      <div className="mb-10">
+        <h2 className="text-5xl text-center text-gray-800">INVENTARIO</h2>
+      </div>
+
+      <form className="columns-2 pb-2">
+        <div>
+          <div className="w-3/4">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg className="w-4 h-4 text-white dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
               </div>
+              <input
+                type="search"
+                className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#092A3A] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white"
+                placeholder="Buscar por proveedor, sucursal, código o nombre"
+                required
+                value={buscarTerm}
+                onChange={(e) => setBuscarTerm(e.target.value)}
+              />
             </div>
-            
-             
-          </form>
-
-          <div>
-            <>
-              
-              <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
-                        <ModalContent>
-                        {(onClose) => (
-                            <>
-                            <ModalHeader className="flex flex-col gap-1 mt-5 mx-10">Agregar producto</ModalHeader>
-
-                            <ModalBody className="mx-10">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Input
-                                        label="Nombre"
-                                        placeholder="Nombre del producto..."
-                                        labelPlacement="outside"
-                                        variant="bordered"
-                                        onChange={e => setNomprod(e.target.value)}
-                                    />
-                                    <Input
-                                        label="Codigo"
-                                        placeholder="Código de producto"
-                                        labelPlacement="outside"
-                                        variant="bordered"
-                                        onChange={e => setCode(e.target.value)}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Input
-                                        label="Familia"
-                                        placeholder="Carnes, Verduras, Lácteos..."
-                                        labelPlacement="outside"
-                                        variant="bordered"
-                                        onChange={e => setFamilia(e.target.value)}
-                                    />
-                                    <Input
-                                        label="Unidad"
-                                        placeholder="Kg, L, Pza..."
-                                        labelPlacement="outside"
-                                        variant="bordered"
-                                        onChange={e => setUnidad(e.target.value)}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Input
-                                        type="number"
-                                        label="Cantidad"
-                                        placeholder="20"
-                                        labelPlacement="outside"
-                                        variant="bordered"
-                                        onChange={e => setCantidad(e.target.value)}
-                                    />
-                                    <Input
-                                        type="number"
-                                        label="Costo unitario"
-                                        placeholder="0.00"
-                                        labelPlacement="outside"
-                                        variant="bordered"
-                                        min="0" 
-                                        onChange={e => setCosto(e.target.value)}
-                                        startContent={
-                                            <div className="pointer-events-none flex items-center">
-                                                <span className="text-default-400 text-small">$</span>
-                                            </div>
-                                        }
-                                    />
-                                </div>
-                                <div>
-                                    <Input
-                                        label="Total"
-                                        placeholder="Costo total"
-                                        labelPlacement="outside"
-                                        variant="bordered"
-                                        onChange={e => setTotal(e.target.value)}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Select 
-                                        label="Selecciona un proveedor" 
-                                        className="max-w-xs" 
-                                        onChange={e => setProveedor(parseInt(e.target.value) + 1)}
-                                    >
-                                        {
-                                            prodProv.map((data, i)=> (
-                                                <SelectItem key={i} value={data.idproveedor}>
-                                                    {data.nombre}
-                                                </SelectItem>
-                                            ))
-                                        }
-                                    </Select>
-                                    <Select 
-                                        label="Selecciona una sucursal" 
-                                        className="max-w-xs" 
-                                        onChange={e => setSucursal(parseInt(e.target.value) + 1)}
-                                    >
-                                        {
-                                            prodSuc.map((data, i)=> (
-                                                <SelectItem key={i} value={data.idsucursal}>
-                                                    {data.nombre}
-                                                </SelectItem>
-                                            ))
-                                        }
-                                    </Select>
-                                </div>
-                            </ModalBody>
-
-                            <ModalFooter className="mb-5 mx-10">
-                                <Button color="danger" variant="light" onPress={onClose}>
-                                Cancelar
-                                </Button>
-                                <Button color="primary" onClick={handleSubmit}>
-                                Agregar
-                                </Button>
-                            </ModalFooter>
-                            </>
-                        )}
-                        </ModalContent>
-              </Modal>
-            </>
           </div>
-          
+        </div>
+        <div className="flex justify-end">
+          <button className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500"
+            onClick={onOpen}>
+            Agregar producto
+          </button>
+        </div>
+      </form>
+
+      <div>
+        <>
+          <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
+            <ModalContent>
+              {(onClose) => (
+                <>
+                  <ModalHeader className="flex flex-col gap-1 mt-5 mx-10 text-2xl">Agregar producto</ModalHeader>
+                  <ModalBody className="mx-10">
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        label="Nombre"
+                        placeholder="Nombre del producto..."
+                        labelPlacement="outside"
+                        variant="bordered"
+                        onChange={e => setNomprod(e.target.value)}
+                      />
+                      <Input
+                        label="Código"
+                        placeholder="Código de producto"
+                        labelPlacement="outside"
+                        variant="bordered"
+                        onChange={e => setCode(e.target.value)}
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        label="Familia"
+                        placeholder="Carnes, Verduras, Lácteos..."
+                        labelPlacement="outside"
+                        variant="bordered"
+                        onChange={e => setFamilia(e.target.value)}
+                      />
+                      <Input
+                        label="Unidad"
+                        placeholder="Kg, L, Pza..."
+                        labelPlacement="outside"
+                        variant="bordered"
+                        onChange={e => setUnidad(e.target.value)}
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        type="number"
+                        label="Cantidad"
+                        placeholder="20"
+                        labelPlacement="outside"
+                        variant="bordered"
+                        onChange={e => setCantidad(e.target.value)}
+                      />
+                      <Input
+                        type="number"
+                        label="Costo unitario"
+                        placeholder="0.00"
+                        labelPlacement="outside"
+                        variant="bordered"
+                        min="0"
+                        onChange={e => setCosto(e.target.value)}
+                        startContent={
+                          <div className="pointer-events-none flex items-center">
+                            <span className="text-default-400 text-small">$</span>
+                          </div>
+                        }
+                      />
+                    </div>
+                    <div className="w-1/4">
+                      <Input
+                        label="Costo total"
+                        placeholder="0.00"
+                        labelPlacement="outside"
+                        variant="bordered"
+                        min="0"
+                        onChange={e => setTotal(e.target.value)}
+                        startContent={
+                          <div className="pointer-events-none flex items-center">
+                            <span className="text-default-400 text-small">$</span>
+                          </div>
+                        }
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <Select
+                        label="Selecciona un proveedor"
+                        className="max-w-xs"
+                        onChange={e => setProveedor(parseInt(e.target.value) + 1)}
+                      >
+                        {
+                          prodProv.map((data, i) => (
+                            <SelectItem key={i} value={data.idproveedor}>
+                              {data.nombre}
+                            </SelectItem>
+                          ))
+                        }
+                      </Select>
+                      <Select
+                        label="Selecciona una sucursal"
+                        className="max-w-xs"
+                        onChange={e => setSucursal(parseInt(e.target.value) + 1)}
+                      >
+                        {
+                          prodSuc.map((data, i) => (
+                            <SelectItem key={i} value={data.idsucursal}>
+                              {data.nombre}
+                            </SelectItem>
+                          ))
+                        }
+                      </Select>
+                    </div>
+                  </ModalBody>
+
+                  <ModalFooter className="mb-5 mx-10">
+                    <Button color="danger" className="font-semibold text-red-500 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" variant="light" onPress={onClose}>
+                      Cancelar
+                    </Button>
+                    <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
+                      Agregar
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
+            </ModalContent>
+          </Modal>
+        </>
+      </div>
 
 
-          <div>
-            <Card className="h-auto shadow-none -mx-6">
-              <CardBody className="">
-                <Table removeWrapper aria-label="Example static collection table" className="table-auto rounded-lg ">{/*bg-gray-200*/}
-                  <TableHeader>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">PROVEEDOR</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">SUCURSAL</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">CODIGO</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">PRODUCTO</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">FAMILIA</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">UNIDAD</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">CANTIDAD</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO UNITARIO</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO TOTAL</TableColumn>
-                    <TableColumn className="bg-[#092A3A] text-white font-medium"></TableColumn>
-                    
-                  </TableHeader>
-                  <TableBody>
-                  {
-                    filteredProducts.map((data, i)=> (
+
+      <div>
+        <Card className="h-auto shadow-none -mx-6">
+          <CardBody className="">
+            <Table removeWrapper aria-label="Example static collection table" className="table-auto rounded-lg ">{/*bg-gray-200*/}
+              <TableHeader>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">PROVEEDOR</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">SUCURSAL</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">CODIGO</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">PRODUCTO</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">FAMILIA</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">UNIDAD</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">CANTIDAD</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO UNITARIO</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO TOTAL</TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"></TableColumn>
+              </TableHeader>
+
+              <TableBody>
+                {
+                  filteredProducts.map((data, i) => (
                     <TableRow key={i}>
                       <TableCell>{data.nombre_proveedor}</TableCell>
                       <TableCell>{data.nombre_sucursal}</TableCell>
@@ -431,159 +434,154 @@ const filteredProducts = prod.filter((product) => {
                       <TableCell>{`$` + data.costo_total}</TableCell>
                       <TableCell className="w-12">
                         <>
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={() => handleActualizarClick(data)}>
+                          <div className="relative flex">
+                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={() => handleActualizarClick(data)}>
                               <EditIcon />
                             </span>
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50" onClick={() => handleDelete(data.idproducto)}>
+                            <span className="pl-2 text-lg text-danger cursor-pointer active:opacity-50" onClick={() => handleDelete(data.idproducto)}>
                               <DeleteIcon />
                             </span>
-                        </div>
-                        <Modal isOpen={isUpdateModalOpen} onOpenChange={closeUpdateModal} size="4xl">
+                          </div>
+                          <Modal isOpen={isUpdateModalOpen} onOpenChange={closeUpdateModal} size="4xl">
                             <ModalContent>
-                            {(onClose) => (
+                              {(onClose) => (
                                 <>
-                                <ModalHeader className="flex flex-col gap-1 mt-5 mx-10">Actualizar</ModalHeader>
+                                  <ModalHeader className="flex flex-col gap-1 mt-5 mx-10 text-2xl">Actualizar producto</ModalHeader>
 
-                                <ModalBody className="mx-10">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Input
+                                  <ModalBody className="mx-10">
+                                    <div className="grid grid-cols-2 gap-4">
+                                      <Input
                                         label="Nombre"
                                         placeholder="Actualizar nombre del producto..."
                                         labelPlacement="outside"
                                         variant="bordered"
                                         value={nomprodActualizado}
                                         onChange={e => setNomprodActualizado(e.target.value)}
-                                    />
-                                    <Input
+                                      />
+                                      <Input
                                         label="Codigo"
                                         placeholder="Código de producto"
                                         labelPlacement="outside"
                                         variant="bordered"
                                         value={codeActualizado}
                                         onChange={e => setCodeActualizado(e.target.value)}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Input
+                                      />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                      <Input
                                         label="Familia"
                                         placeholder="Carnes, Verduras, Lácteos..."
                                         labelPlacement="outside"
                                         variant="bordered"
                                         value={familiaActualizado}
                                         onChange={e => setFamiliaActualizado(e.target.value)}
-                                    />
-                                    <Input
+                                      />
+                                      <Input
                                         label="Unidad"
                                         placeholder="Kg, L, Pza..."
                                         labelPlacement="outside"
                                         variant="bordered"
                                         value={unidadActualizado}
                                         onChange={e => setUnidadActualizado(e.target.value)}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Input
+                                      />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                      <Input
                                         label="Cantidad"
                                         placeholder="20"
                                         labelPlacement="outside"
                                         variant="bordered"
                                         value={cantidadActualizado}
                                         onChange={e => setCantidadActualizado(e.target.value)}
-                                    />
-                                    <Input
+                                      />
+                                      <Input
                                         type="number"
                                         label="Costo unitario"
                                         placeholder="0.00"
                                         labelPlacement="outside"
                                         variant="bordered"
-                                        min="0" 
+                                        min="0"
                                         value={costoActualizado}
                                         onChange={e => setCostoActualizado(e.target.value)}
                                         startContent={
-                                            <div className="pointer-events-none flex items-center">
-                                                <span className="text-default-400 text-small">$</span>
-                                            </div>
+                                          <div className="pointer-events-none flex items-center">
+                                            <span className="text-default-400 text-small">$</span>
+                                          </div>
                                         }
-                                    />
-                                </div>
-                                <div>
-                                    <Input
+                                      />
+                                    </div>
+                                    <div className="w-1/4">
+                                      <Input
                                         label="Total"
-                                        placeholder="Costo total"
+                                        placeholder="0.00"
                                         labelPlacement="outside"
                                         variant="bordered"
+                                        min="0"
                                         value={totalActualizado}
                                         onChange={e => setTotalActualizado(e.target.value)}
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <Select 
-                                        label="Actualizar proveedor" 
-                                        className="max-w-xs" 
+                                        startContent={
+                                          <div className="pointer-events-none flex items-center">
+                                            <span className="text-default-400 text-small">$</span>
+                                          </div>
+                                        }
+                                      />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                      <Select
+                                        label="Actualizar proveedor"
+                                        className="max-w-xs"
                                         value={proveedorActualizado}
                                         onChange={e => setProveedorActualizado(parseInt(e.target.value) + 1)}
-                                    >
+                                      >
                                         {
-                                            prodProv.map((data, i)=> (
-                                                <SelectItem key={i} value={data.idproveedor}>
-                                                    {data.nombre}
-                                                </SelectItem>
-                                            ))
+                                          prodProv.map((data, i) => (
+                                            <SelectItem key={i} value={data.idproveedor}>
+                                              {data.nombre}
+                                            </SelectItem>
+                                          ))
                                         }
-                                    </Select>
-                                    <Select 
-                                        label="Actualizar sucursal" 
-                                        className="max-w-xs" 
+                                      </Select>
+                                      <Select
+                                        label="Actualizar sucursal"
+                                        className="max-w-xs"
                                         value={sucursalActualizado}
                                         onChange={e => setSucursalActualizado(parseInt(e.target.value) + 1)}
-                                    >
+                                      >
                                         {
-                                            prodSuc.map((data, i)=> (
-                                                <SelectItem key={i} value={data.idsucursal}>
-                                                    {data.nombre}
-                                                </SelectItem>
-                                            ))
+                                          prodSuc.map((data, i) => (
+                                            <SelectItem key={i} value={data.idsucursal}>
+                                              {data.nombre}
+                                            </SelectItem>
+                                          ))
                                         }
-                                    </Select>
-                                </div>
-                            </ModalBody>
+                                      </Select>
+                                    </div>
+                                  </ModalBody>
 
-                            <ModalFooter className="mb-5 mx-10">
-                              <Button color="danger" variant="light" onPress={onClose}>
-                                Cancelar
-                              </Button>
-                              <Button color="primary" onClick={handleUpdate} onPress={onClose}>
-                                Actualizar
-                              </Button>
-                            </ModalFooter>
+                                  <ModalFooter className="mb-5 mx-10">
+                                    <Button color="danger" variant="light" className="font-semibold text-red-500 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
+                                      Cancelar
+                                    </Button>
+                                    <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
+                                      Actualizar
+                                    </Button>
+                                  </ModalFooter>
                                 </>
-                            )}
+                              )}
                             </ModalContent>
-                        </Modal>
-                    </>
+                          </Modal>
+                        </>
                       </TableCell>
                     </TableRow>
-                     ))
-                  }
-                  </TableBody>
-                </Table>
-                
-              </CardBody>
-            </Card>
-          </div>
+                  ))
+                }
+              </TableBody>
+            </Table>
+          </CardBody>
+        </Card>
+      </div>
+    </div>
 
-
-          
-
-
-
-
-
-
-
-        </div>
-
-    )
-  }
-  export default Inventario
+  )
+}
+export default Inventario
