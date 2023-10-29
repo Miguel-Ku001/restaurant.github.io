@@ -1,7 +1,7 @@
 import {
   Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody, Modal, 
   ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select, 
-  SelectItem 
+  SelectItem, Link
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -386,7 +386,7 @@ export const Inventario = () => {
                   </ModalBody>
 
                   <ModalFooter className="mb-5 mx-10">
-                    <Button color="danger" className="font-semibold text-red-500 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" variant="light" onPress={onClose}>
+                    <Button color="danger" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" variant="light" onPress={onClose}>
                       Cancelar
                     </Button>
                     <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
@@ -407,23 +407,23 @@ export const Inventario = () => {
           <CardBody className="">
             <Table removeWrapper aria-label="Example static collection table" className="table-auto rounded-lg ">{/*bg-gray-200*/}
               <TableHeader>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">PROVEEDOR</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">SUCURSAL</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">CODIGO</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">PRODUCTO</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">FAMILIA</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">UNIDAD</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">CANTIDAD</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO UNITARIO</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium">COSTO TOTAL</TableColumn>
-                <TableColumn className="bg-[#092A3A] text-white font-medium"></TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> PROVEEDOR </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> SUCURSAL </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> CODIGO </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> PRODUCTO </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> FAMILIA </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> UNIDAD </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> CANTIDAD </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> COSTO UNITARIO </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> COSTO TOTAL </TableColumn>
+                <TableColumn className="bg-[#092A3A] text-white font-medium"> </TableColumn>
               </TableHeader>
 
               <TableBody>
                 {
                   filteredProducts.map((data, i) => (
                     <TableRow key={i}>
-                      <TableCell>{data.nombre_proveedor}</TableCell>
+                      <TableCell><Link className="text-[#cd9b4a]" name="Proveedores" href="/proveedores">{data.nombre_proveedor}</Link></TableCell>
                       <TableCell>{data.nombre_sucursal}</TableCell>
                       <TableCell>{data.codigo}</TableCell>
                       <TableCell>{data.nombre}</TableCell>
@@ -559,7 +559,7 @@ export const Inventario = () => {
                                   </ModalBody>
 
                                   <ModalFooter className="mb-5 mx-10">
-                                    <Button color="danger" variant="light" className="font-semibold text-red-500 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
+                                    <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
                                       Cancelar
                                     </Button>
                                     <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
