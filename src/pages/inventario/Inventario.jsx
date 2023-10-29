@@ -120,6 +120,35 @@ export const Inventario = () => {
   formData.append('proveedor', proveedor);
   formData.append('sucursal', sucursal);
 
+// Para calcular el total conforme a la contidad y el costo unitario
+  const handleCantidadChange = (e) => {
+    const newCantidad = parseFloat(e.target.value);
+    if (!isNaN(newCantidad)) {
+      setCantidad(newCantidad);
+      // Calcula el nuevo costo total basado en la cantidad y el costo unitario
+      const newTotal = newCantidad * costo;
+      setTotal(newTotal);
+    } else {
+      setCantidad('');
+      setTotal('');
+    }
+  };
+  
+  const handleCostoUnitarioChange = (e) => {
+    const newCostoUnitario = parseFloat(e.target.value);
+    if (!isNaN(newCostoUnitario)) {
+      setCosto(newCostoUnitario);
+      // Calcular el nuevo costo total basado en la cantidad y el costo unitario
+      const newTotal = cantidad * newCostoUnitario;
+      setTotal(newTotal);
+    } else {
+      setCosto('');
+      setTotal('');
+    }
+  };
+// Para calcular el total conforme a la contidad y el costo unitario
+
+
   function handleSubmit(event) {
     event.preventDefault();
     axios.post('/api/producto/crear', formData, {
@@ -132,7 +161,6 @@ export const Inventario = () => {
         window.location.reload()
       }).catch(err => console.log(err));
   }
-
 
 
   //---------------Actualizar Registros------------------//
@@ -148,7 +176,6 @@ export const Inventario = () => {
   const [sucursalActualizado, setSucursalActualizado] = useState('');
 
   const updatedFormData = new FormData();
-
   updatedFormData.append('nomprod', nomprodActualizado);
   updatedFormData.append('code', codeActualizado);
   updatedFormData.append('familia', familiaActualizado);
@@ -161,7 +188,6 @@ export const Inventario = () => {
 
   const handleActualizarClick = (registro) => {
     setRegistroActual(registro);
-
     setNomprodActualizado(registro.nombre);
     setCodeActualizado(registro.codigo);
     setFamiliaActualizado(registro.familia);
@@ -175,8 +201,40 @@ export const Inventario = () => {
     openUpdateModal();
   };
 
+////cambiosssssssssssss
+const handleCantidadActu = (e) => {
+  const newCantidad = parseFloat(e.target.value);
+  if (!isNaN(newCantidad)) {
+    setCantidadActualizado(newCantidad);
+    // Calcula el nuevo costo total basado en la cantidad y el costo unitario
+    const newTotal = newCantidad * costoActualizado;
+    setTotalActualizado(newTotal);
+  } else {
+    setCantidadActualizado('');
+    setTotalActualizado('');
+  }
+};
+
+const handleCostoUnitarioActu = (e) => {
+  const newCostoUnitario = parseFloat(e.target.value);
+  if (!isNaN(newCostoUnitario)) {
+    setCostoActualizado(newCostoUnitario);
+    // Calcular el nuevo costo total basado en la cantidad y el costo unitario
+    const newTotal = cantidadActualizado * newCostoUnitario;
+    setTotalActualizado(newTotal);
+  } else {
+    setCostoActualizado('');
+    setTotalActualizado('');
+  }
+};
+/////////
+
+
+
+
   function handleUpdate(event) {
     event.preventDefault();
+
 
     axios.put(`/api/productos/actualizar/${registroActual.idproducto}`, updatedFormData, {
       headers: {
@@ -189,7 +247,6 @@ export const Inventario = () => {
       }).catch(err => console.log(err));
   }
   //--------------Final actualizar Registros------------------//
-
 
 
 
@@ -320,10 +377,12 @@ export const Inventario = () => {
                       <Input
                         type="number"
                         label="Cantidad"
-                        placeholder="20"
+                        placeholder="Escribe la cantidad"
                         labelPlacement="outside"
                         variant="bordered"
-                        onChange={e => setCantidad(e.target.value)}
+                        min="1"
+                        onChange={(e) => handleCantidadChange(e)}
+                        // onChange={e => setCantidad(e.target.value)}
                       />
                       <Input
                         type="number"
@@ -332,7 +391,8 @@ export const Inventario = () => {
                         labelPlacement="outside"
                         variant="bordered"
                         min="0"
-                        onChange={e => setCosto(e.target.value)}
+                        onChange={(e) => handleCostoUnitarioChange(e)}
+                        // onChange={e => setCosto(e.target.value)}
                         startContent={
                           <div className="pointer-events-none flex items-center">
                             <span className="text-default-400 text-small">$</span>
@@ -342,12 +402,15 @@ export const Inventario = () => {
                     </div>
                     <div className="w-1/4">
                       <Input
+                      disabled
                         label="Costo total"
                         placeholder="0.00"
                         labelPlacement="outside"
                         variant="bordered"
                         min="0"
-                        onChange={e => setTotal(e.target.value)}
+                        value={isNaN(total) ? '' : total}
+                        onChange={(e) => setTotal(parseFloat(e.target.value))}
+                        // onChange={e => setTotal(e.target.value)}
                         startContent={
                           <div className="pointer-events-none flex items-center">
                             <span className="text-default-400 text-small">$</span>
@@ -487,12 +550,15 @@ export const Inventario = () => {
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
                                       <Input
+                                        type="number"
                                         label="Cantidad"
                                         placeholder="20"
                                         labelPlacement="outside"
+                                        min="1"
                                         variant="bordered"
                                         value={cantidadActualizado}
-                                        onChange={e => setCantidadActualizado(e.target.value)}
+                                        onChange={(e) => handleCantidadActu(e)}
+                                        // onChange={e => setCantidadActualizado(e.target.value)}
                                       />
                                       <Input
                                         type="number"
@@ -502,7 +568,9 @@ export const Inventario = () => {
                                         variant="bordered"
                                         min="0"
                                         value={costoActualizado}
-                                        onChange={e => setCostoActualizado(e.target.value)}
+                                        //handleCostoUnitarioActu
+                                        onChange={(e) => handleCostoUnitarioActu(e)}
+                                        // onChange={e => setCostoActualizado(e.target.value)}
                                         startContent={
                                           <div className="pointer-events-none flex items-center">
                                             <span className="text-default-400 text-small">$</span>
@@ -517,8 +585,10 @@ export const Inventario = () => {
                                         labelPlacement="outside"
                                         variant="bordered"
                                         min="0"
-                                        value={totalActualizado}
-                                        onChange={e => setTotalActualizado(e.target.value)}
+                                        value={isNaN(totalActualizado) ? '' : totalActualizado}
+                                        onChange={(e) => setTotalActualizado(parseFloat(e.target.value))}
+                                        // value={totalActualizado}
+                                        // onChange={e => setTotalActualizado(e.target.value)}
                                         startContent={
                                           <div className="pointer-events-none flex items-center">
                                             <span className="text-default-400 text-small">$</span>
