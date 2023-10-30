@@ -59,7 +59,7 @@ export const ListadoOrdenAdmin = () => {
                     <CardBody>
                         <Table removeWrapper aria-label="Example static collection table" className="table-auto rounded-lg ">{/*bg-gray-200*/}
                             <TableHeader>
-                                <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> USUARIO </TableColumn>
+                                <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> NOMBRE DEL CLIENTE </TableColumn>
                                 <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> NÚMERO DE ORDEN </TableColumn>
                                 <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> FECHA </TableColumn>
                                 <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> COSTO TOTAL </TableColumn>

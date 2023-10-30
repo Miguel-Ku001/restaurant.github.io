@@ -7,24 +7,27 @@ import { useEffect, useState } from "react";
 
 export const ListadoOrdenCliente = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    // const {onClose: closeUpdateModal } = useDisclosure();
-
-
 
     function formatFecha(fecha) {
         const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
         return new Date(fecha).toLocaleDateString(undefined, options);
     }
 
-    const [orden, setOrden] = useState([])
+    //recuperando el id del usuario desde el localStorage
+    const idusuario = localStorage.getItem('idusuario');
+
+    const [orden, setOrden] = useState([]);
     useEffect(() => {
-        axios.get('/api/ordenes/admin')
-            .then(res => {
-                // console.log(res.data);
-                setOrden(res.data);
-            })
-            .catch(err => console.log(err));
-    }, [])
+        if (idusuario) {
+            axios.get(`/api/ordenes/cliente?idusuario=${idusuario}`)
+                .then(res => {
+                    // console.log(res.data);
+                    setOrden(res.data);
+                })
+                .catch(err => console.log(err));
+        }
+    }, [idusuario]);
+    //Fin recuperando el id del usuario desde el localStorage
 
     const [venta, setVenta] = useState([])
     useEffect(() => {
@@ -50,16 +53,24 @@ export const ListadoOrdenCliente = () => {
     return (
 
         <div className="py-16 px-24 font-marcellus">
-            <div className="mb-10">
-                <h2 className="text-5xl text-center text-gray-800">ORDENES REALIZADAS</h2>
-            </div>
+            {
+                orden.map((data, i) => (
+                    <div key={i}>
+                        <div className="mb-10">
+                            <h2 className="text-5xl text-center text-gray-800">Hola, {data.nombre_usuario} {data.apellidos_usuario}</h2>
+                        </div>
+                        <div className="mb-10">
+                            <h3 className="text-2xl text-center text-gray-800">TUS ORDENES REALIZADAS</h3>
+                        </div>
+                    </div>
+                ))
+            }
 
             <div>
                 <Card className="h-auto shadow-none">
                     <CardBody>
                         <Table removeWrapper aria-label="Example static collection table" className="table-auto rounded-lg ">{/*bg-gray-200*/}
                             <TableHeader>
-                                <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> USUARIO </TableColumn>
                                 <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> NÚMERO DE ORDEN </TableColumn>
                                 <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> FECHA </TableColumn>
                                 <TableColumn className="bg-[#092A3A] text-white font-medium text-center"> COSTO TOTAL </TableColumn>
@@ -69,10 +80,9 @@ export const ListadoOrdenCliente = () => {
                                 {
                                     orden.map((data, i) => (
                                         <TableRow key={i}>
-                                            <TableCell className="text-center"> {data.nombre} {data.apellidos} </TableCell>
                                             <TableCell className="text-center"> {data.num_orden} </TableCell>
                                             <TableCell className="text-center"> {formatFecha(data.fecha)} </TableCell>
-                                            <TableCell className="text-center"> ${data.costo_final} </TableCell>           
+                                            <TableCell className="text-center"> ${data.costo_final} </TableCell>
                                             <TableCell>
                                                 <>
                                                     <div className="text-center">
@@ -87,7 +97,7 @@ export const ListadoOrdenCliente = () => {
                                                             Detalles
                                                         </Button>
                                                     </div>
-                                                    
+
                                                     <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
                                                         <ModalContent>
                                                             {(onClose) => (
@@ -111,7 +121,7 @@ export const ListadoOrdenCliente = () => {
                                                                                         <p className="text-small text-default-400">Costo total: ${detail.costo_total}</p>
                                                                                     </div>
                                                                                 </div>
-                                                                              
+
                                                                             ))}
                                                                         </div>
                                                                     </ModalBody>
