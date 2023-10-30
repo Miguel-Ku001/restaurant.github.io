@@ -1,8 +1,9 @@
 import {Image, Input, Button} from "@nextui-org/react";
 //import { useState } from "react"
 import {MdDeleteOutline} from "react-icons/md";
+import axios from "axios";
 
-export const MenuItem = ({items, onQuantityChange, onItemRemove}) => {
+export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
     //ESTE NO ES MENU ITEM ES CART ITEM
     /*const [itemInCart, setItem] = useState([]); 
 
@@ -16,6 +17,21 @@ export const MenuItem = ({items, onQuantityChange, onItemRemove}) => {
         newItem,
       ]);
     };*/
+  console.log(items);
+
+  /*const datosEnviar = {
+    items,
+    idusuario: localStorage.getItem('token')
+  }*/
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    axios.post('/api/registrar-venta', items)
+    .then(res => {
+        console.log(res);
+        //window.location.reload()
+    }).catch(err => console.log(err));
+  }
 
 
     return (
@@ -27,8 +43,8 @@ export const MenuItem = ({items, onQuantityChange, onItemRemove}) => {
         {items.length === 0 && (
           <span>Tu carrito esta vacio</span>
         )}
-        {items.map((item) => (
-          <div key={item.id_items}>
+        {items.map((item, i) => (
+          <div key={i}>
             <Image
                 className="w-40 h-40 object-cover"
                 src={`../src/images/vista-menu/${item.imagen}`}
@@ -56,10 +72,13 @@ export const MenuItem = ({items, onQuantityChange, onItemRemove}) => {
           </div>
         ))}
         {items.length > 0 && (
-          <Button>Proceder a ordenar</Button>
+          <div>
+            <Button onClick={handleSubmit}>Finalizar compra</Button>
+            <Button>Seguir comprando</Button>
+          </div>
         )}
       </div>
     </div>
     )
   }
-  export default MenuItem
+  export default CartItem

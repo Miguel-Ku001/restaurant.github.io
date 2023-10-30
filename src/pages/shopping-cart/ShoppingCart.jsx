@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import CartContext from "../../another/CartContext";
 import {Image, Input, Button} from "@nextui-org/react";
 
 export const ShoppingCart = () => {

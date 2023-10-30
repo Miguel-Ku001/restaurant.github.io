@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {Link, Button, Image, Input} from "@nextui-org/react";
-import MenuItem from '/src/components/menu-item/MenuItem'
+import CartItem from '/src/components/cart-item/CartItem'
 import axios, { all } from "axios";
 
 export const Menu = () => {
@@ -91,7 +91,7 @@ export const Menu = () => {
 
   return (
     <div className="py-16 mr-36 font-marcellus">
-      <MenuItem items={itemsInCart} onQuantityChange={onQuantityChange} onItemRemove={onItemRemove}/>
+      <CartItem items={itemsInCart} onQuantityChange={onQuantityChange} onItemRemove={onItemRemove}/>
       <div className="mb-20">
           <h2 className="text-5xl text-center text-gray-800 font-medium">MENÚ</h2>
       </div>
@@ -131,7 +131,7 @@ export const Menu = () => {
           <div className="h-2/6 flex justify-end">
                   <Button variant="flat" className=" active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 text-white transition duration-500 bg-[#28a332]"
                       onClick={() => addItemToCart(data)}>
-                    <h3>Agregar al carrito we</h3>
+                    <h3>Agregar al carrito</h3>
                   </Button>
           </div>
           </div>
@@ -151,7 +151,6 @@ export const Menu = () => {
           <Button as={Link} color="primary"  href="/menu/ordenes" variant="flat" className=" w-full active:scale-95 hover:scale-105 mt-20 shadow-xl rounded-lg py-3 px-10 text-white transition duration-500 bg-[#092A3A]">
             <h3>Ordenar</h3>
           </Button>
-          {/* <button href="/menu/ordenes/forma-de-pago" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Ordenar</button>                   */}
         </div>
       </div>
 
