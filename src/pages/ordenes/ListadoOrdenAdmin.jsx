@@ -97,12 +97,6 @@ export const ListadoOrdenAdmin = () => {
                                                                     <ModalBody className="mx-10">
                                                                         <div className="grid grid-cols-2 gap-4">
                                                                             {ordenDetalles.map((detail, index) => (
-                                                                                // <div key={index}>
-                                                                                //     <p><b>{detail.nombre}</b></p>
-                                                                                //     <p>Cantidad: {detail.cantidad}</p>
-                                                                                //     <p>Precio: {detail.precio}</p>
-                                                                                //     <p>Costo total: {detail.costo_total}</p>
-                                                                                // </div>
                                                                                 <div key={index}>
                                                                                     <div className="space-y-1">
                                                                                         <h4 className="text-medium font-medium">{detail.nombre}</h4>
