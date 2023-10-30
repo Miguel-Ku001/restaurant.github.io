@@ -1,7 +1,8 @@
 import {Image, Input, Button} from "@nextui-org/react";
 //import { useState } from "react"
+import {MdDeleteOutline} from "react-icons/md";
 
-export const MenuItem = ({items, onQuantityChange}) => {
+export const MenuItem = ({items, onQuantityChange, onItemRemove}) => {
     //ESTE NO ES MENU ITEM ES CART ITEM
     /*const [itemInCart, setItem] = useState([]); 
 
@@ -48,7 +49,9 @@ export const MenuItem = ({items, onQuantityChange}) => {
                 onQuantityChange(item.id_items, event.target.value)
               }}/>
 
-              
+              <Button onClick={() => onItemRemove(item)} isIconOnly variant="faded">
+                <MdDeleteOutline color="red" size="1.5em"/>
+              </Button>
               
           </div>
         ))}

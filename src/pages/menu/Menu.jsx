@@ -33,7 +33,10 @@ export const Menu = () => {
 
 
 
-  const [itemsInCart, setItemsInCart] = useState([]); 
+  const [itemsInCart, setItemsInCart] = useState(JSON.parse(localStorage.getItem('shopping-cart')) || []); 
+  useEffect(() => {
+    localStorage.setItem('shopping-cart', JSON.stringify(itemsInCart))
+  }, [itemsInCart]);
   const [isNotificationVisible, setNotificationVisible] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   const addItemToCart = (item) => {
@@ -70,11 +73,25 @@ export const Menu = () => {
     });
   };
 
+  const onItemRemove = (item) => {
+    setItemsInCart((oldState) => {
+      const itemsIndex = 
+        oldState.findIndex(
+          (data) => 
+          data.id_items === item.id_items
+        );
+      if(itemsIndex !== -1) {
+        oldState.splice(itemsIndex, 1);
+      }
+      return [...oldState];
+    });
+  };
+
 
 
   return (
     <div className="py-16 mr-36 font-marcellus">
-      <MenuItem items={itemsInCart} onQuantityChange={onQuantityChange}/>
+      <MenuItem items={itemsInCart} onQuantityChange={onQuantityChange} onItemRemove={onItemRemove}/>
       <div className="mb-20">
           <h2 className="text-5xl text-center text-gray-800 font-medium">MENÚ</h2>
       </div>
