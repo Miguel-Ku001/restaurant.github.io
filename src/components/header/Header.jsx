@@ -31,7 +31,7 @@ export default function Header() {
   const isAdmin = idrol === '2';
 
   return (
-    <Navbar className="bg-[#2c3033] font-marcellus h-[6rem]" 
+    <Navbar className="bg-[#2c3033] font-marcellus h-[6rem] z-0" 
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
