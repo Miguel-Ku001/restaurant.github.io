@@ -19,17 +19,15 @@ export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
     };*/
   console.log(items);
 
-  /*const datosEnviar = {
-    items,
-    idusuario: localStorage.getItem('token')
-  }*/
+
 
   function handleSubmit(event) {
     event.preventDefault();
     axios.post('/api/registrar-venta', items)
     .then(res => {
         console.log(res);
-        //window.location.reload()
+        localStorage.removeItem('shopping-cart');
+        window.location.reload()
     }).catch(err => console.log(err));
   }
 
