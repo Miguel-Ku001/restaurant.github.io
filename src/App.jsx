@@ -20,8 +20,6 @@ import SucursalesAdmin from './pages/sucursales/Sucursalesadmin'
 import Proveedores from './pages/proveedores/Proveedores'
 import Inventario from './pages/inventario/Inventario'
 import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
-import ListadoOrdenAdmin from './pages/ordenes/ListadoOrdenAdmin'
-import ListadoOrdenCliente from './pages/ordenes/ListadoOrdenCliente'
 
 function App() {
 
@@ -38,8 +36,6 @@ function App() {
           <Route exact path='/menu/admin' element={ <MenuAdmin /> } />
           <Route exact path='/menu' element={ <Menu /> } />
           <Route exact path='/menu/ordenes' element={ <Ordenes /> } />
-          <Route exact path='/ordenes/admin' element={ <ListadoOrdenAdmin /> } />
-          <Route exact path='/ordenes/cliente' element={ <ListadoOrdenCliente /> } />
           <Route exact path='/menu/ordenes/forma-de-pago' element={ <Ordenespago /> } /> 
           <Route exact path='/servicios' element={ <Servicios /> } />
           <Route exact path='/servicios/eventos' element={ <Eventos /> } />
