@@ -67,12 +67,12 @@ export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
 
 
   return (
-    <div className="px-24 font-marcellus mx-60">
+    <div className="font-marcellus">
       <div className="flex flex-row-reverse justify-center">
-        <div className="w-1/5">
-          <Button color="primary"  onPress={onOpen} variant="flat" className="w-full active:scale-95 hover:scale-105 shadow-xl rounded-lg px-10 text-white transition duration-500 bg-[#092A3A]">
-            <AiOutlineShoppingCart color="white" size="1.5em"/> 
-            <h3>Ver carrito</h3>
+        <div className="">
+          <Button color="primary"  onPress={onOpen} variant="bordered" className="border-orange-300 text-gray-900 w-full active:scale-95 hover:scale-105 shadow-xl rounded-lg transition duration-500">
+            <AiOutlineShoppingCart color="gray" size="1.5em"/> 
+            <h3>VER CARRITO</h3>
           </Button>
         </div>
       </div>

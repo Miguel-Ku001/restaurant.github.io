@@ -28,6 +28,7 @@ export default function Header() {
   }
 
   const isAdmin = idrol === '2';
+  const isCliente = idrol === '1';
 
   return (
     <Navbar className="bg-[#2c3033] font-marcellus h-[6rem] z-0" 
@@ -81,13 +82,41 @@ export default function Header() {
             </Button>
           </NavbarItem>
       )}
-      {isLoggedIn && (
-        <NavbarItem className="flex gap-2 items-center">
-            <Button as={Link} onClick={logout} href="/" color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
-              Cerrar Sesión
-            </Button>
-        </NavbarItem>
-      )}    
+      {isCliente && isLoggedIn && (
+        <NavbarItem>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button 
+                  variant="bordered" className="text-white border-orange-300"  
+                >
+                  + Opciones
+                </Button>
+              </DropdownTrigger>
+              
+              <DropdownMenu aria-label="Static Actions">
+              <DropdownSection title="Servicios" showDivider>
+                  <DropdownItem key="services" className="text-gray-900" as={Link} href="/servicios/solicitud-de-servicio">
+                    Reservar servicio
+                  </DropdownItem>
+                </DropdownSection>
+                <DropdownSection title="Ordenes realizadas" showDivider>
+                  <DropdownItem key="order" className="text-gray-900" as={Link} href="/ordenes/cliente">
+                    Mis ordenes
+                  </DropdownItem>
+                </DropdownSection>   
+                <DropdownSection>
+                  <DropdownItem key="logout" className="text-orange-300 hover:text-orange-500" as={Link} onClick={logout} href="/" variant="flat">
+                    {/* <Button    color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
+                      Cerrar Sesión
+                    </Button>   */}
+                    Cerrar Sesión
+                  </DropdownItem>  
+                </DropdownSection>   
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+      )}
+
       {isAdmin && isLoggedIn && (
         <NavbarItem>
             <Dropdown>
@@ -100,28 +129,46 @@ export default function Header() {
               </DropdownTrigger>
               
               <DropdownMenu aria-label="Static Actions">
+                <DropdownSection  title="Administración" showDivider>
+                  <DropdownItem key="users" className="text-gray-900" as={Link} href="#">
+                    Usuarios
+                  </DropdownItem>
+                  <DropdownItem key="reservation" className="text-gray-900" as={Link} href="#">
+                    Reservaciones
+                  </DropdownItem>
+                  <DropdownItem key="orderadmin" className="text-gray-900" as={Link} href="/ordenes/admin">
+                    Ordenes realizadas
+                  </DropdownItem>
+                </DropdownSection>
                 <DropdownSection showDivider>
+                  <DropdownItem key="menuadmin" className="text-gray-900" as={Link} href="/menu/admin">
+                    Menú
+                  </DropdownItem>
+                  <DropdownItem key="sucursaladmin" className="text-gray-900" as={Link} href="/sucursales/admin">
+                    Sucursales
+                  </DropdownItem>
+                </DropdownSection>  
+                <DropdownSection title="Productos" showDivider>
+                  <DropdownItem key="inv" className="text-gray-900" as={Link} href="/inventario">
+                    Inventario
+                  </DropdownItem>
                   <DropdownItem key="prove" className="text-gray-900" as={Link} href="/proveedores">
                     Proveedores
                   </DropdownItem>
-                  <DropdownItem key="invent" className="text-gray-900" as={Link} href="/inventario">
-                    Inventario
-                  </DropdownItem>
                 </DropdownSection>
                 <DropdownSection>
-                  <DropdownItem key="new" className="text-gray-900" as={Link} href="#">
-                    Usuarios
-                  </DropdownItem>
-                  <DropdownItem key="copy" className="text-gray-900" as={Link} href="#">
-                    Reservaciones
-                  </DropdownItem>
-                </DropdownSection>      
+                  <DropdownItem key="logout" className="text-orange-300" as={Link} onClick={logout} href="/" variant="flat">
+                    {/* <Button    color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
+                      Cerrar Sesión
+                    </Button>   */}
+                    Cerrar Sesión
+                  </DropdownItem>  
+                </DropdownSection>   
               </DropdownMenu>
             </Dropdown>
           </NavbarItem>
-      )}    
-          
-          
+      )}
+        
       </NavbarContent> {/*className="sm:hidden" */}
         {/* <NavbarContent justify="start">  
           <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
