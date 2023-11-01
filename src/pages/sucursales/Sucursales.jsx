@@ -10,7 +10,7 @@ export const Sucursales = () => {
     axios.get('/api/sucursal')
       .then(res => {
         setItem(res.data);
-        setFilteredItems(res.data);
+        // setFilteredItems(res.data);
       })
       .catch(err => console.log(err));
   }, [])
@@ -46,7 +46,7 @@ export const Sucursales = () => {
                 <p className="mb-2 text-black" style={{ marginTop: '5px' }}>
                   Horario de restaurante:
                 </p>
-                <p className="mb-2 text-gray-600">
+                <p className="mb-2 text-gray-600 whitespace-pre-wrap">
                   {data.horario}
                 </p>
           </div>
