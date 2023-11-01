@@ -79,7 +79,7 @@ export const Solicitudservicio = () => {
                         name="servicio"
                         autoComplete="service-name"
                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        onChange={e => setNombre(e.target.value)}
+                        onChange={e => setTipo_servicio(e.target.value)}
                       >
                         <option>Evento</option>
                         <option>Catering</option>
