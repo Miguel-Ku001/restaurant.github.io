@@ -16,9 +16,12 @@ import Eventos from './pages/eventos/Eventos'
 import Catering from './pages/catering/Catering'
 import Bodas from './pages/bodas/Bodas'
 import Sucursales from './pages/sucursales/Sucursales'
+import SucursalesAdmin from './pages/sucursales/Sucursalesadmin'
 import Proveedores from './pages/proveedores/Proveedores'
 import Inventario from './pages/inventario/Inventario'
 import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
+import ListadoOrdenAdmin from './pages/ordenes/ListadoOrdenAdmin'
+import ListadoOrdenCliente from './pages/ordenes/ListadoOrdenCliente'
 
 function App() {
 
@@ -36,12 +39,15 @@ function App() {
           <Route exact path='/menu' element={ <Menu /> } />
           <Route exact path='/menu/ordenes' element={ <Ordenes /> } />
           <Route exact path='/menu/ordenes/forma-de-pago' element={ <Ordenespago /> } /> 
+          <Route exact path='/ordenes/admin' element={ <ListadoOrdenAdmin /> } />
+          <Route exact path='/ordenes/cliente' element={ <ListadoOrdenCliente /> } />
           <Route exact path='/servicios' element={ <Servicios /> } />
           <Route exact path='/servicios/eventos' element={ <Eventos /> } />
           <Route exact path='/servicios/catering' element={ <Catering /> } />
           <Route exact path='/servicios/bodas' element={ <Bodas /> } />
           <Route exact path='/servicios/solicitud-de-servicio' element={ <Solicitudservicio /> } />
           <Route exact path='/sucursales' element={ <Sucursales /> } />
+          <Route exact path='/sucursalesadmin' element={ <SucursalesAdmin /> } />
           <Route exact path='/proveedores' element={ <Proveedores /> } />
           <Route exact path='/inventario' element={ <Inventario /> } /> 
         </Routes>

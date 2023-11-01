@@ -38,6 +38,7 @@ export const Login = () => {
       .then((data) => {
         if (data && data.authenticated) {
           localStorage.setItem('auth', 'yes');
+          localStorage.setItem('idusuario', data.id.toString());
           if (data.rol !== undefined) {
             localStorage.setItem('idrol', data.rol.toString());
           }
