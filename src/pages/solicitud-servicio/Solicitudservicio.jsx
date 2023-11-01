@@ -1,6 +1,48 @@
+import { useEffect, useState } from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody} from "@nextui-org/react";
+import axios from "axios";
 
 export const Solicitudservicio = () => {
+
+  const [nombre, setNombre] = useState('')
+  const [email, setEmail] = useState('')
+  const [telefono, setTelefono] = useState('')
+  const [tipo_servicio, setTipo_servicio] = useState('')
+  const [fecha, setFecha] = useState('')
+  const [hora, setHora] = useState('')
+  const [cantidad_invitados, setCantidad_invitados] = useState('')
+  const [especificaciones, setEspecificaciones] = useState('')
+  
+  const formData = new FormData();
+  formData.append('nombre', nombre);
+  formData.append('email', email);
+  formData.append('telefono', telefono);
+  formData.append('tipo_servicio', tipo_servicio);
+  formData.append('fecha', fecha);
+  formData.append('hora', hora);
+  formData.append('cantidad_invitados', cantidad_invitados);
+  formData.append('especificaciones', especificaciones);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    axios.post('/api/reservacion/crear', formData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        console.log(res);
+        window.location.reload()
+      }).catch(err => console.log(err));
+  }
+
+  const [item, setItem] = useState([])
+  useEffect(() => {
+    axios.get('/api/reservacion')
+      .then(res => setItem(res.data))
+      .catch(err => console.log(err));
+  }, [])
+
     return (
       <div className="font-marcellus">
         <div className="mt-16 mb-10">
@@ -27,6 +69,7 @@ export const Solicitudservicio = () => {
                             autoComplete="username"
                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                             placeholder="Nombre"
+                            onChange={e => setNombre(e.target.value)}
                           />
                         </div>
                     </TableCell>
@@ -36,6 +79,7 @@ export const Solicitudservicio = () => {
                         name="servicio"
                         autoComplete="service-name"
                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        onChange={e => setNombre(e.target.value)}
                       >
                         <option>Evento</option>
                         <option>Catering</option>
@@ -51,6 +95,7 @@ export const Solicitudservicio = () => {
                           autoComplete="username"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="Cantidad de invitados"
+                          onChange={e => setCantidad_invitados(e.target.value)}
                         />
                       </div>
                     </TableCell>
@@ -59,22 +104,25 @@ export const Solicitudservicio = () => {
                     <TableCell className="-mt-40">
                       <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
                         <input
-                          type="text"
+                          type="email"
                           name="username"        
                           autoComplete="username"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="Email"
+                          onChange={e => setEmail(e.target.value)}
+                          
                         />
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
                         <input
-                          type="text"
+                          type="date"
                           name="username"                    
                           autoComplete="username"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="Fecha"
+                          onChange={e => setFecha(e.target.value)}
                         />
                       </div>
                     </TableCell>
@@ -87,6 +135,7 @@ export const Solicitudservicio = () => {
                             className="-mb-12 block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                             placeholder="Especificaciones"
                             defaultValue={''}
+                            onChange={e => setEspecificaciones(e.target.value)}
                           />
                         </div>
                       </div>
@@ -102,17 +151,19 @@ export const Solicitudservicio = () => {
                           autoComplete="username"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="Teléfono"
+                          onChange={e => setTelefono(e.target.value)}
                         />
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
                         <input
-                          type="text"
+                          type="time"
                           name="username"                      
                           autoComplete="username"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="Hora"
+                          onChange={e => setHora(e.target.value)}
                         />
                       </div>
                     </TableCell>
@@ -121,7 +172,7 @@ export const Solicitudservicio = () => {
                   <TableRow key="4">
                     <TableCell></TableCell>
                     <TableCell>
-                      <button href="#" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500">Agendar</button>
+                      <button href="#" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500" onClick={handleSubmit}>Agendar</button>
                     </TableCell>
                     <TableCell></TableCell>
                   </TableRow>
