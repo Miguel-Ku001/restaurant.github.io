@@ -5,6 +5,7 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button,
        } from "@nextui-org/react";
 import { Navigate } from "react-router-dom";
 
+
 export default function Header() {
   const isLoggedIn = localStorage.getItem('auth') === 'yes';
   const idrol = localStorage.getItem('idrol');
@@ -29,7 +30,7 @@ export default function Header() {
   const isAdmin = idrol === '2';
 
   return (
-    <Navbar className="bg-[#2c3033] font-marcellus h-[6rem]" 
+    <Navbar className="bg-[#2c3033] font-marcellus h-[6rem] z-0" 
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
@@ -81,11 +82,11 @@ export default function Header() {
           </NavbarItem>
       )}
       {isLoggedIn && (
-        <NavbarItem>
+        <NavbarItem className="flex gap-2 items-center">
             <Button as={Link} onClick={logout} href="/" color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
               Cerrar Sesión
             </Button>
-          </NavbarItem>
+        </NavbarItem>
       )}    
       {isAdmin && isLoggedIn && (
         <NavbarItem>
@@ -143,5 +144,14 @@ export default function Header() {
       </NavbarMenu>
       
     </Navbar>
+
+
+
+
+
+
+
+    
+
   );
 }

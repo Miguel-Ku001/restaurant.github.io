@@ -22,6 +22,7 @@ import Inventario from './pages/inventario/Inventario'
 import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
 import ListadoOrdenAdmin from './pages/ordenes/ListadoOrdenAdmin'
 import ListadoOrdenCliente from './pages/ordenes/ListadoOrdenCliente'
+import OrdenCart from './pages/orden-cart/OrdenCart'
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
           <Route exact path='/sucursalesadmin' element={ <SucursalesAdmin /> } />
           <Route exact path='/proveedores' element={ <Proveedores /> } />
           <Route exact path='/inventario' element={ <Inventario /> } /> 
+          <Route exact path='/orden' element={ <OrdenCart /> } /> 
         </Routes>
       <ShowNavbar>
         <Footer />
