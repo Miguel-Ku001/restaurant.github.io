@@ -19,7 +19,6 @@ import Sucursales from './pages/sucursales/Sucursales'
 import Proveedores from './pages/proveedores/Proveedores'
 import Inventario from './pages/inventario/Inventario'
 import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
-import ShoppingCart from './pages/shopping-cart/ShoppingCart'
 
 function App() {
 
@@ -45,7 +44,6 @@ function App() {
           <Route exact path='/sucursales' element={ <Sucursales /> } />
           <Route exact path='/proveedores' element={ <Proveedores /> } />
           <Route exact path='/inventario' element={ <Inventario /> } /> 
-          <Route exact path='/carrito' element={ <ShoppingCart /> } /> 
         </Routes>
       <ShowNavbar>
         <Footer />

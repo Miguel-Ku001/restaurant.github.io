@@ -4,7 +4,6 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button,
         DropdownTrigger, DropdownSection, DropdownMenu, DropdownItem  
        } from "@nextui-org/react";
 import { Navigate } from "react-router-dom";
-import {AiOutlineShoppingCart} from "react-icons/ai";
 
 
 export default function Header() {
@@ -84,10 +83,6 @@ export default function Header() {
       )}
       {isLoggedIn && (
         <NavbarItem className="flex gap-2 items-center">
-          <Button as={Link} href="/carrito" isIconOnly color="warning" variant="flat" className="bg-[#092A3A] pr-0.5 pl-1">
-            <AiOutlineShoppingCart color="white" size="1.5em"/>
-            <span className="bg-red-500 rounded-xl w-1.5 h-1.5 -mt-5 overflow-hidden"></span>
-          </Button>
             <Button as={Link} onClick={logout} href="/" color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
               Cerrar Sesión
             </Button>
