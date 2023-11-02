@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody, Input, Textarea, Select, SelectItem, Button } from "@nextui-org/react";
 import axios from "axios";
 
 export const Solicitudservicio = () => {
-
-  const [nombre, setNombre] = useState('')
-  const [email, setEmail] = useState('')
-  const [telefono, setTelefono] = useState('')
-  const [tipo_servicio, setTipo_servicio] = useState('')
-  const [fecha, setFecha] = useState('')
-  const [hora, setHora] = useState('')
-  const [cantidad_invitados, setCantidad_invitados] = useState('')
-  const [especificaciones, setEspecificaciones] = useState('')
-  const [idusuario, setIdusuario] = useState('')
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [tipo_servicio, setTipo_servicio] = useState('');
+  const [fecha, setFecha] = useState('');
+  const [hora, setHora] = useState('');
+  const [cantidad_invitados, setCantidad_invitados] = useState('');
+  const [especificaciones, setEspecificaciones] = useState('');
 
   const formData = new FormData();
   formData.append('nombre', nombre);
@@ -37,165 +35,126 @@ export const Solicitudservicio = () => {
     })
       .then(res => {
         console.log(res);
-        window.location.reload()
-      }).catch(err => console.log(err));
-  }
-
-  const [item, setItem] = useState([])
-  useEffect(() => {
-    axios.get('/api/reservacion')
-      .then(res => setItem(res.data))
+        window.location.reload();
+      })
       .catch(err => console.log(err));
-  }, [])
+  }
 
   return (
     <div className="font-marcellus">
       <div className="mt-16 mb-10">
-        <h2 className="text-5xl text-center text-gray-800">RESERVACION</h2>
+        <h2 className="text-5xl text-center text-gray-800">RESERVACIÓN</h2>
       </div>
 
       <div className="flex justify-center mb-16">
         <Card className="w-3/5 h-auto py-2">
-          <CardBody className="w-100 bg-white rounded-xl flex justify-center p-10">
-            <p className="ml-7 text-lg font-medium">FORMULARIO DE CONTACTO</p>
-            <Table hideHeader className="items-center" aria-label="Example static collection table">
-              <TableHeader>
-                <TableColumn className="text-gray-800 bg-white">FORMULARIO DE CONTACTO</TableColumn>
-                <TableColumn className="bg-white"></TableColumn>
-                <TableColumn className="bg-white"></TableColumn>
-              </TableHeader>
-              <TableBody>
-                <TableRow key="1">
-                  <TableCell>
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
-                      <input
-                        type="text"
-                        name="username"
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="Nombre"
-                        onChange={e => setNombre(e.target.value)}
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
-                      <select
-                        name="servicio"
-                        autoComplete="service-name"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        onChange={e => setTipo_servicio(e.target.value)}
-                      >
-                        <option>Evento</option>
-                        <option>Catering</option>
-                        <option>Boda</option>
-                      </select>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
-                      <input
-                        type="text"
-                        name="username"
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="Cantidad de invitados"
-                        onChange={e => setCantidad_invitados(e.target.value)}
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-                <TableRow key="2">
-                  <TableCell className="-mt-40">
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
-                      <input
-                        type="email"
-                        name="username"
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="Email"
-                        onChange={e => setEmail(e.target.value)}
+          <CardBody className="w-100 bg-white rounded-xl justify-center p-10">
+            <p className="pb-4 text-lg text-2x1">FORMULARIO DE CONTACTO</p>
 
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
-                      <input
-                        type="date"
-                        name="username"
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="Fecha"
-                        onChange={e => setFecha(e.target.value)}
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="">
-                      <div className="">
-                        <textarea
-                          name="about"
-                          rows={3}
-                          className="-mb-12 block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                          placeholder="Especificaciones"
-                          defaultValue={''}
-                          onChange={e => setEspecificaciones(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                  </TableCell>
-                </TableRow>
+            <div className="grid grid-cols-3 gap-6">
+              <div>
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="Escribe tu nombre"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    className="pb-4"
+                    onChange={e => setNombre(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="Escribe tu correo"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    className="pb-4"
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="col-span-3">
+                  <Input
+                    type="text"
+                    placeholder="Escribe tu teléfono"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    onChange={e => setTelefono(e.target.value)}
+                  />
+                </div>
+              </div>
 
-                <TableRow key="3" >
-                  <TableCell>
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
-                      <input
-                        type="text"
-                        name="username"
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="Teléfono"
-                        onChange={e => setTelefono(e.target.value)}
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
-                      <input
-                        type="time"
-                        name="username"
-                        autoComplete="username"
-                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        placeholder="Hora"
-                        onChange={e => setHora(e.target.value)}
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-                <TableRow key="4">
-                  <TableCell></TableCell>
-                  <TableCell>
-                    <button href="#" className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500" onClick={handleSubmit}>Agendar</button>
-                  </TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+              <div>
+                <div>
+                  <Select
+                    aria-labelledby="tipo-servicio-label"
+                    placeholder="Elige el servicio"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    className="pb-4"
+                    onChange={e => setTipo_servicio(e.target.value)}
+                  >
+                    <SelectItem key="1">Evento</SelectItem>
+                    <SelectItem key="2">Catering</SelectItem>
+                    <SelectItem key="3">Boda</SelectItem>
+                  </Select>
+                </div>
+                <div>
+                  <Input
+                    type="date"
+                    placeholder="Escribe la fecha"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    className="pb-4"
+                    onChange={e => setFecha(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="time"
+                    placeholder="Escribe la hora"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    onChange={e => setHora(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <Input
+                    type="number"
+                    placeholder="Escribe la cantidad de invitados"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    className="pb-4"
+                    onChange={e => setCantidad_invitados(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Textarea
+                    maxRows={3}
+                    placeholder="Escribe las especificaciones para el servicio"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    className="-mt-2 py-1.5 pl-1"
+                    defaultValue=""
+                    onChange={e => setEspecificaciones(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* <div className="flex ">
+                <button className="w-full mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500" onClick={handleSubmit}>Agendar</button>
+              </div> */}
+            </div>
+            <div className="flex pt-8 justify-center w-full mb-4">
+              <Button className="w-1/4 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500" onClick={handleSubmit}>Agendar</Button>
+            </div>
           </CardBody>
         </Card>
       </div>
-
-
-
-
-
-
     </div>
+  );
+};
 
-
-
-  )
-}
-export default Solicitudservicio
+export default Solicitudservicio;

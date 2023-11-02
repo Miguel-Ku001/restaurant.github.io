@@ -59,3 +59,22 @@ export const Sucursales = () => {
 }
 
 export default Sucursales
+
+
+
+// function handleSubmit(event) {
+//   event.preventDefault();
+//   const idusuario = localStorage.getItem('idusuario');
+
+//   formData.append('idusuario', idusuario);
+
+//   axios.post('/api/reservacion/crear', formData, {
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//     .then(res => {
+//       console.log(res);
+//       window.location.reload()
+//     }).catch(err => console.log(err));
+// }

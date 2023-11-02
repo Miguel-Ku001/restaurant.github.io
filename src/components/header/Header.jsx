@@ -52,7 +52,7 @@ export default function Header() {
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" name="Menu" href="/menu" className="text-white hover:text-orange-300">
-            MENU
+            MENÚ
           </Link>
         </NavbarItem>
         <NavbarItem>

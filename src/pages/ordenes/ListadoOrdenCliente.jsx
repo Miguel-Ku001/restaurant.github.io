@@ -54,16 +54,16 @@ export const ListadoOrdenCliente = () => {
 
         <div className="py-16 px-24 font-marcellus">
             {
-                orden.map((data, i) => (
-                    <div key={i}>
+  orden.length > 0 && (
+                    <div>
                         <div className="mb-10">
-                            <h2 className="text-5xl text-center text-gray-800">Hola, {data.nombre_usuario} {data.apellidos_usuario}</h2>
+                            <h2 className="text-5xl text-center text-gray-800">Hola, {orden[0].nombre_usuario} {orden[0].apellidos_usuario}</h2>
                         </div>
                         <div className="mb-10">
                             <h3 className="text-2xl text-center text-gray-800">TUS ORDENES REALIZADAS</h3>
                         </div>
                     </div>
-                ))
+                )
             }
 
             <div>
