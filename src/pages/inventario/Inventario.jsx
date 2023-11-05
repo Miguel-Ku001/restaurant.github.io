@@ -1,6 +1,6 @@
 import {
-  Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody, Modal, 
-  ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select, 
+  Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody, Modal,
+  ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Select,
   SelectItem, Link
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
@@ -120,7 +120,7 @@ export const Inventario = () => {
   formData.append('proveedor', proveedor);
   formData.append('sucursal', sucursal);
 
-// Para calcular el total conforme a la contidad y el costo unitario
+  // Para calcular el total conforme a la contidad y el costo unitario
   const handleCantidadChange = (e) => {
     const newCantidad = parseFloat(e.target.value);
     if (!isNaN(newCantidad)) {
@@ -133,7 +133,7 @@ export const Inventario = () => {
       setTotal('');
     }
   };
-  
+
   const handleCostoUnitarioChange = (e) => {
     const newCostoUnitario = parseFloat(e.target.value);
     if (!isNaN(newCostoUnitario)) {
@@ -146,7 +146,7 @@ export const Inventario = () => {
       setTotal('');
     }
   };
-// Para calcular el total conforme a la contidad y el costo unitario
+  // Para calcular el total conforme a la contidad y el costo unitario
 
 
   function handleSubmit(event) {
@@ -201,33 +201,33 @@ export const Inventario = () => {
     openUpdateModal();
   };
 
-////cambiosssssssssssss
-const handleCantidadActu = (e) => {
-  const newCantidad = parseFloat(e.target.value);
-  if (!isNaN(newCantidad)) {
-    setCantidadActualizado(newCantidad);
-    // Calcula el nuevo costo total basado en la cantidad y el costo unitario
-    const newTotal = newCantidad * costoActualizado;
-    setTotalActualizado(newTotal);
-  } else {
-    setCantidadActualizado('');
-    setTotalActualizado('');
-  }
-};
+  ////cambiosssssssssssss
+  const handleCantidadActu = (e) => {
+    const newCantidad = parseFloat(e.target.value);
+    if (!isNaN(newCantidad)) {
+      setCantidadActualizado(newCantidad);
+      // Calcula el nuevo costo total basado en la cantidad y el costo unitario
+      const newTotal = newCantidad * costoActualizado;
+      setTotalActualizado(newTotal);
+    } else {
+      setCantidadActualizado('');
+      setTotalActualizado('');
+    }
+  };
 
-const handleCostoUnitarioActu = (e) => {
-  const newCostoUnitario = parseFloat(e.target.value);
-  if (!isNaN(newCostoUnitario)) {
-    setCostoActualizado(newCostoUnitario);
-    // Calcular el nuevo costo total basado en la cantidad y el costo unitario
-    const newTotal = cantidadActualizado * newCostoUnitario;
-    setTotalActualizado(newTotal);
-  } else {
-    setCostoActualizado('');
-    setTotalActualizado('');
-  }
-};
-/////////
+  const handleCostoUnitarioActu = (e) => {
+    const newCostoUnitario = parseFloat(e.target.value);
+    if (!isNaN(newCostoUnitario)) {
+      setCostoActualizado(newCostoUnitario);
+      // Calcular el nuevo costo total basado en la cantidad y el costo unitario
+      const newTotal = cantidadActualizado * newCostoUnitario;
+      setTotalActualizado(newTotal);
+    } else {
+      setCostoActualizado('');
+      setTotalActualizado('');
+    }
+  };
+  /////////
 
 
 
@@ -305,18 +305,25 @@ const handleCostoUnitarioActu = (e) => {
         <h2 className="text-5xl text-center text-gray-800">INVENTARIO</h2>
       </div>
 
-      <form className="columns-2 pb-2">
-        <div>
+      <form className="columns-2 pb-4">
+        <div className="">
+          <button className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500"
+            onClick={onOpen}>
+            Agregar producto
+          </button>
+        </div>
+        <div className="flex justify-end">
           <div className="w-3/4">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg className="w-4 h-4 text-white dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 text-gray-900 dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
               </div>
               <input
                 type="search"
-                className="block w-full p-4 pl-10 text-sm text-white font-medium border border-gray-300 rounded-lg bg-[#092A3A] focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-white"
+                variant="bordered"
+                className="block w-full p-4 pl-10 text-sm text-gray-900 font-medium border border-[#092A3A] border-2 rounded-lg focus:ring-blue-500 focus:border-blue-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-900"
                 placeholder="Buscar por proveedor, sucursal, código o nombre"
                 required
                 value={buscarTerm}
@@ -325,17 +332,20 @@ const handleCostoUnitarioActu = (e) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-end">
-          <button className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500"
-            onClick={onOpen}>
-            Agregar producto
-          </button>
-        </div>
+        
       </form>
 
       <div>
         <>
-          <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
+          <Modal
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            size="4xl"
+            backdrop="opaque"
+            classNames={{
+              backdrop: "bg-[#000000]/50 backdrop-opacity-40"
+            }}
+          >
             <ModalContent>
               {(onClose) => (
                 <>
@@ -382,7 +392,7 @@ const handleCostoUnitarioActu = (e) => {
                         variant="bordered"
                         min="1"
                         onChange={(e) => handleCantidadChange(e)}
-                        // onChange={e => setCantidad(e.target.value)}
+                      // onChange={e => setCantidad(e.target.value)}
                       />
                       <Input
                         type="number"
@@ -400,13 +410,14 @@ const handleCostoUnitarioActu = (e) => {
                         }
                       />
                     </div>
-                    <div className="w-1/4">
+                    <div className="grid grid-cols-2 gap-4">
                       <Input
-                      disabled
+                        disabled
                         label="Costo total"
                         placeholder="0.00"
                         labelPlacement="outside"
                         variant="bordered"
+                        className="w-1/2"
                         min="0"
                         value={isNaN(total) ? '' : total}
                         onChange={(e) => setTotal(parseFloat(e.target.value))}
@@ -452,7 +463,7 @@ const handleCostoUnitarioActu = (e) => {
                     <Button color="danger" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" variant="light" onPress={onClose}>
                       Cancelar
                     </Button>
-                    <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
+                    <Button color="primary" className="bg-[#092A3A] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
                       Agregar
                     </Button>
                   </ModalFooter>
@@ -505,7 +516,15 @@ const handleCostoUnitarioActu = (e) => {
                               <DeleteIcon />
                             </span>
                           </div>
-                          <Modal isOpen={isUpdateModalOpen} onOpenChange={closeUpdateModal} size="4xl">
+                          <Modal 
+                            isOpen={isUpdateModalOpen} 
+                            onOpenChange={closeUpdateModal} 
+                            size="4xl"
+                            backdrop="opaque"
+                            classNames={{
+                              backdrop: "bg-[#000000]/20 backdrop-opacity-40"
+                            }}
+                          >
                             <ModalContent>
                               {(onClose) => (
                                 <>
@@ -558,7 +577,7 @@ const handleCostoUnitarioActu = (e) => {
                                         variant="bordered"
                                         value={cantidadActualizado}
                                         onChange={(e) => handleCantidadActu(e)}
-                                        // onChange={e => setCantidadActualizado(e.target.value)}
+                                      // onChange={e => setCantidadActualizado(e.target.value)}
                                       />
                                       <Input
                                         type="number"
@@ -632,7 +651,7 @@ const handleCostoUnitarioActu = (e) => {
                                     <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
                                       Cancelar
                                     </Button>
-                                    <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
+                                    <Button color="primary" className="bg-[#092A3A] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
                                       Actualizar
                                     </Button>
                                   </ModalFooter>

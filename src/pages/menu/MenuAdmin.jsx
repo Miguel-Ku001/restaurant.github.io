@@ -200,7 +200,7 @@ export const MenuAdmin = () => {
     return (
         <div className="py-16 px-24 font-marcellus mb-40">
             <div className="mb-10">
-                <h2 className="text-5xl text-center text-gray-800 font-medium">EDICIÓN DEL MENÚ</h2>
+                <h2 className="text-5xl text-center text-gray-800 font-medium">MENÚ</h2>
             </div>
             <div>
                 <>
@@ -247,12 +247,14 @@ export const MenuAdmin = () => {
                                             />
                                             <div>
                                                 <p className="font-semibold text-sm">Imagen del producto</p>
-                                                <input type="file" name="img" className="mt-2 block w-full text-sm text-slate-500
-                                            file:mr-4 file:py-2 file:px-4
-                                            file:rounded-full file:border-0
-                                            file:text-sm file:font-semibold
-                                            file:bg-amber-500 file:text-white
-                                            hover:file:bg-amber-600"
+                                                <input type="file"
+                                                    name="img"
+                                                    className="mt-2 block w-full text-sm text-slate-500
+                                                        file:mr-4 file:py-2 file:px-4
+                                                        file:rounded-full file:border-0
+                                                        file:text-sm file:font-semibold
+                                                        file:bg-[#cd9b4a] file:text-white
+                                                        hover:file:bg-orange-200"
                                                     onChange={e => {
                                                         const file = e.target.files[0];
                                                         setImg(file);
@@ -280,7 +282,7 @@ export const MenuAdmin = () => {
                                         <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
                                             Cancelar
                                         </Button>
-                                        <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
+                                        <Button color="primary" className="bg-[#092A3A] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
                                             Agregar
                                         </Button>
                                     </ModalFooter>
@@ -320,7 +322,15 @@ export const MenuAdmin = () => {
                                                             <DeleteIcon />
                                                         </span>
                                                     </div>
-                                                    <Modal isOpen={isUpdateModalOpen} onOpenChange={closeUpdateModal} size="4xl">
+                                                    <Modal
+                                                        isOpen={isUpdateModalOpen}
+                                                        onOpenChange={closeUpdateModal}
+                                                        size="4xl"
+                                                        backdrop="opaque"
+                                                        classNames={{
+                                                            backdrop: "bg-[#000000]/5 backdrop-opacity-40"
+                                                        }}
+                                                    >
                                                         <ModalContent>
                                                             {(onClose) => (
                                                                 <>
@@ -363,12 +373,15 @@ export const MenuAdmin = () => {
                                                                             />
                                                                             <div>
                                                                                 <p className="font-semibold text-sm">Actualizar imagen del producto</p>
-                                                                                <input type="file" name="img" className="mt-2 block w-full text-sm text-slate-500
-                                                                    file:mr-4 file:py-2 file:px-4
-                                                                    file:rounded-full file:border-0
-                                                                    file:text-sm file:font-semibold
-                                                                    file:bg-amber-500 file:text-white
-                                                                    hover:file:bg-amber-600"
+                                                                                <input
+                                                                                    type="file"
+                                                                                    name="img"
+                                                                                    className="mt-2 block w-full text-sm text-slate-500
+                                                                                        file:mr-4 file:py-2 file:px-4
+                                                                                        file:rounded-full file:border-0
+                                                                                        file:text-sm file:font-semibold
+                                                                                        file:bg-[#cd9b4a] file:text-white
+                                                                                        hover:file:bg-orange-200"
                                                                                     onChange={e => {
                                                                                         const file = e.target.files[0];
                                                                                         setImgActualizado(file);
@@ -397,7 +410,7 @@ export const MenuAdmin = () => {
                                                                         <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
                                                                             Cancelar
                                                                         </Button>
-                                                                        <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
+                                                                        <Button color="primary" className="bg-[#092A3A] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
                                                                             Actualizar
                                                                         </Button>
                                                                     </ModalFooter>

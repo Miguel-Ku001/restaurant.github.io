@@ -1,8 +1,9 @@
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, 
-        NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem, Dropdown,
-        DropdownTrigger, DropdownSection, DropdownMenu, DropdownItem  
-       } from "@nextui-org/react";
+import {
+  Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button,
+  NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Dropdown,
+  DropdownTrigger, DropdownSection, DropdownMenu, DropdownItem
+} from "@nextui-org/react";
 import { Navigate } from "react-router-dom";
 
 
@@ -21,7 +22,7 @@ export default function Header() {
     "Log Out",
   ];
 
-  const logout = () =>{
+  const logout = () => {
     localStorage.clear();
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     Navigate('/')
@@ -31,7 +32,7 @@ export default function Header() {
   const isCliente = idrol === '1';
 
   return (
-    <Navbar className="bg-[#2c3033] font-marcellus h-[6rem] z-0" 
+    <Navbar className="bg-[#2c3033] font-marcellus h-[6rem] z-0"
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
@@ -66,35 +67,35 @@ export default function Header() {
           </Link>
         </NavbarItem>
       </NavbarContent>
-       
+
       <NavbarContent justify="end">
-      {!isLoggedIn && (
-        <NavbarItem>
+        {!isLoggedIn && (
+          <NavbarItem>
             <Button as={Link} color="primary" name="Registro" href="/registro" variant="flat" className="text-white bg-transparent hover:text-orange-300">
               Registrarse
             </Button>
           </NavbarItem>
-      )}
-      {!isLoggedIn && (
-        <NavbarItem className="hidden lg:flex">
-            <Button as={Link} color="primary"  href="/login" variant="flat" className="text-white bg-[#cd9b4a]">
+        )}
+        {!isLoggedIn && (
+          <NavbarItem className="hidden lg:flex">
+            <Button as={Link} color="primary" href="/login" variant="flat" className="text-white bg-[#cd9b4a]">
               <h3>Iniciar Sesión</h3>
             </Button>
           </NavbarItem>
-      )}
-      {isCliente && isLoggedIn && (
-        <NavbarItem>
+        )}
+        {isCliente && isLoggedIn && (
+          <NavbarItem>
             <Dropdown>
               <DropdownTrigger>
-                <Button 
-                  variant="bordered" className="text-white border-orange-300"  
+                <Button
+                  variant="bordered" className="text-white border-orange-300"
                 >
                   + Opciones
                 </Button>
               </DropdownTrigger>
-              
+
               <DropdownMenu aria-label="Static Actions">
-              <DropdownSection title="Servicios" showDivider>
+                <DropdownSection title="Servicios" showDivider>
                   <DropdownItem key="services" className="text-gray-900" as={Link} href="/servicios/solicitud-de-servicio">
                     Reservar servicio
                   </DropdownItem>
@@ -103,33 +104,33 @@ export default function Header() {
                   <DropdownItem key="order" className="text-gray-900" as={Link} href="/ordenes/cliente">
                     Mis ordenes
                   </DropdownItem>
-                </DropdownSection>   
+                </DropdownSection>
                 <DropdownSection>
-                  <DropdownItem key="logout" className="text-orange-300 hover:text-orange-500" as={Link} onClick={logout} href="/" variant="flat">
+                  <DropdownItem key="logout" className="text-orange-500 hover:text-orange-500" as={Link} onClick={logout} href="/" variant="flat">
                     {/* <Button    color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
                       Cerrar Sesión
                     </Button>   */}
                     Cerrar Sesión
-                  </DropdownItem>  
-                </DropdownSection>   
+                  </DropdownItem>
+                </DropdownSection>
               </DropdownMenu>
             </Dropdown>
           </NavbarItem>
-      )}
+        )}
 
-      {isAdmin && isLoggedIn && (
-        <NavbarItem>
+        {isAdmin && isLoggedIn && (
+          <NavbarItem>
             <Dropdown>
               <DropdownTrigger>
-                <Button 
-                  variant="bordered" className="text-white border-orange-300"  
+                <Button
+                  variant="bordered" className="text-white border-orange-300"
                 >
                   + Opciones
                 </Button>
               </DropdownTrigger>
-              
+
               <DropdownMenu aria-label="Static Actions">
-                <DropdownSection  title="Administración" showDivider>
+                <DropdownSection title="Administración" showDivider>
                   <DropdownItem key="users" className="text-gray-900" as={Link} href="#">
                     Usuarios
                   </DropdownItem>
@@ -147,7 +148,7 @@ export default function Header() {
                   <DropdownItem key="sucursaladmin" className="text-gray-900" as={Link} href="/sucursales/admin">
                     Sucursales
                   </DropdownItem>
-                </DropdownSection>  
+                </DropdownSection>
                 <DropdownSection title="Productos" showDivider>
                   <DropdownItem key="inv" className="text-gray-900" as={Link} href="/inventario">
                     Inventario
@@ -157,22 +158,22 @@ export default function Header() {
                   </DropdownItem>
                 </DropdownSection>
                 <DropdownSection>
-                  <DropdownItem key="logout" className="text-orange-300" as={Link} onClick={logout} href="/" variant="flat">
+                  <DropdownItem key="logout" className="text-orange-500" as={Link} onClick={logout} href="/" variant="flat">
                     {/* <Button    color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
                       Cerrar Sesión
                     </Button>   */}
                     Cerrar Sesión
-                  </DropdownItem>  
-                </DropdownSection>   
+                  </DropdownItem>
+                </DropdownSection>
               </DropdownMenu>
             </Dropdown>
           </NavbarItem>
-      )}
-        
+        )}
+
       </NavbarContent> {/*className="sm:hidden" */}
-        {/* <NavbarContent justify="start">  
+      {/* <NavbarContent justify="start">  
           <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-        </NavbarContent> */}      
+        </NavbarContent> */}
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
@@ -189,7 +190,7 @@ export default function Header() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
-      
+
     </Navbar>
 
 
@@ -198,7 +199,7 @@ export default function Header() {
 
 
 
-    
+
 
   );
 }

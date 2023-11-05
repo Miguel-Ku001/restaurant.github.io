@@ -139,7 +139,7 @@ export const Menu = () => {
         ))}
       </div>
 
-      <div className={`fixed z-1 top-10 right-4 p-2 bg-green-500 text-white rounded shadow-lg transform transition-opacity duration-300
+      <div className={`fixed z-1 top-10 right-4 p-2 bg-[#cd9b4a] text-white rounded shadow-lg transform transition-opacity duration-300
                        sm:top-16 sm:right-6 sm:p-3 sm:text-base ${isNotificationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         {notificationMessage}
       </div>

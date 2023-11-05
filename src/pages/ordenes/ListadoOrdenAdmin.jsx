@@ -67,68 +67,78 @@ export const ListadoOrdenAdmin = () => {
                             </TableHeader>
                             <TableBody>
                                 {
-                                    orden.map((data, i) => (
-                                        <TableRow key={i}>
-                                            <TableCell className="text-center"> {data.nombre} {data.apellidos} </TableCell>
-                                            <TableCell className="text-center"> {data.num_orden} </TableCell>
-                                            <TableCell className="text-center"> {formatFecha(data.fecha)} </TableCell>
-                                            <TableCell className="text-center"> ${data.costo_final} </TableCell>           
-                                            <TableCell>
-                                                <>
-                                                    <div className="text-center">
-                                                        <Button
-                                                            color="primary"
-                                                            className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500"
-                                                            onPress={() => {
-                                                                setSelectedOrdenDetalles(data.num_orden);
-                                                                onOpen();
+                                    orden
+                                        .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+                                        .map((data, i) => (
+                                            <TableRow key={i}>
+                                                <TableCell className="text-center"> {data.nombre} {data.apellidos} </TableCell>
+                                                <TableCell className="text-center"> {data.num_orden} </TableCell>
+                                                <TableCell className="text-center"> {formatFecha(data.fecha)} </TableCell>
+                                                <TableCell className="text-center"> ${data.costo_final} </TableCell>
+                                                <TableCell>
+                                                    <>
+                                                        <div className="text-center">
+                                                            <Button
+                                                                color="primary"
+                                                                className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500"
+                                                                onPress={() => {
+                                                                    setSelectedOrdenDetalles(data.num_orden);
+                                                                    onOpen();
+                                                                }}
+                                                            >
+                                                                Detalles
+                                                            </Button>
+                                                        </div>
+
+                                                        <Modal
+                                                            isOpen={isOpen}
+                                                            onOpenChange={onOpenChange}
+                                                            size="4xl"
+                                                            backdrop="opaque"
+                                                            classNames={{
+                                                                backdrop: "bg-[#000000]/10 backdrop-opacity-40"
                                                             }}
                                                         >
-                                                            Detalles
-                                                        </Button>
-                                                    </div>
-                                                    
-                                                    <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
-                                                        <ModalContent>
-                                                            {(onClose) => (
-                                                                <>
-                                                                    <ModalHeader className="flex flex-col gap-1 mt-5 mx-10">DETALLES DE ORDEN</ModalHeader>
+                                                            <ModalContent>
+                                                                {(onClose) => (
+                                                                    <>
+                                                                        <ModalHeader className="flex flex-col gap-1 mt-5 mx-10">DETALLES DE ORDEN</ModalHeader>
 
-                                                                    <ModalBody className="mx-10">
-                                                                        <div className="grid grid-cols-2 gap-4">
-                                                                            {ordenDetalles.map((detail, index) => (
-                                                                                <div key={index}>
-                                                                                    <div className="space-y-1">
-                                                                                        <h4 className="text-medium font-medium">{detail.nombre}</h4>
+                                                                        <ModalBody className="mx-20">
+                                                                            <div className="grid grid-cols-2 gap-4">
+                                                                                {ordenDetalles.map((detail, index) => (
+                                                                                    <div key={index}>
+                                                                                        <div className="space-y-1">
+                                                                                            <h4 className="text-medium font-medium">{detail.nombre}</h4>
+                                                                                        </div>
+                                                                                        <Divider className="my-2 w-3/4" />
+                                                                                        <div className="space-y-1">
+                                                                                            <p className="text-small text-default-900 ml-4">Precio: ${detail.precio}</p>
+                                                                                            <p className="text-small text-default-900 ml-4">Cantidad: {detail.cantidad}</p>
+                                                                                        </div>
+                                                                                        <Divider className="my-2 w-3/4" />
+                                                                                        <div className="space-y-1">
+                                                                                            <p className="text-small text-default-900 ml-4 pb-5">Costo total: ${detail.costo_total}</p>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <Divider className="my-2 w-1/2" />
-                                                                                    <div className="space-y-1">
-                                                                                        <p className="text-small text-default-400">Precio: ${detail.precio}</p>
-                                                                                        <p className="text-small text-default-400">Cantidad: {detail.cantidad}</p>
-                                                                                    </div>
-                                                                                    <Divider className="my-2 w-1/2" />
-                                                                                    <div className="space-y-1">
-                                                                                        <p className="text-small text-default-400">Costo total: ${detail.costo_total}</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                              
-                                                                            ))}
-                                                                        </div>
-                                                                    </ModalBody>
 
-                                                                    <ModalFooter className="mb-5 mx-10">
-                                                                        <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
-                                                                            Cerrar
-                                                                        </Button>
-                                                                    </ModalFooter>
-                                                                </>
-                                                            )}
-                                                        </ModalContent>
-                                                    </Modal>
-                                                </>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))
+                                                                                ))}
+                                                                            </div>
+                                                                        </ModalBody>
+
+                                                                        <ModalFooter className="mb-5 mx-10">
+                                                                            <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
+                                                                                Cerrar
+                                                                            </Button>
+                                                                        </ModalFooter>
+                                                                    </>
+                                                                )}
+                                                            </ModalContent>
+                                                        </Modal>
+                                                    </>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))
                                 }
                             </TableBody>
                         </Table>
