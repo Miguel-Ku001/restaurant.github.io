@@ -1,24 +1,24 @@
-import {Image, Input, Button, Card, CardBody, Tooltip, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Link} from "@nextui-org/react";
+import { Image, Input, Button, Card, CardBody, Tooltip, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Link } from "@nextui-org/react";
 import React, { useEffect, useState } from "react"
-import {MdDeleteOutline} from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
 import axios from "axios";
-import {AiOutlineShoppingCart} from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
-    //ESTE NO ES MENU ITEM ES CART ITEM
-    /*const [itemInCart, setItem] = useState([]); 
+export const CartItem = ({ items, onQuantityChange, onItemRemove }) => {
+  //ESTE NO ES MENU ITEM ES CART ITEM
+  /*const [itemInCart, setItem] = useState([]); 
 
-    const addItemToCart = (item, cantidad) => {
-      const newItem = {
-        ...item,
-        count: cantidad,
-      };
-      setItem([
-        ...itemInCart,
-        newItem,
-      ]);
-    };*/
+  const addItemToCart = (item, cantidad) => {
+    const newItem = {
+      ...item,
+      count: cantidad,
+    };
+    setItem([
+      ...itemInCart,
+      newItem,
+    ]);
+  };*/
   //console.log(items);
 
   const navigate = useNavigate();
@@ -26,15 +26,15 @@ export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
   function handleSubmit(event) {
     event.preventDefault();
     axios.post('/api/registrar-venta', items)
-    .then(res => {
+      .then(res => {
         console.log(res);
         localStorage.removeItem('shopping-cart');
         //window.location.reload()
         navigate("/orden");
-    }).catch(err => console.log(err));
+      }).catch(err => console.log(err));
   }
 
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalPlacement, setModalPlacement] = React.useState("auto");
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
@@ -67,20 +67,20 @@ export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
 
 
   return (
-    <div className="px-24 font-marcellus mx-60">
+    <div className="font-marcellus">
       <div className="flex flex-row-reverse justify-center">
-        <div className="w-1/5">
-          <Button color="primary"  onPress={onOpen} variant="flat" className="w-full active:scale-95 hover:scale-105 shadow-xl rounded-lg px-10 text-white transition duration-500 bg-[#092A3A]">
-            <AiOutlineShoppingCart color="white" size="1.5em"/> 
-            <h3>Ver carrito</h3>
+        <div className="">
+          <Button color="primary" onPress={onOpen} variant="bordered" className="border-orange-300 text-gray-900 w-full active:scale-95 hover:scale-105 shadow-xl rounded-lg transition duration-500">
+            <AiOutlineShoppingCart color="gray" size="1.5em" />
+            <h3>VER CARRITO</h3>
           </Button>
         </div>
       </div>
       <div className="mt-10">
-        <Modal 
-          isOpen={isOpen} 
+        <Modal
+          isOpen={isOpen}
           placement={modalPlacement}
-          onOpenChange={onOpenChange} 
+          onOpenChange={onOpenChange}
           scrollBehavior={scrollBehavior}
           size="2xl"
         >
@@ -111,27 +111,26 @@ export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
                             <div className="flex items-center">
                               <span className="mr-4">Cantidad:</span>
                               <Input
-                              placeholder="0"
-                              type="number"
-                              min="1" 
-                              max="1000"
-                              variant="bordered"
-                              className="w-20"
-                              value={item.count} onChange={(event) => {
-                                onQuantityChange(item.id_items, event.target.value)
-                              }}/>
+                                placeholder="0"
+                                type="number"
+                                min="1"
+                                max="1000"
+                                variant="bordered"
+                                className="w-20"
+                                value={item.count} onChange={(event) => {
+                                  onQuantityChange(item.id_items, event.target.value)
+                                }} />
                             </div>
                           </div>
                           <Tooltip content="Eliminar del carrito" color="danger">
-                            <Button onClick={() => onItemRemove(item)} isIconOnly variant="faded">
-                              <MdDeleteOutline color="red" size="1.5em"/>
+                            <Button className="bg-transparent" onClick={() => onItemRemove(item)} isIconOnly variant="faded">
+                              <MdDeleteOutline color="red" size="1.5em" />
                             </Button>
                           </Tooltip>
-
                         </div>
                       </CardBody>
                     </Card>
-                      
+
                   </div>
                 ))}
               </ModalBody>
@@ -139,11 +138,11 @@ export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
                 {items.length > 0 && (
                   <div>
                     <div className="h-10 mb-4 flex justify-end border-t-1 pt-1.5">
-                      <span>Total a pagar: ${total}</span>
+                      <span><b className="text-gray-500"> Total a pagar: ${total}</b></span>
                     </div>
                     <div className="space-x-4">
-                      <Button onPress={onClose} className="bg-[#28a332] text-white">Seguir comprando</Button>
-                      <Button onClick={handleSubmit} className="bg-[#092A3A] text-white">Realizar orden</Button>
+                      <Button onPress={onClose} className="bg-tranparent font-semibold text-red-400 active:scale-95 hover:scale-105 shadow-xl border transition duration-500">Seguir comprando</Button>
+                      <Button onClick={handleSubmit} className="bg-[#092A3A] text-white active:scale-95 hover:scale-105 shadow-xl border transition duration-500">Realizar orden</Button>
                     </div>
                   </div>
                 )}
@@ -152,7 +151,7 @@ export const CartItem = ({items, onQuantityChange, onItemRemove}) => {
           </ModalContent>
         </Modal>
       </div>
-  </div>
+    </div>
   )
 }
 export default CartItem

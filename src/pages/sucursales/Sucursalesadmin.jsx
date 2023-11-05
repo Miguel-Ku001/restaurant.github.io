@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input,
-  Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody, useDisclosure, Textarea } from "@nextui-org/react";
+import {
+  Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input,
+  Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Card, CardBody, useDisclosure, Textarea
+} from "@nextui-org/react";
 import axios from "axios";
 
 const EditIcon = (props) => (
@@ -99,7 +101,7 @@ export const Adminsucursal = () => {
   const [direccion, setDireccion] = useState('')
   const [horario, setHorario] = useState('')
   const [img, setImg] = useState('')
-  
+
   const formData = new FormData();
   formData.append('nombre', nombre);
   formData.append('direccion', direccion);
@@ -190,7 +192,15 @@ export const Adminsucursal = () => {
           <div className="mb-6">
             <button className="mw-1/4 mt-5 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-[#092A3A] text-white transition duration-500" onClick={onOpen}>Agregar sucursal</button>
           </div>
-          <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
+          <Modal
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            size="4xl"
+            backdrop="opaque"
+            classNames={{
+              backdrop: "bg-[#000000]/50 backdrop-opacity-40"
+            }}
+          >
             <ModalContent>
               {(onClose) => (
                 <>
@@ -214,21 +224,24 @@ export const Adminsucursal = () => {
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4 mt-2 mb-6">
-                          <Textarea
-                            label="Horario"
-                            placeholder="Escribe el horario"
-                            labelPlacement="outside"
-                            variant="bordered"
-                            onChange={e => setHorario(e.target.value)}
-                          />
+                      <Textarea
+                        label="Horario"
+                        placeholder="Escribe el horario"
+                        labelPlacement="outside"
+                        variant="bordered"
+                        onChange={e => setHorario(e.target.value)}
+                      />
                       <div>
                         <p className="font-semibold text-sm">Imagen de la sucursal</p>
-                        <input type="file" name="img" className="mt-2 block w-full text-sm text-slate-500
-                                            file:mr-4 file:py-2 file:px-4
-                                            file:rounded-full file:border-0
-                                            file:text-sm file:font-semibold
-                                            file:bg-amber-500 file:text-white
-                                            hover:file:bg-amber-600"
+                        <input
+                          type="file"
+                          name="img"
+                          className="mt-2 block w-full text-sm text-slate-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-full file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-[#cd9b4a] file:text-white
+                            hover:file:bg-orange-200"
                           onChange={e => {
                             const file = e.target.files[0];
                             setImg(file);
@@ -237,14 +250,14 @@ export const Adminsucursal = () => {
                       </div>
                     </div>
                   </ModalBody>
-                    <ModalFooter className="mb-5 mx-10">
-                      <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
-                        Cancelar
-                      </Button>
-                      <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
-                        Agregar
-                      </Button>
-                    </ModalFooter>
+                  <ModalFooter className="mb-5 mx-10">
+                    <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
+                      Cancelar
+                    </Button>
+                    <Button color="primary" className="bg-[#092A3A] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleSubmit} onPress={onClose}>
+                      Agregar
+                    </Button>
+                  </ModalFooter>
                 </>
               )}
             </ModalContent>
@@ -272,15 +285,23 @@ export const Adminsucursal = () => {
                       <TableCell className="whitespace-pre-wrap"> {data.horario} </TableCell>
                       <TableCell className="w-12">
                         <>
-                        <div className="relative flex">
-                          <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={() => handleActualizarClick(data)}>
-                            <EditIcon />
-                          </span>
-                          <span className="text-lg pl-2 text-danger cursor-pointer active:opacity-50" onClick={() => handleDelete(data.idsucursal)}>
-                            <DeleteIcon />
-                          </span>
-                        </div>                        
-                          <Modal isOpen={isUpdateModalOpen} onOpenChange={closeUpdateModal} size="4xl">
+                          <div className="relative flex">
+                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={() => handleActualizarClick(data)}>
+                              <EditIcon />
+                            </span>
+                            <span className="text-lg pl-2 text-danger cursor-pointer active:opacity-50" onClick={() => handleDelete(data.idsucursal)}>
+                              <DeleteIcon />
+                            </span>
+                          </div>
+                          <Modal
+                            isOpen={isUpdateModalOpen}
+                            onOpenChange={closeUpdateModal}
+                            size="4xl"
+                            backdrop="opaque"
+                            classNames={{
+                              backdrop: "bg-[#000000]/20 backdrop-opacity-40"
+                            }}
+                          >
                             <ModalContent>
                               {(onClose) => (
                                 <>
@@ -316,12 +337,15 @@ export const Adminsucursal = () => {
                                       />
                                       <div>
                                         <p className="font-semibold text-sm">Actualizar imagen de la sucursal</p>
-                                        <input type="file" name="img" className="mt-2 block w-full text-sm text-slate-500
-                                                                    file:mr-4 file:py-2 file:px-4
-                                                                    file:rounded-full file:border-0
-                                                                    file:text-sm file:font-semibold
-                                                                    file:bg-amber-500 file:text-white
-                                                                    hover:file:bg-amber-600"
+                                        <input
+                                          type="file"
+                                          name="img"
+                                          className="mt-2 block w-full text-sm text-slate-500
+                                            file:mr-4 file:py-2 file:px-4
+                                            file:rounded-full file:border-0
+                                            file:text-sm file:font-semibold
+                                            file:bg-[#cd9b4a] file:text-white
+                                            hover:file:bg-orange-200"
                                           onChange={e => {
                                             const file = e.target.files[0];
                                             setImgActualizado(file);
@@ -334,7 +358,7 @@ export const Adminsucursal = () => {
                                     <Button color="danger" variant="light" className="font-semibold text-red-400 w-1/5 active:scale-95 hover:scale-105 shadow-xl border transition duration-500" onPress={onClose}>
                                       Cancelar
                                     </Button>
-                                    <Button color="primary" className="bg-[#cd9b4a] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
+                                    <Button color="primary" className="bg-[#092A3A] w-1/5 active:scale-95 hover:scale-105 shadow-xl transition duration-500" onClick={handleUpdate} onPress={onClose}>
                                       Actualizar
                                     </Button>
                                   </ModalFooter>
