@@ -24,6 +24,7 @@ import ListadoOrdenAdmin from './pages/ordenes/ListadoOrdenAdmin'
 import ListadoOrdenCliente from './pages/ordenes/ListadoOrdenCliente'
 import OrdenCart from './pages/orden-cart/OrdenCart'
 import ListadoUsuarios from './pages/usuarios/UsuariosListado'
+import TableroReservacion from './pages/solicitud-servicio/TableroReservacion'
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
           <Route exact path='/servicios/catering' element={ <Catering /> } />
           <Route exact path='/servicios/bodas' element={ <Bodas /> } />
           <Route exact path='/servicios/solicitud-de-servicio' element={ <Solicitudservicio /> } />
+          <Route exact path='/servicios/reservaciones' element={ <TableroReservacion /> } />
           <Route exact path='/sucursales' element={ <Sucursales /> } />
           <Route exact path='/sucursales/admin' element={ <SucursalesAdmin /> } />
           <Route exact path='/proveedores' element={ <Proveedores /> } />

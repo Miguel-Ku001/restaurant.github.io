@@ -134,7 +134,7 @@ export default function Header() {
                   <DropdownItem key="users" className="text-gray-900" as={Link} href="/usuarios/admin">
                     Usuarios
                   </DropdownItem>
-                  <DropdownItem key="reservation" className="text-gray-900" as={Link} href="#">
+                  <DropdownItem key="reservation" className="text-gray-900" as={Link} href="/servicios/reservaciones">
                     Reservaciones
                   </DropdownItem>
                   <DropdownItem key="orderadmin" className="text-gray-900" as={Link} href="/ordenes/admin">
