@@ -107,6 +107,12 @@ export const UsuariosListado = () => {
             .catch(err => console.log(err));
     }, [])
 
+    const [buscarUser, setBuscarUser] = useState('');
+    const filteredUsers = usuarios.filter((product) => {
+        const buscarUsers = `${product.email}`.toLowerCase();
+        return buscarUsers.includes(buscarUser.toLowerCase());
+      });
+
     //RECUPERAR ROLES
     const [rol, setRol] = useState([])
     useEffect(() => {
@@ -158,9 +164,28 @@ export const UsuariosListado = () => {
     ////
 
     return (
-        <div className="py-16 px-24 font-marcellus mb-40">
+        <div className="py-16 px-24 font-marcellus mb-10 h-screen">
             <div className="mb-10">
                 <h2 className="text-5xl text-center text-gray-800 font-medium">USUARIOS</h2>
+            </div>
+            <div className="flex justify-end">
+                <div className="w-1/4">
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg className="w-4 h-4 text-gray-900 dark:text-gray-400" aria-hidden="true" xmlns="" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>
+                        </div>
+                        <input
+                            type="search"
+                            className="block w-full p-4 pl-10 text-sm text-gray-900 font-medium border border-[#092A3A] border-2 rounded-lg focus:ring-blue-500 focus:border-blue-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-900"
+                            placeholder="Buscar por email"
+                            required
+                            value={buscarUser}
+                            onChange={(e) => setBuscarUser(e.target.value)}
+                        />
+                    </div>
+                </div>
             </div>
             <Card className="h-auto shadow-none -mx-6">
                 <CardBody>
@@ -174,7 +199,7 @@ export const UsuariosListado = () => {
                         </TableHeader>
                         <TableBody emptyContent={"No rows to display."}>
                             {
-                                usuarios.map((data, i) => (
+                                filteredUsers.map((data, i) => (
                                     <TableRow key={i}>
                                         <TableCell>{data.usuario_nombre}</TableCell>
                                         <TableCell>{data.apellidos}</TableCell>
