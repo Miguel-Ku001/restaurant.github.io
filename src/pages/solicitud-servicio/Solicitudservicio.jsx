@@ -94,9 +94,9 @@ export const Solicitudservicio = () => {
                     className="pb-4"
                     onChange={e => setTipo_servicio(e.target.value)}
                   >
-                    <SelectItem key="1">Evento</SelectItem>
-                    <SelectItem key="2">Catering</SelectItem>
-                    <SelectItem key="3">Boda</SelectItem>
+                    <SelectItem key="Evento">Evento</SelectItem>
+                    <SelectItem key="Catering">Catering</SelectItem>
+                    <SelectItem key="Boda">Boda</SelectItem>
                   </Select>
                 </div>
                 <div>
