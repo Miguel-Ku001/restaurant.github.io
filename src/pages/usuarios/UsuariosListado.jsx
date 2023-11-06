@@ -124,12 +124,19 @@ export const UsuariosListado = () => {
 
     //ACTUALIZAR ROL
     const [registroActual, setRegistroActual] = useState(null);
+    const [nombreActual, setNombreActual] = useState('');
+    const [apellidoActual, setApellidoActual] = useState('');
+    const [emailActual, setEmailActual] = useState('');
     const [rolActualizado, setRolActualizado] = useState('');
 
 
     const handleActualizarClick = (registro) => {
         setRegistroActual(registro);
         setRolActualizado(registro.idrol);
+
+        setNombreActual(registro.usuario_nombre)
+        setApellidoActual(registro.apellidos)
+        setEmailActual(registro.email)
         onOpen();
     };
 
@@ -236,14 +243,14 @@ export const UsuariosListado = () => {
                                                                     isDisabled
                                                                     labelPlacement="outside"
                                                                     variant="bordered"
-                                                                    value={data.usuario_nombre}
+                                                                    value={nombreActual}
                                                                 />
                                                                 <Input
                                                                     label="Apellidos"
                                                                     isDisabled
                                                                     labelPlacement="outside"
                                                                     variant="bordered"
-                                                                    value={data.apellidos}
+                                                                    value={apellidoActual}
                                                                 />
                                                             </div>
                                                             <div className="grid grid-cols-2 gap-4 mt-10">
@@ -252,7 +259,7 @@ export const UsuariosListado = () => {
                                                                     isDisabled
                                                                     labelPlacement="outside"
                                                                     variant="bordered"
-                                                                    value={data.email}
+                                                                    value={emailActual}
                                                                 />
                                                                 <Select
                                                                     label="Actualizar rol"
