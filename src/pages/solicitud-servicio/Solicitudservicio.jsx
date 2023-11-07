@@ -148,7 +148,9 @@ export const Solicitudservicio = () => {
               </div> */}
             </div>
             <div className="flex pt-8 justify-center w-full mb-4">
-              <Button className="w-1/4 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500" onClick={handleSubmit}>Agendar</Button>
+              <Button className="w-1/4 active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-10 bg-sky-950 text-white transition duration-500" onClick={handleSubmit}>
+                Solicitar
+              </Button>
             </div>
           </CardBody>
         </Card>
