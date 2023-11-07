@@ -131,7 +131,7 @@ export default function Header() {
 
               <DropdownMenu aria-label="Static Actions">
                 <DropdownSection title="Administración" showDivider>
-                  <DropdownItem key="users" className="text-gray-900" as={Link} href="#">
+                  <DropdownItem key="users" className="text-gray-900" as={Link} href="/usuarios/admin">
                     Usuarios
                   </DropdownItem>
                   <DropdownItem key="reservation" className="text-gray-900" as={Link} href="#">
