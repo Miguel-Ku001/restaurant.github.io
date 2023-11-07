@@ -20,7 +20,8 @@ export const CartItem = ({ items, onQuantityChange, onItemRemove }) => {
     ]);
   };*/
   //console.log(items);
-
+  const isLoggedIn = localStorage.getItem('auth') === 'yes';
+  
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -68,14 +69,16 @@ export const CartItem = ({ items, onQuantityChange, onItemRemove }) => {
 
   return (
     <div className="font-marcellus">
-      <div className="flex flex-row-reverse justify-center">
-        <div className="">
-          <Button color="primary" onPress={onOpen} variant="bordered" className="border-orange-300 text-gray-900 w-full active:scale-95 hover:scale-105 shadow-xl rounded-lg transition duration-500">
-            <AiOutlineShoppingCart color="gray" size="1.5em" />
-            <h3>VER CARRITO</h3>
-          </Button>
+      {isLoggedIn && (
+        <div className="flex flex-row-reverse justify-center">
+          <div className="">
+            <Button color="primary" onPress={onOpen} variant="bordered" className="border-orange-300 text-gray-900 w-full active:scale-95 hover:scale-105 shadow-xl rounded-lg transition duration-500">
+              <AiOutlineShoppingCart color="gray" size="1.5em" />
+              <h3>VER CARRITO</h3>
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
       <div className="mt-10">
         <Modal
           isOpen={isOpen}
