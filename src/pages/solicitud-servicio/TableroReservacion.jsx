@@ -48,7 +48,7 @@ export const TableroReservacion = () => {
 
             <div className="w-full h-full gab-3 flex space-x-4 p-4">
                 <div className="flex w-1/3 items-start justify-start h-full">
-                    <div className="bg-orange-300 shadow-sm p-12 rounded min-h-225 shrink-0 w-full">
+                    <div className="bg-gray-100 shadow-sm p-12 rounded min-h-225 shrink-0 w-full">
                         <h3 className="text-3xl text-[#092A3A] text-center mb-2 pb-8">EN ESPERA</h3>
                         {board
                             .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
@@ -56,7 +56,7 @@ export const TableroReservacion = () => {
                                 if (data.observacion === 1) {
                                     return (
                                         <div key={i} className="pb-8">
-                                            <div>
+                                            <div className="bg-white shadow-xl">
                                                 <p className="bg-white text-[#092A3A] shadow-sm p-4 rounded text-small" draggable="true">
                                                     Solicitante: {data.nombre}
                                                     <br />
@@ -66,7 +66,7 @@ export const TableroReservacion = () => {
 
                                             <div className="flex items-center justify-between">
                                                 <div className="flex-shrink-0" >
-                                                    <MdKeyboardDoubleArrowRight color="#ffffff" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 3)} className="active:scale-95 hover:scale-105 transition duration-500 cursor-pointer " />
+                                                    <MdKeyboardDoubleArrowRight color="" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 3)} className="text-orange-300 active:scale-95 hover:scale-105 transition duration-500 cursor-pointer " />
                                                 </div>
                                                 <div className="flex-shrink-0">
                                                     <Popover placement="left-end" className="text-center">
@@ -79,7 +79,7 @@ export const TableroReservacion = () => {
                                                                     onOpen();
                                                                 }}
                                                             >
-                                                                <MdOutlineMoreHoriz color="#ffffff" size="1.8em" />
+                                                                <MdOutlineMoreHoriz color="" size="1.8em" className="text-orange-300" />
                                                             </Button>
                                                         </PopoverTrigger>
                                                         <PopoverContent className="w-96">
@@ -101,7 +101,7 @@ export const TableroReservacion = () => {
                                                     </Popover>
                                                 </div>
                                                 <div className="flex-shrink-0">
-                                                    <MdKeyboardArrowRight color="#ffffff" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 2)} className="active:scale-95 hover:scale-105 transition duration-500 cursor-pointer " />
+                                                    <MdKeyboardArrowRight color="" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 2)} className="text-orange-300 active:scale-95 hover:scale-105 transition duration-500 cursor-pointer " />
                                                 </div>
 
                                             </div>
@@ -120,7 +120,7 @@ export const TableroReservacion = () => {
                     </div>
                 </div>
                 <div className="flex w-1/3 justify-start h-full">
-                    <div className="bg-orange-300 shadow-sm p-12 rounded min-h-225 shrink-0 w-full">
+                    <div className="bg-gray-100 shadow-sm p-12 rounded min-h-225 shrink-0 w-full">
                         <h3 className="text-3xl text-[#092A3A] text-center mb-2 pb-8">EN SEGUIMIENTO</h3>
                         {board
                             .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
@@ -128,7 +128,7 @@ export const TableroReservacion = () => {
                                 if (data.observacion === 2) {
                                     return (
                                         <div key={i} className="pb-8">
-                                            <div>
+                                            <div className="bg-white shadow-xl">
                                                 <p className="bg-white text-[#092A3A] shadow-sm p-4 rounded text-small" draggable="true">
                                                     Solicitante: {data.nombre}
                                                     <br />
@@ -138,7 +138,7 @@ export const TableroReservacion = () => {
 
                                             <div className="flex items-center justify-between">
                                                 <div className="flex-shrink-0" >
-                                                    <MdKeyboardArrowLeft color="#ffffff" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 1)} className="active:scale-95 hover:scale-105 transition duration-500 cursor-pointer" />
+                                                    <MdKeyboardArrowLeft color="" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 1)} className="text-orange-300 active:scale-95 hover:scale-105 transition duration-500 cursor-pointer" />
                                                 </div>
                                                 <div className="flex-shrink-0">
                                                     <Popover placement="bottom" className="text-center">
@@ -151,7 +151,7 @@ export const TableroReservacion = () => {
                                                                     onOpen();
                                                                 }}
                                                             >
-                                                                <MdOutlineMoreHoriz color="#ffffff" size="1.8em" />
+                                                                <MdOutlineMoreHoriz color="" size="1.8em" className="text-orange-300" />
                                                             </Button>
                                                         </PopoverTrigger>
                                                         <PopoverContent className="w-96">
@@ -173,7 +173,7 @@ export const TableroReservacion = () => {
                                                     </Popover>
                                                 </div>
                                                 <div className="flex-shrink-0">
-                                                    <MdKeyboardArrowRight color="#ffffff" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 3)} className="active:scale-95 hover:scale-105 transition duration-500 cursor-pointer " />
+                                                    <MdKeyboardArrowRight color="" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 3)} className="text-orange-300 active:scale-95 hover:scale-105 transition duration-500 cursor-pointer " />
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@ export const TableroReservacion = () => {
                     </div>
                 </div>
                 <div className="flex w-1/3 justify-start h-full">
-                    <div className="bg-orange-300 shadow-sm p-12 rounded min-h-225 shrink-0 w-full">
+                    <div className="bg-gray-100 shadow-sm p-12 rounded min-h-225 shrink-0 w-full">
                         <h3 className="text-3xl text-[#092A3A] text-center mb-2 pb-8">FINALIZADO</h3>
                         {board
                             .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
@@ -197,8 +197,8 @@ export const TableroReservacion = () => {
                                     return (
                                         <div key={i}>
                                             <div key={i} className="pb-8">
-                                                <div>
-                                                    <p className="bg-white text-[#092A3A] shadow-sm p-4 rounded text-small" draggable="true">
+                                                <div className="bg-white shadow-xl">
+                                                    <p className="text-[#092A3A] shadow-sm p-4 rounded text-small" draggable="true">
                                                         Solicitante: {data.nombre}
                                                         <br />
                                                         Tipo de servicio: {data.tipo_servicio}
@@ -207,7 +207,7 @@ export const TableroReservacion = () => {
 
                                                 <div className="flex items-center justify-between">
                                                     <div className="flex-shrink-0" >
-                                                        <MdKeyboardArrowLeft color="#ffffff" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 2)} className="active:scale-95 hover:scale-105 transition duration-500 cursor-pointer" />
+                                                        <MdKeyboardArrowLeft color="" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 2)} className="text-orange-300 active:scale-95 hover:scale-105 transition duration-500 cursor-pointer" />
                                                     </div>
                                                     <div className="flex-shrink-0">
                                                         <Popover placement="right-end" className="text-center">
@@ -220,7 +220,7 @@ export const TableroReservacion = () => {
                                                                         onOpen();
                                                                     }}
                                                                 >
-                                                                    <MdOutlineMoreHoriz color="#ffffff" size="1.8em" />
+                                                                    <MdOutlineMoreHoriz color="" size="1.8em" className="text-orange-300" />
                                                                 </Button>
                                                             </PopoverTrigger>
                                                             <PopoverContent className="w-96">
@@ -242,7 +242,7 @@ export const TableroReservacion = () => {
                                                         </Popover>
                                                     </div>
                                                     <div className="flex-shrink-0">
-                                                        <MdKeyboardDoubleArrowLeft color="#ffffff" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 1)} className="active:scale-95 hover:scale-105 transition duration-500 cursor-pointer" />
+                                                        <MdKeyboardDoubleArrowLeft color="" size="1.8em" onClick={() => handleStateChange(data.idreservacion, 1)} className="text-orange-300 active:scale-95 hover:scale-105 transition duration-500 cursor-pointer" />
                                                     </div>
                                                 </div>
                                             </div>

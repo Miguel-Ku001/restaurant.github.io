@@ -11,20 +11,22 @@ export const Solicitudservicio = () => {
   const [hora, setHora] = useState('');
   const [cantidad_invitados, setCantidad_invitados] = useState('');
   const [especificaciones, setEspecificaciones] = useState('');
+  const [solicitudEnviada, setSolicitudEnviada] = useState(false);
 
   const formData = new FormData();
-  formData.append('nombre', nombre);
-  formData.append('email', email);
-  formData.append('telefono', telefono);
-  formData.append('tipo_servicio', tipo_servicio);
-  formData.append('fecha', fecha);
-  formData.append('hora', hora);
-  formData.append('cantidad_invitados', cantidad_invitados);
-  formData.append('especificaciones', especificaciones);
 
   function handleSubmit(event) {
     event.preventDefault();
     const idusuario = localStorage.getItem('idusuario');
+
+    formData.append('nombre', nombre);
+    formData.append('email', email);
+    formData.append('telefono', telefono);
+    formData.append('tipo_servicio', tipo_servicio);
+    formData.append('fecha', fecha);
+    formData.append('hora', hora);
+    formData.append('cantidad_invitados', cantidad_invitados);
+    formData.append('especificaciones', especificaciones);
 
     formData.append('idusuario', idusuario);
 
@@ -35,9 +37,25 @@ export const Solicitudservicio = () => {
     })
       .then(res => {
         console.log(res);
-        window.location.reload();
+        // window.location.reload();
+        setSolicitudEnviada(true);
+        limpiarCampos();
+        setTimeout(() => {
+          setSolicitudEnviada(false);
+        }, 4000);
       })
       .catch(err => console.log(err));
+  }
+
+  function limpiarCampos() {
+    setNombre('');
+    setEmail('');
+    setTelefono('');
+    setTipo_servicio('');
+    setFecha('');
+    setHora('');
+    setCantidad_invitados('');
+    setEspecificaciones('');
   }
 
   return (
@@ -49,6 +67,11 @@ export const Solicitudservicio = () => {
       <div className="flex justify-center mb-16">
         <Card className="w-3/5 h-auto py-2">
           <CardBody className="w-100 bg-white rounded-xl justify-center p-10">
+            {solicitudEnviada && (
+              <p className="text-center text-[#cd9b4a] text-xl">
+                ¡Tu solicitud ha sido enviada!
+              </p>
+            )}
             <p className="pb-4 text-lg text-2x1">FORMULARIO DE CONTACTO</p>
 
             <div className="grid grid-cols-3 gap-6">
@@ -61,6 +84,7 @@ export const Solicitudservicio = () => {
                     variant="bordered"
                     className="pb-4"
                     onChange={e => setNombre(e.target.value)}
+                    value={nombre}
                   />
                 </div>
                 <div>
@@ -71,6 +95,7 @@ export const Solicitudservicio = () => {
                     variant="bordered"
                     className="pb-4"
                     onChange={e => setEmail(e.target.value)}
+                    value={email}
                   />
                 </div>
                 <div className="col-span-3">
@@ -80,6 +105,7 @@ export const Solicitudservicio = () => {
                     labelPlacement="outside"
                     variant="bordered"
                     onChange={e => setTelefono(e.target.value)}
+                    value={telefono}
                   />
                 </div>
               </div>
@@ -93,6 +119,7 @@ export const Solicitudservicio = () => {
                     variant="bordered"
                     className="pb-4"
                     onChange={e => setTipo_servicio(e.target.value)}
+                    value={tipo_servicio}
                   >
                     <SelectItem key="Evento">Evento</SelectItem>
                     <SelectItem key="Catering">Catering</SelectItem>
@@ -107,6 +134,7 @@ export const Solicitudservicio = () => {
                     variant="bordered"
                     className="pb-4"
                     onChange={e => setFecha(e.target.value)}
+                    value={fecha}
                   />
                 </div>
                 <div>
@@ -116,6 +144,7 @@ export const Solicitudservicio = () => {
                     labelPlacement="outside"
                     variant="bordered"
                     onChange={e => setHora(e.target.value)}
+                    value={hora}
                   />
                 </div>
               </div>
@@ -128,6 +157,7 @@ export const Solicitudservicio = () => {
                     variant="bordered"
                     className="pb-4"
                     onChange={e => setCantidad_invitados(e.target.value)}
+                    value={cantidad_invitados}
                   />
                 </div>
                 <div>
@@ -137,8 +167,8 @@ export const Solicitudservicio = () => {
                     labelPlacement="outside"
                     variant="bordered"
                     className="-mt-2 py-1.5 pl-1"
-                    defaultValue=""
                     onChange={e => setEspecificaciones(e.target.value)}
+                    value={especificaciones}
                   />
                 </div>
               </div>
