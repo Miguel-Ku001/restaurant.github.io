@@ -23,11 +23,8 @@ import Solicitudservicio from './pages/solicitud-servicio/Solicitudservicio'
 import ListadoOrdenAdmin from './pages/ordenes/ListadoOrdenAdmin'
 import ListadoOrdenCliente from './pages/ordenes/ListadoOrdenCliente'
 import OrdenCart from './pages/orden-cart/OrdenCart'
-<<<<<<< HEAD
 import ListadoUsuarios from './pages/usuarios/UsuariosListado'
 import TableroReservacion from './pages/solicitud-servicio/TableroReservacion'
-=======
->>>>>>> 921c359 (appjsx cambiado)
 
 function App() {
 
