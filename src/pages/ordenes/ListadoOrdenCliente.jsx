@@ -106,7 +106,7 @@ export const ListadoOrdenCliente = () => {
                                                             size="4xl"
                                                             backdrop="opaque"
                                                             classNames={{
-                                                                backdrop: "bg-[#000000]/20 backdrop-opacity-40"
+                                                                backdrop: "bg-[#000000]/50 backdrop-opacity-40"
                                                             }}
                                                         >
                                                             <ModalContent>

@@ -95,16 +95,16 @@ export default function Header() {
               </DropdownTrigger>
 
               <DropdownMenu aria-label="Static Actions">
-                <DropdownSection title="Servicios" showDivider>
-                  <DropdownItem key="services" className="text-gray-900" as={Link} href="/servicios/solicitud-de-servicio">
-                    Reservar servicio
-                  </DropdownItem>
-                </DropdownSection>
                 <DropdownSection title="Ordenes realizadas" showDivider>
                   <DropdownItem key="order" className="text-gray-900" as={Link} href="/ordenes/cliente">
                     Mis ordenes
                   </DropdownItem>
                 </DropdownSection>
+                <DropdownSection title="Servicios" showDivider>
+                  <DropdownItem key="services" className="text-gray-900" as={Link} href="/servicios/solicitud-de-servicio">
+                    Reservar servicio
+                  </DropdownItem>
+                </DropdownSection>                
                 <DropdownSection>
                   <DropdownItem key="logout" className="text-orange-500 hover:text-orange-500" as={Link} onClick={logout} href="/" variant="flat">
                     {/* <Button    color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
@@ -134,7 +134,7 @@ export default function Header() {
                   <DropdownItem key="users" className="text-gray-900" as={Link} href="/usuarios/admin">
                     Usuarios
                   </DropdownItem>
-                  <DropdownItem key="reservation" className="text-gray-900" as={Link} href="#">
+                  <DropdownItem key="reservation" className="text-gray-900" as={Link} href="/servicios/reservaciones">
                     Reservaciones
                   </DropdownItem>
                   <DropdownItem key="orderadmin" className="text-gray-900" as={Link} href="/ordenes/admin">

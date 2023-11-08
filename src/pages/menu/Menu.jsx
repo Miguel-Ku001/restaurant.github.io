@@ -5,9 +5,12 @@ import axios, { all } from "axios";
 
 export const Menu = () => {
 
+  const isLoggedIn = localStorage.getItem('auth') === 'yes';
+
   const [item, setItem] = useState([])
   const [filteredItems, setFilteredItems] = useState([]);
   const [filterActive, setFilterActive] = useState(false);
+  const [showRegistrationMessage, setShowRegistrationMessage] = useState(true);
   useEffect(() => {
     axios.get('/api/items')
       .then(res => {
@@ -29,16 +32,14 @@ export const Menu = () => {
 
   }
 
-
-
-
-
   const [itemsInCart, setItemsInCart] = useState(JSON.parse(localStorage.getItem('shopping-cart')) || []);
   useEffect(() => {
     localStorage.setItem('shopping-cart', JSON.stringify(itemsInCart))
   }, [itemsInCart]);
+
   const [isNotificationVisible, setNotificationVisible] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
+
   const addItemToCart = (item) => {
     const newItem = {
       ...item,
@@ -49,8 +50,6 @@ export const Menu = () => {
       newItem,
     ]);
 
-
-
     setNotificationMessage('¡Agregado al carrito!');
     setNotificationVisible(true);
     // Ocultar la notificación después de un tiempo (ejemplo: 2 segundos)
@@ -58,6 +57,20 @@ export const Menu = () => {
       setNotificationVisible(false);
     }, 2000);
   };
+
+  useEffect(() => {
+    if (showRegistrationMessage && !isLoggedIn) {
+      // Muestra el mensaje de registro la primera vez que el usuario entra a la página.
+      // setNotificationMessage('Regístrate para poder ordenar');
+      // setNotificationVisible(true);
+
+      // Oculta el mensaje después de 5 segundos.
+      setTimeout(() => {
+        setNotificationVisible(false);
+        setShowRegistrationMessage(false);
+      }, 5000);
+    }
+  }, [showRegistrationMessage, isLoggedIn]);
 
   const onQuantityChange = (itemId, count) => {
     setItemsInCart((oldState) => {
@@ -90,6 +103,11 @@ export const Menu = () => {
 
   return (
     <div className="py-16 px-24 font-marcellus">
+      {showRegistrationMessage && !isLoggedIn && (
+        <div className="fixed top-0 left-0 w-full flex justify-center p-1 bg-[#cd9b4a] text-white rounded shadow-lg">
+          <p>REGÍSTRATE PARA PODER ORDENAR</p>
+        </div>
+      )}
       <div className="mb-10">
         <h2 className="text-5xl text-center text-gray-800 font-medium">MENÚ</h2>
       </div>
@@ -127,12 +145,14 @@ export const Menu = () => {
                   Precio: ${data.precio}
                 </p>
               </div>
-              <div className="h-2/6 flex justify-end">
-                <Button variant="flat" className=" active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-6 text-white transition duration-500 bg-[#092A3A]"
-                  onClick={() => addItemToCart(data)}>
-                  <h3>Agregar al carrito</h3>
-                </Button>
-              </div>
+              {isLoggedIn && (
+                <div className="h-2/6 flex justify-end">
+                  <Button variant="flat" className=" active:scale-95 hover:scale-105 shadow-xl rounded-lg py-2 px-6 text-white transition duration-500 bg-[#092A3A]"
+                    onClick={() => addItemToCart(data)}>
+                    <h3>Agregar al carrito</h3>
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
 
