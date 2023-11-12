@@ -25,6 +25,7 @@ import ListadoOrdenCliente from './pages/ordenes/ListadoOrdenCliente'
 import OrdenCart from './pages/orden-cart/OrdenCart'
 import ListadoUsuarios from './pages/usuarios/UsuariosListado'
 import TableroReservacion from './pages/solicitud-servicio/TableroReservacion'
+import Dashboard from './pages/dashboard/Dashboard'
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route exact path='/inventario' element={ <Inventario /> } /> 
           <Route exact path='/orden' element={ <OrdenCart /> } /> 
           <Route exact path='/usuarios/admin' element={ <ListadoUsuarios /> } /> 
+          <Route exact path='/dashboard' element={ <Dashboard /> } /> 
         </Routes>
       <ShowNavbar>
         <Footer />
