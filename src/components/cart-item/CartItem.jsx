@@ -29,9 +29,12 @@ export const CartItem = ({ items, onQuantityChange, onItemRemove }) => {
     axios.post('/api/registrar-venta', items)
       .then(res => {
         console.log(res);
-        localStorage.removeItem('shopping-cart');
+        //localStorage.removeItem('shopping-cart');
         //window.location.reload()
-        navigate("/orden");
+        //navigate("/orden");
+        if(res.data.url) {
+          window.location.href = res.data.url;
+        }
       }).catch(err => console.log(err));
   }
 
