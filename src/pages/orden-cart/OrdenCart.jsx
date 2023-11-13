@@ -2,6 +2,18 @@ import {Link, Button} from "@nextui-org/react";
 import {HiCheckCircle} from "react-icons/hi";
 
 export const ShoppingCart = () => {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = urlParams.get('session_id');
+
+  fetch('/api/orden', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ sessionId }),
+  });
+
   return (
     <div className="h-[45rem]">
       <div className="py-5 w-1/2 px-1 font-marcellus my-20 mx-auto text-center bg-[#092A3A] rounded-full text-white flex justify-center">

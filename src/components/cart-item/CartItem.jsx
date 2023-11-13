@@ -23,10 +23,11 @@ export const CartItem = ({ items, onQuantityChange, onItemRemove }) => {
   const isLoggedIn = localStorage.getItem('auth') === 'yes';
   
   const navigate = useNavigate();
+  const idusuario = localStorage.getItem('idusuario');
 
   function handleSubmit(event) {
     event.preventDefault();
-    axios.post('/api/registrar-venta', items)
+    axios.post('/api/payment-checkout', items, idusuario)
       .then(res => {
         console.log(res);
         //localStorage.removeItem('shopping-cart');
@@ -37,6 +38,8 @@ export const CartItem = ({ items, onQuantityChange, onItemRemove }) => {
         }
       }).catch(err => console.log(err));
   }
+
+  
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalPlacement, setModalPlacement] = React.useState("auto");
