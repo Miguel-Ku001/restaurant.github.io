@@ -1,6 +1,7 @@
 import React, { PureComponent, useEffect, useState } from "react";
 import { Card, CardBody } from "@nextui-org/react";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+import {
+    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
     PieChart, Pie, Sector
 } from 'recharts';
 import axios from "axios";
@@ -24,7 +25,7 @@ export const Dashboard = () => {
             .catch(err => console.log(err));
     }, [])
 
-// Graficas de productos más y menos vendidos
+    // Graficas de productos más y menos vendidos
     const agregadosData = venta.reduce((result, item) => {
         const existenteItem = result.find(entry => entry.id_items === item.id_items);
 
@@ -56,22 +57,23 @@ export const Dashboard = () => {
         cantidad: item.cantidad,
     }));
 
-// Fin de graficas de productos más y menos vendidos
+    // Fin de graficas de productos más y menos vendidos
 
-
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     const [categorias, setCategorias] = useState([]);
     useEffect(() => {
         axios.get('/api/dashboard/categorias')
             .then(res => {
+                // console.log(res.data);
                 setCategorias(res.data);
             })
             .catch(err => console.log(err));
     }, []);
 
 
-// Categorías más vendidas
+    // Categorías más vendidas
 
-// Fin de categorías más vendidas
+    // Fin de categorías más vendidas
 
     const [items, setItems] = useState([])
     useEffect(() => {
@@ -102,25 +104,25 @@ export const Dashboard = () => {
                 <Card
                     isBlurred
                     className="border-none bg-background/60 dark:bg-default-100/50 w-1/2"
-                    // shadow="sm"
+                // shadow="sm"
                 >
                     <CardBody>
                         <div className="text-center text-xl">Productos más vendidos</div>
                         <ResponsiveContainer width="90%" height="90%">
-                            <BarChart 
-                                width={500} 
-                                height={300} 
+                            <BarChart
+                                width={500}
+                                height={300}
                                 data={data}
                                 margin={{
                                     top: 10,
                                     right: 10,
                                     left: 10,
                                     bottom: 5,
-                                  }}
-                                // margin={{ top: 5, bottom: 5 }}
+                                }}
+                            // margin={{ top: 5, bottom: 5 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="nombre" className="text-xs"/>
+                                <XAxis dataKey="nombre" className="text-xs" />
                                 <YAxis />
                                 <Tooltip />
                                 {/* <Legend /> */}
@@ -132,21 +134,21 @@ export const Dashboard = () => {
                 <Card
                     isBlurred
                     className="border-none bg-background/60 dark:bg-default-100/50 w-1/2"
-                    // shadow="sm"
+                // shadow="sm"
                 >
                     <CardBody>
                         <div className="text-center text-xl">Productos menos vendidos</div>
                         <ResponsiveContainer width="90%" height="90%">
-                            <BarChart 
-                                width={500} 
-                                height={300} 
+                            <BarChart
+                                width={500}
+                                height={300}
                                 data={data2}
                                 margin={{
                                     top: 10,
                                     right: 10,
                                     left: 10,
                                     bottom: 5,
-                                  }}
+                                }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="nombre" className="text-xs" />
@@ -163,13 +165,13 @@ export const Dashboard = () => {
                 <Card
                     isBlurred
                     className="border-none bg-background/60 dark:bg-default-100/50 w-1/2 h-96"
-                    // shadow="sm"
+                // shadow="sm"
                 >
                     <CardBody>
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart width={400} height={400}>
                                 <Pie
-                                    dataKey="nombre_categoria"
+                                    dataKey="total_cantidad"
                                     isAnimationActive={false}
                                     data={categorias}
                                     cx="50%"
@@ -177,8 +179,14 @@ export const Dashboard = () => {
                                     outerRadius={120}
                                     fill="#8884d8"
                                     label
-                                />
-                                {/* <Pie dataKey="value" data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" /> */}
+                                    nameKey="nombre_categoria"
+                                >
+                                    {
+                                        categorias.map((categoria, index) => (
+                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        ))
+                                    }
+                                </Pie>
                                 <Tooltip />
                             </PieChart>
                         </ResponsiveContainer>
@@ -187,10 +195,10 @@ export const Dashboard = () => {
                 <Card
                     isBlurred
                     className="border-none bg-background/60 dark:bg-default-100/50 w-1/2 h-96"
-                    // shadow="sm"
+                // shadow="sm"
                 >
                     <CardBody>
-                        
+
                     </CardBody>
                 </Card>
             </div>
