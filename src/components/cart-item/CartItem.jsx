@@ -27,7 +27,13 @@ export const CartItem = ({ items, onQuantityChange, onItemRemove }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    axios.post('/api/payment-checkout', items, idusuario)
+
+    const infoEnviar = {
+      idusuario: idusuario,
+      items: items
+    }
+
+    axios.post('/api/payment-checkout', infoEnviar)
       .then(res => {
         console.log(res);
         //localStorage.removeItem('shopping-cart');
