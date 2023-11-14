@@ -4,14 +4,14 @@ import {HiCheckCircle} from "react-icons/hi";
 export const ShoppingCart = () => {
 
   const urlParams = new URLSearchParams(window.location.search);
-  const sessionId = urlParams.get('session_id');
+  const session_id = urlParams.get('session_id');
 
   fetch('/api/orden', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ sessionId }),
+    body: JSON.stringify({ session_id }),
   });
 
   return (
