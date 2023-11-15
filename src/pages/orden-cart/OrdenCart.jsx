@@ -16,6 +16,14 @@ export const ShoppingCart = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ session_id }),
+      }).then(response => {
+        response.blob().then(blob => {
+          let url = window.URL.createObjectURL(blob);
+          let a = document.createElement('a');
+          a.href = url;
+          a.download = 'orden.pdf';
+          a.click();
+        })
       });
 
       // Actualizar el indicador en localStorage para evitar futuros envíos
