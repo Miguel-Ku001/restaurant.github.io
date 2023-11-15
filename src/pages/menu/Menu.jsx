@@ -100,6 +100,9 @@ export const Menu = () => {
     });
   };
 
+  //NO BORRAR
+  localStorage.removeItem('sessionSent');
+
 
   return (
     <div className="py-16 px-24 font-marcellus">

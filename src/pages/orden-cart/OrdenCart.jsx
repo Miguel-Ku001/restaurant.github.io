@@ -1,18 +1,29 @@
 import {Link, Button} from "@nextui-org/react";
 import {HiCheckCircle} from "react-icons/hi";
-
+import { useEffect } from 'react';
 export const ShoppingCart = () => {
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const session_id = urlParams.get('session_id');
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const session_id = urlParams.get('session_id');
 
-  fetch('/api/orden', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ session_id }),
-  });
+    // Verificar si el session_id está presente y si aún no se ha enviado la solicitud
+    if (session_id && !localStorage.getItem('sessionSent')) {
+      // Enviar la solicitud a /api/orden
+      fetch('/api/orden', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ session_id }),
+      });
+
+      // Actualizar el indicador en localStorage para evitar futuros envíos
+      localStorage.setItem('sessionSent', 'true');
+    }
+  }, []);
+
+  localStorage.removeItem('shopping-cart');
 
   return (
     <div className="h-[45rem]">
