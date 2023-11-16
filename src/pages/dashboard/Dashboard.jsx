@@ -168,6 +168,7 @@ export const Dashboard = () => {
                 // shadow="sm"
                 >
                     <CardBody>
+                    <div className="text-center text-xl">Categorías más vendidas</div>
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart width={400} height={400}>
                                 <Pie
@@ -176,7 +177,7 @@ export const Dashboard = () => {
                                     data={categorias}
                                     cx="50%"
                                     cy="50%"
-                                    outerRadius={120}
+                                    outerRadius={110}
                                     fill="#8884d8"
                                     label
                                     nameKey="nombre_categoria"
