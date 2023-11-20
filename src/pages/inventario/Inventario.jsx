@@ -323,7 +323,7 @@ export const Inventario = () => {
               <input
                 type="search"
                 variant="bordered"
-                className="block w-full p-4 pl-10 text-sm text-gray-900 font-medium border border-[#092A3A] border-2 rounded-lg focus:ring-blue-500 focus:border-blue-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-900"
+                className="block w-full p-4 pl-10 text-sm text-gray-900 font-medium border-[#092A3A] border-2 rounded-lg focus:ring-blue-500 focus:border-blue-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder-gray-900"
                 placeholder="Buscar por proveedor, sucursal, código o nombre"
                 required
                 value={buscarTerm}
