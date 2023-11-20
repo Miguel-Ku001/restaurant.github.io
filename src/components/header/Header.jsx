@@ -30,6 +30,7 @@ export default function Header() {
 
   const isAdmin = idrol === '2';
   const isCliente = idrol === '1';
+  const isSuperAdmin = idrol === '3';
 
   return (
     <Navbar className="bg-[#2c3033] font-marcellus h-[6rem] z-0"
@@ -130,7 +131,59 @@ export default function Header() {
               </DropdownTrigger>
 
               <DropdownMenu aria-label="Static Actions">
-                <DropdownSection title="Administración" showDivider>
+                <DropdownSection title="Administración" showDivider>        
+                  <DropdownItem key="dashboards" className="text-gray-900" as={Link} href="/dashboard">
+                    Dashboard
+                  </DropdownItem>
+                  <DropdownItem key="reservation" className="text-gray-900" as={Link} href="/servicios/reservaciones">
+                    Reservaciones
+                  </DropdownItem>
+                  <DropdownItem key="orderadmin" className="text-gray-900" as={Link} href="/ordenes/admin">
+                    Ordenes
+                  </DropdownItem>
+                </DropdownSection>
+                <DropdownSection showDivider>
+                  <DropdownItem key="menuadmin" className="text-gray-900" as={Link} href="/menu/admin">
+                    Menú
+                  </DropdownItem>
+                  <DropdownItem key="sucursaladmin" className="text-gray-900" as={Link} href="/sucursales/admin">
+                    Sucursales
+                  </DropdownItem>
+                </DropdownSection>
+                <DropdownSection title="Productos" showDivider>
+                  <DropdownItem key="inv" className="text-gray-900" as={Link} href="/inventario">
+                    Inventario
+                  </DropdownItem>
+                  <DropdownItem key="prove" className="text-gray-900" as={Link} href="/proveedores">
+                    Proveedores
+                  </DropdownItem>
+                </DropdownSection>
+                <DropdownSection>
+                  <DropdownItem key="logout" className="text-orange-500" as={Link} onClick={logout} href="/" variant="flat">
+                    {/* <Button    color="primary" variant="flat" className="text-orange-300 bg-transparent hover:text-orange-500">
+                      Cerrar Sesión
+                    </Button>   */}
+                    Cerrar Sesión
+                  </DropdownItem>
+                </DropdownSection>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+        )}
+
+        {isSuperAdmin && isLoggedIn && (
+          <NavbarItem>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button
+                  variant="bordered" className="text-white border-orange-300"
+                >
+                  + Opciones
+                </Button>
+              </DropdownTrigger>
+
+              <DropdownMenu aria-label="Static Actions">
+                <DropdownSection title="Administración" showDivider>        
                   <DropdownItem key="dashboards" className="text-gray-900" as={Link} href="/dashboard">
                     Dashboard
                   </DropdownItem>
