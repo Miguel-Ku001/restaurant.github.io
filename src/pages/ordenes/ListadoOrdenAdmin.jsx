@@ -60,7 +60,6 @@ export const ListadoOrdenAdmin = () => {
                     .then(() => {
                         axios.get('/api/ordenes/admin')
                             .then(res => {
-                                // console.log(res.data);
                                 setOrden(res.data);
                             })
                             .catch(err => console.log(err));
@@ -70,14 +69,10 @@ export const ListadoOrdenAdmin = () => {
                 console.log(err);
             }
         }
-
-        
-            // .catch(err => console.log(err));
-    };
+        };
 
 
     return (
-
         <div className="py-16 px-24 font-marcellus">
             <div className="mb-10">
                 <h2 className="text-5xl text-center text-gray-800">ORDENES REALIZADAS</h2>

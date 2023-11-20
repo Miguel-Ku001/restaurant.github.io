@@ -167,6 +167,17 @@ export const Dashboard = () => {
             })
             .catch(err => console.log(err));
     }, [])
+
+    const [ordenStatus, setOrdenStatus] = useState([])
+    useEffect(() => {
+        axios.get('/api/ordenes/admin')
+            .then(res => {
+                const order = res.data.filter(orden => orden.estatus === 1);
+                const estatusorden = order.length;
+                setOrdenStatus(estatusorden);
+            })
+            .catch(err => console.log(err));
+    }, [])
     
 
 
@@ -187,7 +198,7 @@ export const Dashboard = () => {
                             <div className="flex px-4">
                                 <div className="w-3/4 pr-2">
                                     <div className="text-xl">Ordenes en proceso</div>
-                                    <div className="text-3xl text-gray-800 ml-4">2</div>
+                                    <div className="text-3xl text-gray-800 ml-4">{ordenStatus}</div>
                                 </div>
                                 <div className="w-1/4 flex items-center justify-center">
                                     <MdFoodBank color="#fb923c" size="4em" className="text-center items-center"/>
